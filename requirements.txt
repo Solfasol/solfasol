@@ -1,0 +1,4 @@
+gunicorn
+django
+martor
+django-tinymce

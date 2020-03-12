@@ -1,0 +1,127 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-03-10 23:54+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: solfasol/articles/admin.py:22
+msgid "Publish"
+msgstr ""
+
+#: solfasol/articles/apps.py:7
+msgid "blog"
+msgstr ""
+
+#: solfasol/articles/models.py:9
+msgid "title"
+msgstr ""
+
+#: solfasol/articles/models.py:11
+msgid "subtitle"
+msgstr ""
+
+#: solfasol/articles/models.py:12
+msgid "image"
+msgstr ""
+
+#: solfasol/articles/models.py:14
+msgid "summary"
+msgstr ""
+
+#: solfasol/articles/models.py:18
+msgid "Author"
+msgstr ""
+
+#: solfasol/articles/models.py:23
+msgid "Photo credits"
+msgstr ""
+
+#: solfasol/articles/models.py:27
+msgid "publish"
+msgstr ""
+
+#: solfasol/articles/models.py:39
+msgid "article"
+msgstr ""
+
+#: solfasol/articles/models.py:40
+msgid "articles"
+msgstr ""
+
+#: solfasol/articles/models.py:44
+msgid "name"
+msgstr ""
+
+#: solfasol/templates/articles/article_list.html:25
+msgid "more"
+msgstr ""
+
+#: solfasol/templates/base.html:22
+msgid "Press in Arrest"
+msgstr ""
+
+#: solfasol/templates/base.html:72
+msgid "Homepage"
+msgstr ""
+
+#: solfasol/templates/base.html:76 solfasol/templates/index.html:46
+#: solfasol/templates/search_result.html:44
+msgid "Cases"
+msgstr ""
+
+#: solfasol/templates/base.html:87 solfasol/templates/index.html:50
+#: solfasol/templates/search_result.html:31
+msgid "Journalists"
+msgstr ""
+
+#: solfasol/templates/base.html:91 solfasol/templates/index.html:54
+msgid "Analysis"
+msgstr ""
+
+#: solfasol/templates/base.html:95
+msgid "What do we do?"
+msgstr ""
+
+#: solfasol/templates/base.html:103 solfasol/templates/index.html:62
+msgid "Search"
+msgstr ""
+
+#: solfasol/templates/index.html:112 solfasol/templates/search/search.html:38
+msgid "Previous"
+msgstr ""
+
+#: solfasol/templates/index.html:116 solfasol/templates/search/search.html:40
+msgid "Next"
+msgstr ""
+
+#: solfasol/templates/search/search.html:13
+#: solfasol/templates/search_result.html:13
+msgid "Search results"
+msgstr ""
+
+#: solfasol/templates/search/search.html:32
+#: solfasol/templates/search_result.html:69
+msgid "No items matched the query"
+msgstr ""
+
+#: solfasol/templates/search_result.html:18
+msgid "Articles"
+msgstr ""
+
+#: solfasol/urls.py:22 solfasol/urls.py:23
+msgid "Solfasol Administration"
+msgstr ""
