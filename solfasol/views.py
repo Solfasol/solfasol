@@ -13,7 +13,6 @@ class IndexView(TemplateView):
         context = super().get_context_data()
         articles = Article.objects.filter(publish=True)
         context.update({
-            'categories': Category.objects.all(),
             'articles': articles[:6],
             'featured_articles': articles.filter(featured=True)[:6],
             'popular_articles': articles.order_by('-view_count')[:6],

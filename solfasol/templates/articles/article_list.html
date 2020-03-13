@@ -4,35 +4,32 @@
 
 {% block content %}
 
-        {% for article in article_list %}
+		<div class="container">
 
-            {% with article.image as thumbnail %}
+                <h4 class="p-title"><b>{{ title }}</b></h4>
 
-            <section class="analiz">
-              <div class="container py-3">
-                <div class="card border-dark shadow p-3 bg-white rounded">
-                  <div class="row card-header analiz-card-header">
-                    <div class="col-xs-6">
-                      <img class="analizgorseli" style="max-height: 160px; max-width: 160px;" src="{% if thumbnail %}{{ thumbnail.url }}{% else %}http://placehold.it/160x160{% endif %}"/>
-                    </div>
-                    <div class="col-xs-6" style="margin-left:5%">
-                      <div class="card-block">
-                        <a href= "{{ article.get_absolute_url }}" style="color:black">
-                          <h4 class="card-title">{{ article.title }}</h4>
-                        </a>
-                        <span class="card-text">
-                            {{ article.summary }}
-                            <a href= "{{ article.get_absolute_url }}" style="color:black"> ({% trans "more" %}...)</a>
-                        </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </section>
+                <div class="row">
 
-            {% endwith %}
+                    {% for article in article_list %}
 
-        {% endfor %}
+                    <div class="col-md-4 col-sm-6">
+                        <img src="{{ article.image.url }}" alt="">
+                        <h4 class="pt-20"><a href="{{ article.get_absolute_url }}"><b>{{ article.title }}</b></a></h4>
+                        <ul class="list-li-mr-20 pt-10 mb-30">
+                            <li class="color-lite-black">
+                                {% if article.author %}<a href="#" class="color-black"><b>{{ article.author }}</b> &middot; </a>{% endif %}
+                                {{ article.added|date:"d F Y" }}
+                            </li>
+                            {% if article.video %}
+                                <li><i class="color-primary mr-5 font-12 ion-ios-videocamera"></i></li>
+                            {% endif %}
+                        </ul>
+                    </div><!-- col-sm-6 -->
+
+                    {% endfor %}
+
+                </div><!-- row -->
+
+		</div><!-- container -->
 
 {% endblock %}

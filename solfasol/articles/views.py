@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, TemplateView
-from .models import Article, Category
+from django.utils.translation import ugettext as _
+from django.shortcuts import get_object_or_404
+from .models import Article, Category, Tag, Contributor
 
 
 class ArticleListView(ListView):
@@ -17,6 +19,36 @@ class ArticleListView(ListView):
         if self.kwargs.get('popular'):
             qs = qs.order_by('-view_count')[:20]
         return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.kwargs.get('category'):
+            category = get_object_or_404(Category,slug=self.kwargs['category'])
+            context.update({
+                'list_type': _('category'),
+                'category': category,
+                'title': category.name,
+            })
+        elif self.kwargs.get('tag'):
+            tag = get_object_or_404(Tag, slug=self.kwargs['tag'])
+            context.update({
+                'list_type': _('tag'),
+                'tag': tag,
+                'title': tag.name,
+            })
+        elif self.kwargs.get('author'):
+            author = get_object_or_404(Contributor, slug=self.kwargs['tag'])
+            context.update({
+                'list_type': _('author'),
+                'author': author,
+                'title': author.name,
+            })
+        elif self.kwargs.get('popular'):
+            context.update({
+                'list_type': _('popular'),
+                'title': _('popular'),
+            })
+        return context
 
 
 class ArticleDetailView(DetailView):

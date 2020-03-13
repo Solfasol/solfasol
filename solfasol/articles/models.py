@@ -81,6 +81,7 @@ class Tag(models.Model):
 class Category(models.Model):
     name = models.CharField(_('name'), max_length=100)
     slug = models.SlugField(unique=True)
+    order = models.PositiveSmallIntegerField(default=0)
 
     def __str__(self):
         return self.name
@@ -92,3 +93,4 @@ class Category(models.Model):
     class Meta:
         verbose_name = _('category')
         verbose_name_plural = _('categories')
+        ordering = ('order',)
