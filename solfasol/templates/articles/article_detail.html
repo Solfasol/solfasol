@@ -7,56 +7,105 @@
 
 {% block content %}
 
+<div class="container">
 
-<section>
-  <div class="container py-3">
-    <div class="card border-dark shadow p-3 mb-5 bg-white rounded">
-      <div class="row card-header analiz-detay-header">
-          {% if article.image %}
-          <div class="col-xs-8 align-middle">
-              <img style="margin-left:9%; width: 80%; height:300px;" src="{{ article.image.url }}" />
-          </div>
-          {%  endif %}
+    <div class="row">
 
-          <div class="col-md-12 px-3" align="center">
-            <div class="card-block" >
-              <h2 class="card-title">{{ article.title }}</h2>
+        <div class="col-md-12 col-lg-8">
+            <img src="{{ article.image.url }}" alt="{{ article.title }}">
+            <h3 class="mt-30"><b>{{ article.title }}</b></h3>
+            <ul class="list-li-mr-20 mtb-15">
+                <li>
+                    {% if article.author %}
+                    <a href="{% url 'article_author_list' author=article.author.slug %}"><b>{{ article.author }}</b></a>
+                    {% endif %}
+                    {{ article.added|date:"d F Y" }}
+                </li>
+            </ul>
 
-              {% if article.subtitle %}
-              <h3 class="card-title">{{ article.subtitle }}</h3>
-              {% endif %}
-              <p class="card-text analiz-detay-text" style="text-align:justify;padding-right: 5px;">
-                  {{ article.summary }}
-              </p>
-            </div>
-          </div>
+            <p>
+                {{ article.summary|safe }}
+            </p>
+
+            <p>
+                {{ article.body|safe }}
+            </p>
+
+            <div class="float-left-right text-center mt-40 mt-sm-20">
+
+                <ul class="mb-30 list-li-mt-10 list-li-mr-5 list-a-plr-15 list-a-ptb-7 list-a-bg-grey list-a-br-2 list-a-hvr-primary ">
+                    {% for tag in article.tags.all %}
+                    <li><a href="{% url 'article_tag_list' tag=tag.slug %}">{{ tag.name }}</a></li>
+                    {% endfor %}
+                </ul>
+                <ul class="mb-30 list-a-bg-grey list-a-hw-radial-35 list-a-hvr-primary list-li-ml-5">
+                    <li class="mr-10 ml-0">Share</li>
+                    <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+                    <li><a href="#"><i class="ion-social-twitter"></i></a></li>
+                    <li><a href="#"><i class="ion-social-google"></i></a></li>
+                    <li><a href="#"><i class="ion-social-instagram"></i></a></li>
+                </ul>
+
+            </div><!-- float-left-right -->
+
+            <div class="brdr-ash-1 opacty-5"></div>
+
+            {% if article.similar_articles %}
+
+            <h4 class="p-title mt-50"><b>{% trans "YOU MAY ALSO LIKE" %}</b></h4>
+
+            <div class="row">
+
+                {% for article in article.similar_articles %}
+
+                <div class="col-sm-6">
+                    <img src="images/crypto-news-2-600x450.jpg" alt="">
+                    <h4 class="pt-20"><a href="#"><b>{{ article.title }}</b></a></h4>
+                    <ul class="list-li-mr-20 pt-10 mb-30">
+                        <li class="color-lite-black">
+                            {% if article.author %}
+                                <a href="{% url 'article_author_list' author=article.author.slug %}" class="color-black">
+                                    <b>{{ article.author }}</b>
+                                    &middot;
+                                </a>
+                            {% endif %}
+                            {{ article.added|date:"d F Y" }}
+                        </li>
+                    </ul>
+                </div><!-- col-sm-6 -->
+
+                {% endfor %}
+
+            </div><!-- row -->
+
+            {% endif %}
+
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="pl-20 pl-md-0">
+
+                <h4 class="p-title"><b>{% trans "POPULAR POSTS" %}</b></h4>
+
+                {% for article in popular_articles %}
+
+                <a class="oflow-hidden pos-relative mb-20 dplay-block" href="#">
+                    <div class="wh-100x abs-tlr"><img src="{{ article.image.url }}" alt=""></div>
+                    <div class="ml-120 min-h-100x">
+                        <h5><b>{{ article.title }}</b></h5>
+                        <h6 class="color-lite-black pt-10">{% if article.author %}<span class="color-black"><b>{{ article.author }}</b></span> &middot; {% endif %}{{ article.added|date:"d F Y" }}</h6>
+                    </div>
+                </a><!-- oflow-hidden -->
+
+                {% endfor %}
 
 
-          {% with article.section_set.all as sections %}
-          {% for section in sections %}
+            </div><!--  pl-20 -->
+        </div><!-- col-md-3 -->
 
-              {% if section.title %}
-              <h3 class="card-title w-100">{{ section.title }}</h3>
-              {% endif %}
- 
-              {% if section.image %}
-              <div class="col-xs-8 w-100">
-                  <img style="margin-left:9%; width: 80%; height:300px;" src="{{ section.image.url }}" />
-              </div>
-              {%  endif %}
-              {% if section.text %}
-              <p class="card-text analiz-detay-text" style="text-align:justify;padding-right: 5px;">
-                  {{ section.text }}
-              </p>
-              {% endif %}
 
-          {% endfor %}
-          {% endwith %}
-
-      </div>
     </div>
-  </div>
-</section>
 
+</div>
 
 {% endblock %}

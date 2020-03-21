@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from froala_editor.fields import FroalaField
@@ -30,12 +31,18 @@ class Article(models.Model):
     lang = models.CharField(_('language'), max_length=7, choices=settings.LANGUAGES, default='tr')
     tags = models.ManyToManyField('tag', blank=True)
     category = models.ForeignKey('category', blank=True, null=True, on_delete=models.SET_NULL)
+    series = models.ForeignKey('series', blank=True, null=True, on_delete=models.SET_NULL)
+
+    related_articles = models.ManyToManyField('self', blank=True)
+
     featured = models.BooleanField(_('featured'), default=False)
 
     publish = models.BooleanField(_('publish'), default=False)
     published_by = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     added = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+
+    issue = models.PositiveSmallIntegerField(blank=True, null=True)
 
     view_count = models.PositiveIntegerField(default=0, editable=False)
 
@@ -44,6 +51,10 @@ class Article(models.Model):
 
     def get_absolute_url(self):
         return reverse('article_detail', kwargs={'slug': self.slug})
+
+    @cached_property
+    def similar_articles(self):
+        return self.related_articles.filter(publish=True)
 
     class Meta:
         verbose_name = _('article')
@@ -94,3 +105,19 @@ class Category(models.Model):
         verbose_name = _('category')
         verbose_name_plural = _('categories')
         ordering = ('order',)
+
+
+class Series(models.Model):
+    name = models.CharField(_('name'), max_length=100)
+    slug = models.SlugField(unique=True)
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def articles(self):
+        return self.article_set.filter(publish=True)
+
+    class Meta:
+        verbose_name = _('series')
+        verbose_name_plural = _('series')

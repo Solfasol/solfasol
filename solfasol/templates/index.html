@@ -22,7 +22,7 @@
 							<ul class="list-li-mr-20">
 								<li>
 									<span class="color-primary">
-										<b>{% if article.author %}{{ article.author }}{% endif %}</b>
+										{% if article.author %}<b>{{ article.author }}</b> &middot; {% endif %}
 									</span>
 									{{ article.added|date:"d F Y" }}
 								</li>
@@ -45,7 +45,7 @@
 								<h4 class="mb-10 mb-sm-5"><b>{{ article.title }}</b></h4>
 								<ul class="list-li-mr-20">
 									<span class="color-primary">
-										<b>{% if article.author %}{{ article.author }}{% endif %}</b>
+										{% if article.author %}<b>{{ article.author }}</b> &middot; {% endif %}
 									</span>
 									<li>{{ article.added|date:"d F Y" }}</li>
 									{% if article.video %}
@@ -76,7 +76,7 @@
 							<h4 class="mb-10 mb-sm-5"><b>{{ article.title }}</b></h4>
 							<ul class="list-li-mr-20">
 								<span class="color-primary">
-									<b>{% if article.author %}{{ article.author }}{% endif %}</b>
+									{% if article.author %}<b>{{ article.author }}</b> &middot; {% endif %}
 								</span>
 								<li>{{ article.added|date:"d F Y" }}</li>
 								{% if article.video %}
@@ -114,7 +114,7 @@
 							<h4 class="pt-20"><a href="{{ article.get_absolute_url }}"><b>{{ article.title }}</b></a></h4>
 							<ul class="list-li-mr-20 pt-10 mb-30">
 								<li class="color-lite-black">
-									{% if article.author %}<a href="#" class="color-black"><b>{{ article.author }},</b></a>{% endif %}
+									{% if article.author %}<a href="#" class="color-black"><b>{{ article.author }}</b> &middot; </a>{% endif %}
 									{{ article.added|date:"d F Y" }}
 								</li>
 								{% if article.video %}
@@ -133,6 +133,7 @@
 				</div><!-- col-md-9 -->
 
 				<div class="d-none d-md-block d-lg-none col-md-3"></div>
+
 				<div class="col-md-6 col-lg-4">
 					<div class="pl-20 pl-md-0">
 
@@ -144,7 +145,7 @@
 							<div class="wh-100x abs-tlr"><img src="{{ article.image.url }}" alt=""></div>
 							<div class="ml-120 min-h-100x">
 								<h5><b>{{ article.title }}</b></h5>
-								<h6 class="color-lite-black pt-10">{% if article.author %}<span class="color-black"><b>{{ article.author }}</b></span> {% endif %}{{ article.added|date:"d F Y" }}</h6>
+								<h6 class="color-lite-black pt-10">{% if article.author %}<span class="color-black"><b>{{ article.author }}</b></span> &middot; {% endif %}{{ article.added|date:"d F Y" }}</h6>
 							</div>
 						</a><!-- oflow-hidden -->
 

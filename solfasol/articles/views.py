@@ -37,7 +37,7 @@ class ArticleListView(ListView):
                 'title': tag.name,
             })
         elif self.kwargs.get('author'):
-            author = get_object_or_404(Contributor, slug=self.kwargs['tag'])
+            author = get_object_or_404(Contributor, slug=self.kwargs['author'])
             context.update({
                 'list_type': _('author'),
                 'author': author,

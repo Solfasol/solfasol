@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-10 23:54+0300\n"
+"POT-Creation-Date: 2020-03-14 16:40+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,110 +18,126 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: solfasol/articles/admin.py:22
+#: solfasol/articles/admin.py:23
 msgid "Publish"
 msgstr ""
 
 #: solfasol/articles/apps.py:7
 msgid "blog"
-msgstr ""
-
-#: solfasol/articles/models.py:9
-msgid "title"
-msgstr ""
+msgstr "blog"
 
 #: solfasol/articles/models.py:11
+msgid "title"
+msgstr "başlık"
+
+#: solfasol/articles/models.py:13
 msgid "subtitle"
-msgstr ""
+msgstr "altbaşlık"
 
-#: solfasol/articles/models.py:12
+#: solfasol/articles/models.py:15
 msgid "image"
-msgstr ""
+msgstr "görsel"
 
-#: solfasol/articles/models.py:14
-msgid "summary"
-msgstr ""
+#: solfasol/articles/models.py:16
+msgid "video"
+msgstr "video"
 
 #: solfasol/articles/models.py:18
-msgid "Author"
-msgstr ""
+msgid "summary"
+msgstr "özet"
 
-#: solfasol/articles/models.py:23
-msgid "Photo credits"
-msgstr ""
+#: solfasol/articles/models.py:22 solfasol/articles/views.py:42
+msgid "author"
+msgstr "yazar"
 
 #: solfasol/articles/models.py:27
-msgid "publish"
-msgstr ""
+msgid "Photo credits"
+msgstr "fotoğrafçılar"
+
+#: solfasol/articles/models.py:31
+msgid "language"
+msgstr "dil"
+
+#: solfasol/articles/models.py:37
+msgid "featured"
+msgstr "öne çıkan"
 
 #: solfasol/articles/models.py:39
+msgid "publish"
+msgstr "yayında"
+
+#: solfasol/articles/models.py:59
 msgid "article"
-msgstr ""
+msgstr "makale"
 
-#: solfasol/articles/models.py:40
+#: solfasol/articles/models.py:60
 msgid "articles"
-msgstr ""
+msgstr "makaleler"
 
-#: solfasol/articles/models.py:44
+#: solfasol/articles/models.py:65 solfasol/articles/models.py:80
+#: solfasol/articles/models.py:92
 msgid "name"
-msgstr ""
+msgstr "isim"
 
-#: solfasol/templates/articles/article_list.html:25
-msgid "more"
-msgstr ""
+#: solfasol/articles/models.py:75
+msgid "contributor"
+msgstr "katkıda bulunan"
 
-#: solfasol/templates/base.html:22
-msgid "Press in Arrest"
-msgstr ""
+#: solfasol/articles/models.py:76
+msgid "contributors"
+msgstr "katkıda bulunanlar"
 
-#: solfasol/templates/base.html:72
-msgid "Homepage"
-msgstr ""
+#: solfasol/articles/models.py:87 solfasol/articles/views.py:35
+msgid "tag"
+msgstr "etiket"
 
-#: solfasol/templates/base.html:76 solfasol/templates/index.html:46
-#: solfasol/templates/search_result.html:44
-msgid "Cases"
-msgstr ""
+#: solfasol/articles/models.py:88
+msgid "tags"
+msgstr "etiketler"
 
-#: solfasol/templates/base.html:87 solfasol/templates/index.html:50
-#: solfasol/templates/search_result.html:31
-msgid "Journalists"
-msgstr ""
+#: solfasol/articles/models.py:104 solfasol/articles/views.py:28
+msgid "category"
+msgstr "kategori"
 
-#: solfasol/templates/base.html:91 solfasol/templates/index.html:54
-msgid "Analysis"
-msgstr ""
+#: solfasol/articles/models.py:105
+msgid "categories"
+msgstr "kategoriler"
 
-#: solfasol/templates/base.html:95
-msgid "What do we do?"
-msgstr ""
+#: solfasol/articles/views.py:48 solfasol/articles/views.py:49
+msgid "popular"
+msgstr "popüler"
 
-#: solfasol/templates/base.html:103 solfasol/templates/index.html:62
-msgid "Search"
-msgstr ""
+#: solfasol/templates/articles/article_detail.html:55
+msgid "YOU MAY ALSO LIKE"
+msgstr "İLGİNİZİ ÇEKEBİLİR"
 
-#: solfasol/templates/index.html:112 solfasol/templates/search/search.html:38
-msgid "Previous"
-msgstr ""
-
-#: solfasol/templates/index.html:116 solfasol/templates/search/search.html:40
-msgid "Next"
-msgstr ""
+#: solfasol/templates/articles/article_detail.html:88
+#: solfasol/templates/index.html:140
+msgid "POPULAR POSTS"
+msgstr "POPÜLER İÇERİK"
 
 #: solfasol/templates/search/search.html:13
 #: solfasol/templates/search_result.html:13
 msgid "Search results"
-msgstr ""
+msgstr "Arama sonuçları"
 
 #: solfasol/templates/search/search.html:32
-#: solfasol/templates/search_result.html:69
+#: solfasol/templates/search_result.html:24
 msgid "No items matched the query"
-msgstr ""
+msgstr "Uygun sonuç bulunamadı"
 
-#: solfasol/templates/search_result.html:18
+#: solfasol/templates/search/search.html:38
+msgid "Previous"
+msgstr "Önceki"
+
+#: solfasol/templates/search/search.html:40
+msgid "Next"
+msgstr "Sonraki"
+
+#: solfasol/templates/search_result.html:16
 msgid "Articles"
-msgstr ""
+msgstr "Makaleler"
 
-#: solfasol/urls.py:22 solfasol/urls.py:23
+#: solfasol/urls.py:28 solfasol/urls.py:29
 msgid "Solfasol Administration"
-msgstr ""
+msgstr "Solfasol Yönetimi"
