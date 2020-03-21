@@ -121,3 +121,8 @@ LOCALE_PATHS = (
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 #MEDIA_URL = 'http://solfasol.s3.amazonaws.com/'
+
+try:
+    from .settings_local import *
+except ImportError:
+    pass
