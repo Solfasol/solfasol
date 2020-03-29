@@ -10,7 +10,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'solfasol.tv',
+    'ec2-3-226-238-181.compute-1.amazonaws.com',
+]
 
 
 # Application definition

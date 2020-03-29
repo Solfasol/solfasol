@@ -5,5 +5,6 @@ boto3
 gunicorn
 martor
 django-tinymce
+django-froala-editor
 django-storages
 python-slugify
