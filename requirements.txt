@@ -1,4 +1,9 @@
+django>=3.0
+pillow
+django-crispy-forms
+boto3
 gunicorn
-django
 martor
 django-tinymce
+django-storages
+python-slugify
