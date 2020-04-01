@@ -29,7 +29,6 @@ INSTALLED_APPS = [
 
     'martor',
 
-    'solfasol.articles',
     'solfasol.content',
 ]
 
