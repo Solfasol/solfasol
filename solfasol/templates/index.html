@@ -24,7 +24,7 @@
 									<span class="color-primary">
 										{% if content.owner %}<b>{{ content.owner }}</b> &middot; {% endif %}
 									</span>
-									{{ content.added|date:"d F Y" }}
+									{{ content.added|date:"j F" }}
 								</li>
 							</ul>
 						</div><!--abs-blr -->
@@ -47,7 +47,7 @@
 									<span class="color-primary">
 										{% if content.owner %}<b>{{ content.owner }}</b> &middot; {% endif %}
 									</span>
-									<li>{{ content.added|date:"d F Y" }}</li>
+									<li>{{ content.added|date:"j F" }}</li>
 									{% if content.video %}
 										<li><i class="color-primary mr-5 font-12 ion-ios-videocamera"></i></li>
 									{% endif %}
@@ -78,7 +78,7 @@
 								<span class="color-primary">
 									{% if content.owner %}<b>{{ content.owner }}</b> &middot; {% endif %}
 								</span>
-								<li>{{ content.added|date:"d F Y" }}</li>
+								<li>{{ content.added|date:"j F" }}</li>
 								{% if content.video %}
 									<li><i class="color-primary mr-5 font-12 ion-ios-videocamera"></i></li>
 								{% endif %}
@@ -115,7 +115,7 @@
 							<ul class="list-li-mr-20 pt-10 mb-30">
 								<li class="color-lite-black">
 									{% if content.owner %}<a href="#" class="color-black"><b>{{ content.owner }}</b> &middot; </a>{% endif %}
-									{{ content.added|date:"d F Y" }}
+									{{ content.added|date:"j F" }}
 								</li>
 								{% if content.video %}
 									<li><i class="color-primary mr-5 font-12 ion-ios-videocamera"></i></li>
@@ -145,7 +145,7 @@
 							<div class="wh-100x abs-tlr"><img src="{{ content.image.url }}" alt=""></div>
 							<div class="ml-120 min-h-100x">
 								<h5><b>{{ content.title }}</b></h5>
-								<h6 class="color-lite-black pt-10">{% if content.owner %}<span class="color-black"><b>{{ content.owner }}</b></span> &middot; {% endif %}{{ content.added|date:"d F Y" }}</h6>
+								<h6 class="color-lite-black pt-10">{% if content.owner %}<span class="color-black"><b>{{ content.owner }}</b></span> &middot; {% endif %}{{ content.added|date:"j F" }}</h6>
 							</div>
 						</a><!-- oflow-hidden -->
 
