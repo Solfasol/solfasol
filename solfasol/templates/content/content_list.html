@@ -15,7 +15,7 @@
                     <div class="col-md-4 col-sm-6">
                         <img src="{{ content.image.url }}" alt="">
                         <h4 class="pt-20"><a href="{{ content.get_absolute_url }}"><b>{{ content.title }}</b></a></h4>
-                        <ul class="list-li-mr-20 pt-10 mb-30">
+                        <ul class="list-li-mr-10 pt-10 mb-30">
                             <li class="color-lite-black">
                                 {% if content.owner %}<a href="#" class="color-black"><b>{{ content.owner }}</b> &middot; </a>{% endif %}
                                 {{ content.added|date:"j F Y" }}

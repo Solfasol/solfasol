@@ -19,14 +19,14 @@
 
 						<div class="abs-blr color-white p-20 bg-sm-color-7">
 							<h3 class="mb-15 mb-sm-5 font-sm-13"><b>{{ content.title }}</b></h3>
-							<ul class="list-li-mr-20">
+							<ul class="list-li-mr-10">
 								<li>
 									<span class="color-primary">
 										{% if content.owner %}<b>{{ content.owner }}</b> &middot; {% endif %}
 									</span>
 									{{ content.added|date:"j F" }}
 									{% if content.video_url %}
-										<li><i class="color-primary mr-5 font-12 ion-ios-videocam"></i></li>
+										<li><i class="color-primary font-12 ion-ios-videocam"></i></li>
 									{% endif %}
 								</li>
 							</ul>
@@ -47,7 +47,7 @@
 							></div>
 							<div class="abs-blr color-white p-20 bg-sm-color-7">
 								<h4 class="mb-10 mb-sm-5"><b>{{ content.title }}</b></h4>
-								<ul class="list-li-mr-20">
+								<ul class="list-li-mr-10">
 									<span class="color-primary">
 										{% if content.owner %}<b>{{ content.owner }}</b> &middot; {% endif %}
 									</span>
@@ -78,7 +78,7 @@
 
 						<div class="abs-blr color-white p-20 bg-sm-color-7">
 							<h4 class="mb-10 mb-sm-5"><b>{{ content.title }}</b></h4>
-							<ul class="list-li-mr-20">
+							<ul class="list-li-mr-10">
 								<span class="color-primary">
 									{% if content.owner %}<b>{{ content.owner }}</b> &middot; {% endif %}
 								</span>
