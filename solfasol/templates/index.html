@@ -14,7 +14,7 @@
 					<a class="pos-relative h-100 dplay-block" href="{{ content.get_absolute_url }}">
 
 						<div class="img-bg bg-grad-layer-6"
-							 style="background: url(http://{{ request.get_host }}{{ content.image.url }}) no-repeat center; background-size: cover;"
+							 style="background: url({{ content.image.url }}) no-repeat center; background-size: cover;"
 						></div>
 
 						<div class="abs-blr color-white p-20 bg-sm-color-7">
@@ -39,7 +39,7 @@
 					<div class="pl-5 pb-5 {% if not forloop.first %}pt-5 ptb-sm-5{% endif %} pl-sm-0 pos-relative h-50">
 						<a class="pos-relative h-100 dplay-block" href="{{ content.get_absolute_url }}">
 							<div class="img-bg bg-grad-layer-6"
-								 style="background: url(http://{{ request.get_host }}{{ content.image.url }}) no-repeat center; background-size: cover;"
+								 style="background: url({{ content.image.url }}) no-repeat center; background-size: cover;"
 							></div>
 							<div class="abs-blr color-white p-20 bg-sm-color-7">
 								<h4 class="mb-10 mb-sm-5"><b>{{ content.title }}</b></h4>
@@ -69,7 +69,7 @@
 					<a class="pos-relative h-100 dplay-block" href="{{ content.get_absolute_url }}">
 
 						<div class="img-bg bg-grad-layer-6"
-							 style="background: url(http://{{ request.get_host }}{{ content.image.url }}) no-repeat center; background-size: cover;"
+							 style="background: url({{ content.image.url }}) no-repeat center; background-size: cover;"
 						></div>
 
 						<div class="abs-blr color-white p-20 bg-sm-color-7">

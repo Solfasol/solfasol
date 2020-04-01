@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, TemplateView
+from django.views.generic import ListView, DetailView
 from django.utils.translation import ugettext as _
 from django.shortcuts import get_object_or_404
-from .models import Content, Article, Category, Tag, Contributor
+from .models import Content, Category, Tag, Contributor
 
 
 class ContentListView(ListView):
@@ -57,3 +57,9 @@ class ContentDetailView(DetailView):
     def get_queryset(self):
         qs = super().get_queryset()
         return qs.filter(publish=True)
+
+    def get_object(self, qs):
+        obj = super().get_object(qs)
+        obj.view_count += 1
+        obj.save()
+        return obj
