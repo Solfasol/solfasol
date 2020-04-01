@@ -3,7 +3,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
-from .articles.views import ArticleDetailView, ArticleListView
+from .content.views import ContentListView, ContentDetailView
 from .views import IndexView, set_language
 
 
@@ -14,11 +14,12 @@ urlpatterns = [
 
     path('', IndexView.as_view(), name='index'),
 
-    path('<slug:slug>/', ArticleDetailView.as_view(), name='article_detail'),
-    path('kategori/<slug:category>/', ArticleListView.as_view(), name='article_category_list'),
-    path('etiket/<slug:tag>/', ArticleListView.as_view(), name='article_tag_list'),
-    path('yazar/<slug:author>/', ArticleListView.as_view(), name='article_author_list'),
-    path('populer/', ArticleListView.as_view(), {'popular': True}, name='article_popular_list'),
+    path('kategori/<slug:category>/', ContentListView.as_view(), name='article_category_list'),
+    path('etiket/<slug:tag>/', ContentListView.as_view(), name='article_tag_list'),
+    path('yazar/<slug:author>/', ContentListView.as_view(), name='article_author_list'),
+    path('populer/', ContentListView.as_view(), {'popular': True}, name='article_popular_list'),
+
+    path('<slug:slug>/', ContentDetailView.as_view(), name='article_detail'),
 
     path('dil/', set_language, name='set_lang'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

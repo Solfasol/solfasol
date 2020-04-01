@@ -8,3 +8,4 @@ django-tinymce
 django-froala-editor
 django-storages
 python-slugify
+django-polymorphic

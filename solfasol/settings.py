@@ -11,6 +11,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    'localhost',
     'solfasol.tv',
     'ec2-3-226-238-181.compute-1.amazonaws.com',
 ]
@@ -26,9 +27,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'froala_editor',
+    'martor',
 
-    'solfasol.articles',
+    'solfasol.content',
 ]
 
 MIDDLEWARE = [

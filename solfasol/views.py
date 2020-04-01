@@ -3,7 +3,7 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.urls import translate_url
 from django.utils.translation import LANGUAGE_SESSION_KEY
-from solfasol.articles.models import Article, Category
+from solfasol.content.models import Content, Category
 
 
 class IndexView(TemplateView):
@@ -11,10 +11,10 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        articles = Article.objects.filter(publish=True)
+        content = Content.objects.filter(publish=True)
         context.update({
-            'articles': articles[:6],
-            'featured_articles': articles.filter(featured=True)[:6],
+            'recent_content': content[:6],
+            'featured_content': content.filter(featured=True)[:6],
         })
         return context
 
