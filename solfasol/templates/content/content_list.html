@@ -10,17 +10,17 @@
 
                 <div class="row">
 
-                    {% for article in article_list %}
+                    {% for content in content_list %}
 
                     <div class="col-md-4 col-sm-6">
-                        <img src="{{ article.image.url }}" alt="">
-                        <h4 class="pt-20"><a href="{{ article.get_absolute_url }}"><b>{{ article.title }}</b></a></h4>
+                        <img src="{{ content.image.url }}" alt="">
+                        <h4 class="pt-20"><a href="{{ content.get_absolute_url }}"><b>{{ content.title }}</b></a></h4>
                         <ul class="list-li-mr-20 pt-10 mb-30">
                             <li class="color-lite-black">
-                                {% if article.author %}<a href="#" class="color-black"><b>{{ article.author }}</b> &middot; </a>{% endif %}
-                                {{ article.added|date:"d F Y" }}
+                                {% if content.owner %}<a href="#" class="color-black"><b>{{ content.owner }}</b> &middot; </a>{% endif %}
+                                {{ content.added|date:"j F Y" }}
                             </li>
-                            {% if article.video %}
+                            {% if content.video %}
                                 <li><i class="color-primary mr-5 font-12 ion-ios-videocamera"></i></li>
                             {% endif %}
                         </ul>

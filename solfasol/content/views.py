@@ -7,6 +7,7 @@ from .models import Content, Category, Tag, Contributor
 
 class ContentListView(ListView):
     model = Content
+    context_object_name = 'content_list'
 
     def get_queryset(self):
         qs = super().get_queryset().filter(publish=True)
@@ -53,13 +54,15 @@ class ContentListView(ListView):
 
 class ContentDetailView(DetailView):
     model = Content
+    template_name = 'content/content_detail.html'
+    context_object_name = 'content'
 
     def get_queryset(self):
         qs = super().get_queryset()
         return qs.filter(publish=True)
 
-    def get_object(self, qs):
-        obj = super().get_object(qs)
+    def get_object(self, **kwargs):
+        obj = super().get_object(**kwargs)
         obj.view_count += 1
         obj.save()
         return obj

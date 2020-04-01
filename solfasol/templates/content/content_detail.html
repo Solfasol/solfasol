@@ -2,7 +2,7 @@
 {% load i18n static martortags %}
 
 
-{% block title %}{{ article.title }} - {{ block.super }}{% endblock %}
+{% block title %}{{ content.title }} - {{ block.super }}{% endblock %}
 
 
 {% block content %}
@@ -12,36 +12,36 @@
     <div class="row">
 
         <div class="col-md-12 col-lg-8">
-            <img src="{{ article.image.url }}" alt="{{ article.title }}">
-            <h3 class="mt-30"><b>{{ article.title }}</b></h3>
+            <img src="{{ content.image.url }}" alt="{{ content.title }}">
+            <h3 class="mt-30"><b>{{ content.title }}</b></h3>
             <ul class="list-li-mr-20 mtb-15">
                 <li>
-                    {% if article.author %}
-                    <a href="{% url 'article_author_list' author=article.author.slug %}"><b>{{ article.author }}</b></a>
+                    {% if content.owner %}
+                    <a href="{% url 'content_author_list' author=content.owner.slug %}"><b>{{ content.owner }}</b></a>
                     {% endif %}
-                    {{ article.added|date:"d F Y" }}
+                    {{ content.added|date:"j F Y" }}
                 </li>
             </ul>
 
             <p>
-                {{ article.summary|safe }}
+                {{ content.summary|safe }}
             </p>
 
-            {% if article.video %}
+            {% if content.video %}
             <p class="my-4">
-                <iframe width="100%" height="400" src="{{ article.video }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="100%" height="400" src="{{ content.url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </p>
             {% endif %}
 
             <p>
-                {{ article.body|safe_markdown }}
+                {{ content.body|safe_markdown }}
             </p>
 
             <div class="float-left-right text-center mt-40 mt-sm-20">
 
                 <ul class="mb-30 list-li-mt-10 list-li-mr-5 list-a-plr-15 list-a-ptb-7 list-a-bg-grey list-a-br-2 list-a-hvr-primary ">
-                    {% for tag in article.tags.all %}
-                    <li><a href="{% url 'article_tag_list' tag=tag.slug %}">{{ tag.name }}</a></li>
+                    {% for tag in content.tags.all %}
+                    <li><a href="{% url 'content_tag_list' tag=tag.slug %}">{{ tag.name }}</a></li>
                     {% endfor %}
                 </ul>
                 <ul class="mb-30 list-a-bg-grey list-a-hw-radial-35 list-a-hvr-primary list-li-ml-5">
@@ -56,26 +56,26 @@
 
             <div class="brdr-ash-1 opacty-5"></div>
 
-            {% if article.similar_articles %}
+            {% if content.similar_content %}
 
             <h4 class="p-title mt-50"><b>{% trans "YOU MAY ALSO LIKE" %}</b></h4>
 
             <div class="row">
 
-                {% for article in article.similar_articles %}
+                {% for content in content.similar_content %}
 
                 <div class="col-sm-6">
                     <img src="images/crypto-news-2-600x450.jpg" alt="">
-                    <h4 class="pt-20"><a href="#"><b>{{ article.title }}</b></a></h4>
+                    <h4 class="pt-20"><a href="#"><b>{{ content.title }}</b></a></h4>
                     <ul class="list-li-mr-20 pt-10 mb-30">
                         <li class="color-lite-black">
-                            {% if article.author %}
-                                <a href="{% url 'article_author_list' author=article.author.slug %}" class="color-black">
-                                    <b>{{ article.author }}</b>
+                            {% if content.owner %}
+                                <a href="{% url 'content_author_list' author=content.author.slug %}" class="color-black">
+                                    <b>{{ content.author }}</b>
                                     &middot;
                                 </a>
                             {% endif %}
-                            {{ article.added|date:"d F Y" }}
+                            {{ content.added|date:"j F Y" }}
                         </li>
                     </ul>
                 </div><!-- col-sm-6 -->
@@ -93,13 +93,15 @@
 
                 <h4 class="p-title"><b>{% trans "POPULAR POSTS" %}</b></h4>
 
-                {% for article in popular_articles %}
+                {% for content in popular_content %}
 
                 <a class="oflow-hidden pos-relative mb-20 dplay-block" href="#">
-                    <div class="wh-100x abs-tlr"><img src="{{ article.image.url }}" alt=""></div>
+                    <div class="wh-100x abs-tlr"><img src="{{ content.image.url }}" alt=""></div>
                     <div class="ml-120 min-h-100x">
-                        <h5><b>{{ article.title }}</b></h5>
-                        <h6 class="color-lite-black pt-10">{% if article.author %}<span class="color-black"><b>{{ article.author }}</b></span> &middot; {% endif %}{{ article.added|date:"d F Y" }}</h6>
+                        <h5><b>{{ content.title }}</b></h5>
+                        {% if content.owner %}
+                            <h6 class="color-lite-black pt-10">{% if content.owner %}<span class="color-black"><b>{{ content.owner }}</b></span> &middot; {% endif %}{{ content.added|date:"j F Y" }}</h6>
+                        {% endif %}
                     </div>
                 </a><!-- oflow-hidden -->
 

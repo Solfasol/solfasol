@@ -36,6 +36,9 @@ class Content(PolymorphicModel):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('content_detail', kwargs={'slug': self.slug})
+
     @cached_property
     def similar_content(self):
         return self.related_content.filter(publish=True)
@@ -62,9 +65,6 @@ class Article(Content):
 
     issue = models.PositiveSmallIntegerField(blank=True, null=True)
 
-    def get_absolute_url(self):
-        return reverse('article_detail', kwargs={'slug': self.slug})
-
     @cached_property
     def owner(self):
         return self.author
@@ -82,7 +82,7 @@ class Video(Content):
     podcast = models.URLField(_('podcast url'), blank=True, null=True)
 
     host = models.ForeignKey(
-        'Contributor', verbose_name=_('author'),
+        'Contributor', verbose_name=_('host'),
         blank=True, null=True,
         on_delete=models.CASCADE, related_name='hosted_video_set'
     )
@@ -103,9 +103,6 @@ class Video(Content):
                     raise ValidationError(_('Invalid Youtube video link!'))
         else:
             raise ValidationError(_('Please submit a Youtube video link!'))
-
-    def get_absolute_url(self):
-        return reverse('article_detail', kwargs={'slug': self.slug})
 
     @cached_property
     def owner(self):

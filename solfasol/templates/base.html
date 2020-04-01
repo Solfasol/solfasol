@@ -64,7 +64,7 @@
 			<ul class="main-menu" id="main-menu">
 
 				{% for category in categories %}
-					<li><a href="{% url 'article_category_list' category=category.slug %}">{{ category.name|upper }}</a></li>
+					<li><a href="{% url 'content_category_list' category=category.slug %}">{{ category.name|upper }}</a></li>
 				{% endfor %}
 
 				{% get_current_language as LANGUAGE_CODE %}
