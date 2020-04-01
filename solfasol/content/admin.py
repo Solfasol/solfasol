@@ -26,10 +26,10 @@ class ContentAdmin(admin.ModelAdmin):
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
-    list_display = ['title', 'author', 'added', 'modified', 'publish', 'published_by', 'featured', 'view_count']
+    list_display = ['title', 'author', 'added', 'category', 'publish', 'published_by', 'featured', 'view_count']
     search_fields = ['title', 'author', 'summary', 'tags__name']
     exclude = ['published_by']
-    list_editable = ['publish', 'featured']
+    list_editable = ['publish', 'featured', 'category']
     list_filter = ['publish', 'added', 'modified', 'featured']
     autocomplete_fields = ['series', 'author', 'photo_credits', 'tags', 'category', 'related_content']
     actions = ['publish']
@@ -46,10 +46,10 @@ class ArticleAdmin(admin.ModelAdmin):
 @admin.register(Video)
 class VideoAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
-    list_display = ['title', 'host', 'added', 'modified', 'publish', 'published_by', 'featured', 'view_count']
+    list_display = ['title', 'host', 'added', 'category', 'publish', 'published_by', 'featured', 'view_count']
     search_fields = ['title', 'host', 'guests', 'summary', 'tags__name']
     exclude = ['published_by']
-    list_editable = ['publish', 'featured']
+    list_editable = ['publish', 'featured', 'category']
     list_filter = ['publish', 'added', 'modified', 'featured']
     autocomplete_fields = ['series', 'host', 'guests', 'tags', 'category', 'related_content']
     actions = ['publish']
