@@ -1,5 +1,4 @@
-{% load static i18n %}
-<!DOCTYPE HTML>
+{% load static i18n %}<!DOCTYPE HTML>
 <html lang="en">
 <head>
 	<title>{% block title %}Solfasol TV{% endblock %}</title>
@@ -26,19 +25,17 @@
 			<div class="container">
 				<div class="oflow-hidden color-ash font-9 text-sm-center ptb-sm-5">
 
-					{% comment %}
 					<ul class="float-left float-sm-none list-a-plr-10 list-a-plr-sm-5 list-a-ptb-15 list-a-ptb-sm-10">
-						<li><a class="pl-0 pl-sm-10" href="#">About</a></li>
-						<li><a href="#">Advertise</a></li>
-						<li><a href="#">Submit Press Release</a></li>
-						<li><a href="#">Contact</a></li>
+						<li><a class="pl-0 pl-sm-10" href="http://arsiv.gazetesolfasol.com/" target="_blank">{% trans "PDF Archive" %}</a></li>
+						<li><a href="https://www.patreon.com/solfasol" target="_blank">{% trans "Subscribe" %}</a></li>
 					</ul>
-					{% endcomment %}
 
 					<ul class="float-right float-sm-none list-a-plr-10 list-a-plr-sm-5 list-a-ptb-15 list-a-ptb-sm-5">
 						<li><a target="_blank" class="pl-0 pl-sm-10" href="https://www.facebook.com/GazeteSolfasol/"><i class="ion-social-facebook"></i></a></li>
 						<li><a target="_blank" href="https://twitter.com/GazeteSolfasol"><i class="ion-social-twitter"></i></a></li>
 						<li><a target="_blank" href="https://www.instagram.com/solfasol_gazetesi/"><i class="ion-social-instagram"></i></a></li>
+						<li><a target="_blank" href="https://www.youtube.com/channel/UC2653F6S271R1sVNdqmkBFg"><i class="ion-social-youtube"></i></a></li>
+						<li><a target="_blank" class="pl-0 pl-sm-10" href="mailto:bilgi@gazetesolfasol.com"><i class="ion-email"></i></a></li>
 						<li><a target="_blank" href="https://www.patreon.com/solfasol"><i class="ion-heart"></i></a></li>
 					</ul>
 
@@ -98,7 +95,6 @@
 
 		<div class="container">
 
-
 			<div class="pt-50 pb-20 pos-relative">
 
 				<div class="row">
@@ -109,32 +105,31 @@
 						</div><!-- mb-30 -->
 					</div><!-- col-md-4 -->
 
-					<div class="col-sm-4">
+					<div class="col-sm-8">
 						<div class="mb-30">
-							<h5 class="color-primary mb-20"><b>MOST POPULAR</b></h5>
+							<h5 class="color-primary mb-20"><b>Neden Solfasol?</b></h5>
 							<div class="mb-20">
-								<a class="color-white" href="#"><b>Its Make or Break Time for Bitcoin</b></a>
-								<h6 class="mt-10">Jan 25, 2018</h6>
-							</div>
-							<div class="brdr-ash-1 opacty-2 mr-30"></div>
-							<div class="mt-20">
-								<a class="color-white" href="#"><b>Bitcoin's roller coster ride is not over</b></a>
-								<h6 class="mt-10">Jan 25, 2018</h6>
-							</div>
-						</div><!-- mb-30 -->
-					</div><!-- col-md-4 -->
+								Yeni bir Ankara sabahı için bir araya geldik. Derdimiz bir gazete çıkarmak.
+								Adımız “Solfasol”; hem Ankara’ya ait, hem de inadına sol olduğumuz için.
+								İddiamız “Ankara’nın gayriresmi gazetesi” olmak.
+								Taşra muhafazakarlığının korkak ve baskıcı dünyasına sıkışmayı reddediyoruz.
+								Ankara’nın sahip olduğu birikimi derleyip, çoğaltıp şehre yansıtacak bir ayna olmak istiyoruz.
+								Ankara’ya, Ankara’nın sorunlarına ve olanaklarına bu birikimin gözleri ile bakacağız.
+								Bu birikime dokunduğumuzda ortaya çıkacağını düşündüğümüz enerji bizi heyecanlandırıyor.
+								Bu heyecanla, Ankara’nın ta kendinden Ankara’yı değiştirecek, dönüştürecek bir hareket yaratmak istiyoruz.
+								Bu heyecanla, şehre dair sözlerimizi ve yapma isteklerimizi, eleştirel ama adil bir yaklaşımla
+								Ankara’nın sokaklarına, meydanlarına, üniversitelerine, kahvelerine, parklarına, kitapçılarına yaymak,
+								en uzak köşesine kadar ulaştırmak ve çoğalmak istiyoruz;
+								sonra sesimiz ve gücümüz nereye kadar yeter ise oraya kadar gitmek.
+								<br>
+								<br>
+								Eğer sizce de bu sözlerimizin bir anlamı varsa, Ankara’nın Gayriresmi Gazetesi Solfasol’e el vermek için yazınızla, çizinizle, sesinizle bu harekete katılmaya, bizimle yanyana durmaya davetlisiniz.
 
-					<div class="col-sm-4">
-						<div class="mb-30">
-							<h5 class="color-primary mb-20"><b>MOST POPULAR</b></h5>
-							<div class="mb-20">
-								<a class="color-white" href="#"><b>Its Make or Break Time for Bitcoin</b></a>
-								<h6 class="mt-10">Jan 25, 2018</h6>
-							</div>
-							<div class="brdr-ash-1 opacty-2 mr-30"></div>
-							<div class="mt-20">
-								<a class="color-white" href="#"><b>Bitcoin's roller coster ride is not over</b></a>
-								<h6 class="mt-10">Jan 25, 2018</h6>
+								<ul class="lead mt-4">
+									<li class="btn btn-outline-warning"><a class="text-light" href="https://www.patreon.com/solfasol" target="_blank">{% trans "Subscribe" %}</a></li>
+									<li class="btn btn-outline-warning ml-3"><a class="text-light" target="_blank" class="pl-0 pl-sm-10" href="mailto:bilgi@gazetesolfasol.com">{% trans "Contact us" %}</a></li>
+								</ul>
+
 							</div>
 						</div><!-- mb-30 -->
 					</div><!-- col-md-4 -->
