@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-01 23:30+0300\n"
+"POT-Creation-Date: 2020-04-01 23:36+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,6 +23,11 @@ msgstr ""
 msgid "Publish"
 msgstr "Yayınla"
 
+#: solfasol/content/apps.py:7 solfasol/content/models.py:47
+#: solfasol/content/models.py:48
+msgid "content"
+msgstr "içerik"
+
 #: solfasol/content/models.py:15
 msgid "title"
 msgstr "başlık"
@@ -34,6 +39,15 @@ msgstr "altbaşlık"
 #: solfasol/content/models.py:18
 msgid "language"
 msgstr "dil"
+
+#: solfasol/content/models.py:19 solfasol/content/models.py:140
+msgid "tags"
+msgstr "etiketler"
+
+#: solfasol/content/models.py:20 solfasol/content/models.py:156
+#: solfasol/content/views.py:29
+msgid "category"
+msgstr "kategori"
 
 #: solfasol/content/models.py:21 solfasol/content/models.py:173
 #: solfasol/content/models.py:174
@@ -59,10 +73,6 @@ msgstr "öne çıkan"
 #: solfasol/content/models.py:32
 msgid "date"
 msgstr "tarih"
-
-#: solfasol/content/models.py:47 solfasol/content/models.py:48
-msgid "content"
-msgstr "içerik"
 
 #: solfasol/content/models.py:53 solfasol/content/models.py:80
 msgid "summary"
@@ -128,14 +138,6 @@ msgstr "katkıda bulunanlar"
 #: solfasol/content/models.py:139 solfasol/content/views.py:36
 msgid "tag"
 msgstr "etiket"
-
-#: solfasol/content/models.py:140
-msgid "tags"
-msgstr "etiketler"
-
-#: solfasol/content/models.py:156 solfasol/content/views.py:29
-msgid "category"
-msgstr "kategori"
 
 #: solfasol/content/models.py:157
 msgid "categories"

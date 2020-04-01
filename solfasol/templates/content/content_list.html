@@ -20,7 +20,7 @@
                                 {% if content.owner %}<a href="#" class="color-black"><b>{{ content.owner }}</b> &middot; </a>{% endif %}
                                 {{ content.added|date:"j F Y" }}
                             </li>
-                            {% if content.video %}
+                            {% if content.video_url %}
                                 <li><i class="color-primary mr-5 font-12 ion-ios-videocamera"></i></li>
                             {% endif %}
                         </ul>

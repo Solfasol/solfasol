@@ -16,8 +16,8 @@ class Content(PolymorphicModel):
     slug = models.SlugField(unique=True)
     subtitle = models.CharField(_('subtitle'), max_length=200, blank=True, null=True)
     lang = models.CharField(_('language'), max_length=7, choices=settings.LANGUAGES, default='tr')
-    tags = models.ManyToManyField('tag', blank=True)
-    category = models.ForeignKey('category', blank=True, null=True, on_delete=models.SET_NULL)
+    tags = models.ManyToManyField('tag', verbose_name=_('tags'), blank=True)
+    category = models.ForeignKey('category', verbose_name=_('category'), blank=True, null=True, on_delete=models.SET_NULL)
     series = models.ForeignKey('series', verbose_name=_('series'), blank=True, null=True, on_delete=models.SET_NULL)
 
     image = models.ImageField(_('image'), upload_to='content/', blank=True, null=True)
@@ -75,7 +75,7 @@ class Article(Content):
 
 
 class Video(Content):
-    url = models.URLField(_('video url'))
+    video_url = models.URLField(_('video url'))
 
     summary = models.TextField(_('summary'), blank=True, null=True)
     transcript = MartorField(blank=True, null=True)
