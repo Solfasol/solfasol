@@ -10,7 +10,7 @@ from .views import IndexView, set_language
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('froala_editor/',include('froala_editor.urls')),
+    path('froala_editor/', include('froala_editor.urls')),
 
     path('', IndexView.as_view(), name='index'),
 

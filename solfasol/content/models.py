@@ -92,13 +92,13 @@ class Video(Content):
     )
 
     def clean(self):
-        if 'youtube.com' in self.url:
-            if 'watch?v=' in self.url:
-                parts = urlparse(self.url)
+        if 'youtube.com' in self.video_url:
+            if 'watch?v=' in self.video_url:
+                parts = urlparse(self.video_url)
                 params = parse_qs(parts.query)
                 v = params.get('v')
                 if v:
-                    self.url = f"https://youtube.com/embed/{v[0]}"
+                    self.video_url = f"https://youtube.com/embed/{v[0]}"
                 else:
                     raise ValidationError(_('Invalid Youtube video link!'))
         else:
