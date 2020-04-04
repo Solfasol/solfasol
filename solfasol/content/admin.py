@@ -6,7 +6,7 @@ from .models import Content, Article, Video, Contributor, Tag, Category, Series
 @admin.register(Content)
 class ContentAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
-    list_display = ['title', 'added', 'modified', 'publish', 'published_by', 'featured', 'view_count']
+    list_display = ['title', 'added', 'modified', 'publish', 'published_by', 'featured', 'pinned', 'view_count']
     search_fields = ['title', 'summary', 'tags__name']
     exclude = ['published_by']
     list_editable = ['publish', 'featured']
@@ -26,7 +26,7 @@ class ContentAdmin(admin.ModelAdmin):
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
-    list_display = ['title', 'author', 'added', 'category', 'publish', 'published_by', 'featured', 'view_count']
+    list_display = ['title', 'author', 'added', 'category', 'publish', 'published_by', 'featured', 'pinned', 'view_count']
     search_fields = ['title', 'author', 'summary', 'tags__name']
     exclude = ['published_by']
     list_editable = ['publish', 'featured', 'category']
@@ -46,7 +46,7 @@ class ArticleAdmin(admin.ModelAdmin):
 @admin.register(Video)
 class VideoAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
-    list_display = ['title', 'host', 'added', 'category', 'publish', 'published_by', 'featured', 'view_count']
+    list_display = ['title', 'host', 'added', 'category', 'publish', 'published_by', 'featured', 'pinned', 'view_count']
     search_fields = ['title', 'host', 'guests', 'summary', 'tags__name']
     exclude = ['published_by']
     list_editable = ['publish', 'featured', 'category']

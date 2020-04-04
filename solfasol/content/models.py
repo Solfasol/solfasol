@@ -34,6 +34,11 @@ class Content(PolymorphicModel):
     modified = models.DateTimeField(auto_now=True)
     view_count = models.PositiveIntegerField(default=0, editable=False)
 
+    def save(self, **kwargs):
+        super().save(**kwargs)
+        if self.pinned:
+            Content.objects.filter(pinned=True).exclude(id=self.id).update(pinned=False)
+
     def __str__(self):
         return self.title
 
@@ -47,7 +52,7 @@ class Content(PolymorphicModel):
     class Meta:
         verbose_name = _('content')
         verbose_name_plural = _('content')
-        ordering = ('-added',)
+        ordering = ('-pinned', '-added',)
 
 
 class Article(Content):
