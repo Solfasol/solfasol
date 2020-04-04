@@ -25,13 +25,17 @@ class Content(PolymorphicModel):
     related_content = models.ManyToManyField('self', verbose_name=_('related content'), blank=True)
 
     publish = models.BooleanField(_('publish'), default=False)
-    published_by = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
+    published_by = models.ForeignKey(
+        User, verbose_name=_('published by'),
+        blank=True, null=True,
+        on_delete=models.CASCADE,
+    )
 
     featured = models.BooleanField(_('featured'), default=False)
     pinned = models.BooleanField(_('pinned'), default=False)
 
     added = models.DateTimeField(_('date'), default=now)
-    modified = models.DateTimeField(auto_now=True)
+    modified = models.DateTimeField(_('modified'), auto_now=True)
     view_count = models.PositiveIntegerField(default=0, editable=False)
 
     def save(self, **kwargs):
