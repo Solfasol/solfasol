@@ -17,7 +17,7 @@
             <ul class="list-li-mr-20 mtb-15">
                 <li>
                     {% if content.owner %}
-                    <a href="{% url 'content_author_list' author=content.owner.slug %}"><b>{{ content.owner }}</b></a>
+                    <a href="{% url 'content_contributor_list' contributor=content.owner.slug %}"><b>{{ content.owner }}</b></a>
                     {% endif %}
                     {{ content.added|date:"j F Y" }}
                 </li>
@@ -70,8 +70,8 @@
                     <ul class="list-li-mr-20 pt-10 mb-30">
                         <li class="color-lite-black">
                             {% if content.owner %}
-                                <a href="{% url 'content_author_list' author=content.author.slug %}" class="color-black">
-                                    <b>{{ content.author }}</b>
+                                <a href="{% url 'content_contributor_list' contributor=content.owner.slug %}" class="color-black">
+                                    <b>{{ content.owner }}</b>
                                     &middot;
                                 </a>
                             {% endif %}

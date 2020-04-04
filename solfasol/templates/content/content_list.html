@@ -17,7 +17,7 @@
                         <h4 class="pt-20"><a href="{{ content.get_absolute_url }}"><b>{{ content.title }}</b></a></h4>
                         <ul class="list-li-mr-10 pt-10 mb-30">
                             <li class="color-lite-black">
-                                {% if content.owner %}<a href="#" class="color-black"><b>{{ content.owner }}</b> &middot; </a>{% endif %}
+                                {% if content.owner %}<a href="{{ content.owner.get_absolute_url }}" class="color-black"><b>{{ content.owner }}</b> &middot; </a>{% endif %}
                                 {{ content.added|date:"j F Y" }}
                             </li>
                             {% if content.video_url %}

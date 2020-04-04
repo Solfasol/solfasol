@@ -1,8 +1,9 @@
 from django.shortcuts import render
+from django.db.models import Q
 from django.views.generic import ListView, DetailView
 from django.utils.translation import ugettext as _
 from django.shortcuts import get_object_or_404
-from .models import Content, Category, Tag, Contributor
+from .models import Content, Category, Tag, Contributor, Series
 
 
 class ContentListView(ListView):
@@ -13,12 +14,17 @@ class ContentListView(ListView):
         qs = super().get_queryset().filter(publish=True)
         if self.kwargs.get('category'):
             qs = qs.filter(category__slug=self.kwargs.get('category'))
-        if self.kwargs.get('tag'):
+        elif self.kwargs.get('tag'):
             qs = qs.filter(tags__slug=self.kwargs.get('tag'))
-        if self.kwargs.get('author'):
-            qs = qs.filter(author__slug=self.kwargs.get('author'))
-        if self.kwargs.get('popular'):
+        elif self.kwargs.get('popular'):
             qs = qs.order_by('-view_count')[:20]
+        elif self.kwargs.get('series'):
+            qs = qs.filter(series__slug=self.kwargs.get('series'))
+        elif self.kwargs.get('contributor'):
+            qs = qs.filter(
+                Q(Article___author__slug=self.kwargs.get('contributor')) |
+                Q(Video___host__slug=self.kwargs.get('contributor'))
+            )
         return qs
 
     def get_context_data(self, **kwargs):
@@ -37,17 +43,24 @@ class ContentListView(ListView):
                 'tag': tag,
                 'title': tag.name,
             })
-        elif self.kwargs.get('author'):
-            author = get_object_or_404(Contributor, slug=self.kwargs['author'])
-            context.update({
-                'list_type': _('author'),
-                'author': author,
-                'title': author.name,
-            })
         elif self.kwargs.get('popular'):
             context.update({
                 'list_type': _('popular'),
                 'title': _('popular'),
+            })
+        elif self.kwargs.get('series'):
+            series = get_object_or_404(Series, slug=self.kwargs['series'])
+            context.update({
+                'list_type': _('series'),
+                'series': series,
+                'title': series.name,
+            })
+        elif self.kwargs.get('contributor'):
+            contributor = get_object_or_404(Contributor, slug=self.kwargs['contributor'])
+            context.update({
+                'list_type': _('contributor'),
+                'contributor': contributor,
+                'title': contributor.name,
             })
         return context
 

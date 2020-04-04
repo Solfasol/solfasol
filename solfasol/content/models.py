@@ -20,7 +20,7 @@ class Content(PolymorphicModel):
     category = models.ForeignKey('category', verbose_name=_('category'), blank=True, null=True, on_delete=models.SET_NULL)
     series = models.ForeignKey('series', verbose_name=_('series'), blank=True, null=True, on_delete=models.SET_NULL)
 
-    image = models.ImageField(_('image'), upload_to='content/', blank=True, null=True)
+    image = models.ImageField(_('image'), upload_to='content/')
 
     related_content = models.ManyToManyField('self', verbose_name=_('related content'), blank=True)
 
@@ -28,6 +28,7 @@ class Content(PolymorphicModel):
     published_by = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
 
     featured = models.BooleanField(_('featured'), default=False)
+    pinned = models.BooleanField(_('pinned'), default=False)
 
     added = models.DateTimeField(_('date'), default=now)
     modified = models.DateTimeField(auto_now=True)
@@ -123,6 +124,9 @@ class Contributor(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('content_contributor_list', kwargs={'contributor': self.slug})
+
     class Meta:
         verbose_name = _('contributor')
         verbose_name_plural = _('contributors')
@@ -134,6 +138,9 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('content_tag_list', kwargs={'tag': self.slug})
 
     class Meta:
         verbose_name = _('tag')
@@ -148,6 +155,9 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('content_category_list', kwargs={'category': self.slug})
+
     @property
     def content(self):
         return self.content_set.filter(publish=True)
@@ -161,9 +171,17 @@ class Category(models.Model):
 class Series(models.Model):
     name = models.CharField(_('name'), max_length=100)
     slug = models.SlugField(unique=True)
+    category = models.ForeignKey(
+        Category, verbose_name=_('category'),
+        blank=True, null=True,
+        on_delete=models.SET_NULL
+    )
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('content_series_list', kwargs={'series': self.slug})
 
     @property
     def content(self):

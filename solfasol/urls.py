@@ -10,13 +10,13 @@ from .views import IndexView, set_language
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('froala_editor/', include('froala_editor.urls')),
+    path('martor/', include('martor.urls')),
 
     path('', IndexView.as_view(), name='index'),
 
     path('kategori/<slug:category>/', ContentListView.as_view(), name='content_category_list'),
     path('etiket/<slug:tag>/', ContentListView.as_view(), name='content_tag_list'),
-    path('yazar/<slug:author>/', ContentListView.as_view(), name='content_author_list'),
+    path('kim/<slug:contributor>/', ContentListView.as_view(), name='content_contributor_list'),
     path('populer/', ContentListView.as_view(), {'popular': True}, name='content_popular_list'),
 
     path('<slug:slug>/', ContentDetailView.as_view(), name='content_detail'),
