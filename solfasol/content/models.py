@@ -102,17 +102,22 @@ class Video(Content):
     )
 
     def clean(self):
-        if 'youtube.com' in self.video_url:
-            if 'watch?v=' in self.video_url:
-                parts = urlparse(self.video_url)
-                params = parse_qs(parts.query)
-                v = params.get('v')
-                if v:
-                    self.video_url = f"https://youtube.com/embed/{v[0]}"
+        if not 'youtube.com/embed/' in self.video_url:
+            if 'youtube.com/' or 'youtu.be/' in self.video_url:
+                vid = None
+                if 'youtube.com/' in self.video_url:
+                    if 'watch?v=' in self.video_url:
+                        parts = urlparse(self.video_url)
+                        params = parse_qs(parts.query)
+                        vid = params.get('v', [])[0]
+                elif 'youtu.be/' in self.video_url:
+                    vid = self.video_url.split('/')[-1]
+                if vid:
+                    self.video_url = f"https://youtube.com/embed/{vid}"
                 else:
                     raise ValidationError(_('Invalid Youtube video link!'))
-        else:
-            raise ValidationError(_('Please submit a Youtube video link!'))
+            else:
+                raise ValidationError(_('Please submit a Youtube video link!'))
 
     @cached_property
     def owner(self):
