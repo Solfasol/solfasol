@@ -13,7 +13,9 @@
                     {% for content in content_list %}
 
                         <div class="col-md-4 col-sm-6">
-							<img src="{{ content.image.url }}" alt="">
+                            <a href="{{ content.get_absolute_url }}">
+    							<img src="{{ content.image.url }}" alt="">
+                            </a>
                             <h4 class="pt-20"><a href="{{ content.get_absolute_url }}"><b>{{ content.title }}</b></a></h4>
                             <ul class="list-li-mr-10 pt-10 mb-30">
                                 <li class="color-lite-black">
