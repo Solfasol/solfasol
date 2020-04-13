@@ -25,7 +25,7 @@ class ContentListView(ListView):
                 Q(Article___author__slug=self.kwargs.get('contributor')) |
                 Q(Video___host__slug=self.kwargs.get('contributor'))
             )
-        return qs
+        return qs.distinct()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
