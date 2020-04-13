@@ -13,11 +13,7 @@
                     {% for content in content_list %}
 
                         <div class="col-md-4 col-sm-6">
-                            <a class="pos-relative h-100 dplay-block" href="{{ content.get_absolute_url }}">
-                                <div class="img-bg bg-grad-layer-6"
-                                     style="background: url({{ content.image.url }}) no-repeat center; background-size: cover;"
-                                ></div>
-                            </a><!-- pos-relative -->
+							<img src="{{ content.image.url }}" alt="">
                             <h4 class="pt-20"><a href="{{ content.get_absolute_url }}"><b>{{ content.title }}</b></a></h4>
                             <ul class="list-li-mr-10 pt-10 mb-30">
                                 <li class="color-lite-black">
