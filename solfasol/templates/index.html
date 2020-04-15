@@ -114,7 +114,9 @@
 
 						<div class="col-sm-6">
                             <a href="{{ content.get_absolute_url }}">
-    							<img src="{{ content.image.url }}" alt="">
+								
+								<img src="{{ content.image.url }}" class="h-200x" style="object-fit: cover;">
+
                             </a>
 							<h4 class="pt-20"><a href="{{ content.get_absolute_url }}"><b>{{ content.title }}</b></a></h4>
 							<ul class="list-li-mr-10 pt-10 mb-30">
