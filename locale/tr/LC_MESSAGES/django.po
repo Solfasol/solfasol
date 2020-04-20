@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-05 00:34+0300\n"
+"POT-Creation-Date: 2020-04-20 23:16+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,17 +40,17 @@ msgstr "altbaşlık"
 msgid "language"
 msgstr "dil"
 
-#: solfasol/content/models.py:19 solfasol/content/models.py:156
+#: solfasol/content/models.py:19 solfasol/content/models.py:161
 msgid "tags"
 msgstr "etiketler"
 
-#: solfasol/content/models.py:20 solfasol/content/models.py:175
-#: solfasol/content/models.py:184 solfasol/content/views.py:35
+#: solfasol/content/models.py:20 solfasol/content/models.py:180
+#: solfasol/content/models.py:189 solfasol/content/views.py:35
 msgid "category"
 msgstr "kategori"
 
-#: solfasol/content/models.py:21 solfasol/content/models.py:200
-#: solfasol/content/models.py:201 solfasol/content/views.py:54
+#: solfasol/content/models.py:21 solfasol/content/models.py:205
+#: solfasol/content/models.py:206 solfasol/content/views.py:54
 msgid "series"
 msgstr "dizi"
 
@@ -122,36 +122,36 @@ msgstr "hazırlayan"
 msgid "guests"
 msgstr "konuklar"
 
-#: solfasol/content/models.py:113
+#: solfasol/content/models.py:118
 msgid "Invalid Youtube video link!"
 msgstr "Geçersiz Youtube bağlantısı!"
 
-#: solfasol/content/models.py:115
+#: solfasol/content/models.py:120
 msgid "Please submit a Youtube video link!"
 msgstr "Geçerli bir Youtube bağlantısı girin!"
 
-#: solfasol/content/models.py:122 solfasol/content/models.py:123
+#: solfasol/content/models.py:127 solfasol/content/models.py:128
 msgid "video content"
 msgstr "video içerik"
 
-#: solfasol/content/models.py:127 solfasol/content/models.py:145
-#: solfasol/content/models.py:160 solfasol/content/models.py:181
+#: solfasol/content/models.py:132 solfasol/content/models.py:150
+#: solfasol/content/models.py:165 solfasol/content/models.py:186
 msgid "name"
 msgstr "isim"
 
-#: solfasol/content/models.py:140 solfasol/content/views.py:61
+#: solfasol/content/models.py:145 solfasol/content/views.py:61
 msgid "contributor"
 msgstr "katkıda bulunan"
 
-#: solfasol/content/models.py:141
+#: solfasol/content/models.py:146
 msgid "contributors"
 msgstr "katkıda bulunanlar"
 
-#: solfasol/content/models.py:155 solfasol/content/views.py:42
+#: solfasol/content/models.py:160 solfasol/content/views.py:42
 msgid "tag"
 msgstr "etiket"
 
-#: solfasol/content/models.py:176
+#: solfasol/content/models.py:181
 msgid "categories"
 msgstr "kategoriler"
 
@@ -163,20 +163,24 @@ msgstr "popüler"
 msgid "PDF Archive"
 msgstr "PDF Arşivi"
 
-#: solfasol/templates/base.html:30 solfasol/templates/base.html:129
+#: solfasol/templates/base.html:30 solfasol/templates/base.html:147
 msgid "Subscribe"
 msgstr "Abone ol"
 
-#: solfasol/templates/base.html:130
+#: solfasol/templates/base.html:148
 msgid "Contact us"
 msgstr "Bize ulaş"
 
-#: solfasol/templates/content/content_detail.html:61
+#: solfasol/templates/content/content_detail.html:48
+msgid "Share"
+msgstr "Paylaş"
+
+#: solfasol/templates/content/content_detail.html:59
 msgid "YOU MAY ALSO LIKE"
 msgstr "İLGİNİZİ ÇEKEBİLİR"
 
 #: solfasol/templates/content/content_detail.html:94
-#: solfasol/templates/index.html:143
+#: solfasol/templates/index.html:147
 msgid "POPULAR POSTS"
 msgstr "POPÜLER İÇERİK"
 
