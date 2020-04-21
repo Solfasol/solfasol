@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-20 23:16+0300\n"
+"POT-Creation-Date: 2020-04-21 21:41+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,8 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: solfasol/content/admin.py:23 solfasol/content/admin.py:43
-#: solfasol/content/admin.py:63
+#: solfasol/content/admin.py:26 solfasol/content/admin.py:57
+#: solfasol/content/admin.py:88
 msgid "Publish"
 msgstr "Yayınla"
 
@@ -86,9 +86,9 @@ msgstr "tarih"
 msgid "modified"
 msgstr "değiştirilme"
 
-#: solfasol/content/models.py:63 solfasol/content/models.py:90
-msgid "summary"
-msgstr "özet"
+#: solfasol/content/models.py:64
+msgid "text body"
+msgstr "makale metni"
 
 #: solfasol/content/models.py:67
 msgid "author"
@@ -109,6 +109,10 @@ msgstr "makaleler"
 #: solfasol/content/models.py:88
 msgid "video url"
 msgstr "video url"
+
+#: solfasol/content/models.py:91
+msgid "video transcript"
+msgstr "program metni"
 
 #: solfasol/content/models.py:92
 msgid "podcast url"
@@ -209,6 +213,9 @@ msgstr "Makaleler"
 #: solfasol/urls.py:29 solfasol/urls.py:30
 msgid "Solfasol Administration"
 msgstr "Solfasol Yönetimi"
+
+#~ msgid "summary"
+#~ msgstr "özet"
 
 #~ msgid "blog"
 #~ msgstr "blog"

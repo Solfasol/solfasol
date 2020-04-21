@@ -60,8 +60,8 @@ class Content(PolymorphicModel):
 
 
 class Article(Content):
-    summary = models.TextField(_('summary'), blank=True, null=True)
-    body = MartorField()
+    #summary = models.TextField(_('summary'), blank=True, null=True)
+    body = MartorField(_('text body'))
 
     author = models.ForeignKey(
         'Contributor', verbose_name=_('author'),
@@ -87,8 +87,8 @@ class Article(Content):
 class Video(Content):
     video_url = models.URLField(_('video url'))
 
-    summary = models.TextField(_('summary'), blank=True, null=True)
-    transcript = MartorField(blank=True, null=True)
+    #summary = models.TextField(_('summary'), blank=True, null=True)
+    transcript = MartorField(_('video transcript'), blank=True, null=True)
     podcast = models.URLField(_('podcast url'), blank=True, null=True)
 
     host = models.ForeignKey(

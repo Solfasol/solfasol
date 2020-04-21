@@ -1,9 +1,12 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 from .models import Content, Article, Video, Contributor, Tag, Category, Series
+from django.db.models import TextField
+from martor.models import MartorField
+from martor.widgets import AdminMartorWidget
 
 
-@admin.register(Content)
+#@admin.register(Content)
 class ContentAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
     list_display = ['title', 'added', 'modified', 'publish', 'published_by', 'featured', 'pinned', 'view_count']
@@ -31,8 +34,19 @@ class ArticleAdmin(admin.ModelAdmin):
     exclude = ['published_by']
     list_editable = ['publish', 'featured', 'category']
     list_filter = ['publish', 'added', 'modified', 'featured']
-    autocomplete_fields = ['series', 'author', 'photo_credits', 'tags', 'category', 'related_content']
+    #autocomplete_fields = [
+    filter_horizontal = [
+        #'series',
+        #'author',
+        'photo_credits',
+        'tags',
+        #'category',
+        #'related_content'
+    ]
     actions = ['publish']
+    formfield_overrides = {
+        MartorField: {'widget': AdminMartorWidget},
+    }
 
     def publish(self, request, queryset):
         for article in queryset:
@@ -51,8 +65,19 @@ class VideoAdmin(admin.ModelAdmin):
     exclude = ['published_by']
     list_editable = ['publish', 'featured', 'category']
     list_filter = ['publish', 'added', 'modified', 'featured']
-    autocomplete_fields = ['series', 'host', 'guests', 'tags', 'category', 'related_content']
+    #autocomplete_fields = [
+    filter_horizontal = [
+        #'series',
+        #'host',
+        'guests',
+        'tags',
+        #'category',
+        #'related_content'
+    ]
     actions = ['publish']
+    formfield_overrides = {
+        MartorField: {'widget': AdminMartorWidget},
+    }
 
     def publish(self, request, queryset):
         for article in queryset:
