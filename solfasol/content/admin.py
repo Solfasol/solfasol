@@ -55,7 +55,7 @@ class ContentAdmin(admin.ModelAdmin):
                 img_buffer.read(),
                 content_type='image/svg+xml',
             )
-            response['Content-Disposition'] = 'attachment; filename="QR-%s.svg"' % slugify(content.slug[:10])
+            response['Content-Disposition'] = 'attachment; filename="QR-%s.svg"' % slugify(content.slug[:20])
             break
         return response
     get_qr.short_description = _('Get QR code')
