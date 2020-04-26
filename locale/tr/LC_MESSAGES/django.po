@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-21 21:41+0300\n"
+"POT-Creation-Date: 2020-04-26 21:47+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,10 +18,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: solfasol/content/admin.py:26 solfasol/content/admin.py:57
-#: solfasol/content/admin.py:88
+#: solfasol/content/admin.py:34
 msgid "Publish"
 msgstr "Yayınla"
+
+#: solfasol/content/admin.py:61
+msgid "Get QR code"
+msgstr "QR kodunu indir"
 
 #: solfasol/content/apps.py:7 solfasol/content/models.py:57
 #: solfasol/content/models.py:58
