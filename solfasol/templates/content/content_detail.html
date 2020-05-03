@@ -28,9 +28,11 @@
                 </li>
             </ul>
 
+            {% if content.summary %}
             <p>
                 {{ content.summary|safe }}
             </p>
+            {% endif %}
 
             {% if content.video_url %}
             <p class="my-4">
@@ -38,9 +40,11 @@
             </p>
             {% endif %}
 
+            {% if content.body %}
             <p>
                 {{ content.body|linebreaksbr }}
             </p>
+            {% endif %}
 
             <div class="float-left-right text-center mt-40 mt-sm-20">
 
