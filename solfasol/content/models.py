@@ -8,7 +8,7 @@ from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from polymorphic.models import PolymorphicModel
-from martor.models import MartorField
+from mdeditor.fields import MDTextField
 
 
 class Content(PolymorphicModel):
@@ -23,7 +23,7 @@ class Content(PolymorphicModel):
     image = models.ImageField(_('image'), upload_to='content/')
 
     summary = models.TextField(_('summary'), blank=True, null=True)
-    body = MartorField(_('text body'), blank=True, null=True)
+    body = MDTextField(_('text body'), blank=True, null=True)
 
     related_content = models.ManyToManyField('self', verbose_name=_('related content'), blank=True)
 

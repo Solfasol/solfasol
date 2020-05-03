@@ -17,6 +17,8 @@
 	<script src="{% static 'plugin-frameworks/bootstrap.js' %}"></script>
 	<script src="{% static 'common/scripts.js' %}"></script>
 
+    {% block head %}{% endblock %}
+
 </head>
 <body>
 
@@ -157,6 +159,10 @@
 
 		</div><!-- container -->
 	</footer>
+
+
+{% block js %}{% endblock %}
+
 
 </body>
 </html>

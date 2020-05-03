@@ -1,8 +1,41 @@
 {% extends 'base.html' %}
-{% load i18n static martortags %}
+{% load i18n static %}
 
 
 {% block title %}{{ content.title }} - {{ block.super }}{% endblock %}
+
+
+{% block head %}
+<link href="{% static 'mdeditor/css/editormd.min.css' %}" rel="stylesheet">
+<link href="{% static 'mdeditor/css/editormd.preview.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+{% block js %}
+<script src="{% static 'mdeditor/js/jquery.min.js' %}"></script>
+<script src="{% static 'mdeditor/js/editormd.min.js' %}"></script>
+<script src="{% static 'mdeditor/js/lib/marked.min.js' %}"></script>
+<script src="{% static 'mdeditor/js/lib/prettify.min.js' %}"></script>
+<script src="{% static 'mdeditor/js/lib/raphael.min.js' %}"></script>
+<script src="{% static 'mdeditor/js/lib/underscore.min.js' %}"></script>
+<script src="{% static 'mdeditor/js/lib/sequence-diagram.min.js' %}"></script>
+<script src="{% static 'mdeditor/js/lib/flowchart.min.js' %}"></script>
+<script src="{% static 'mdeditor/js/lib/jquery.flowchart.min.js' %}"></script>
+<script>
+  $(function () {
+      // content is the id of the <tag> you want to be render.
+      // Refer to the link of the template shared with this answer.
+      editormd.markdownToHTML("content", {
+          emoji           : true,
+          taskList        : true,
+          tex             : true,
+          flowChart       : true,
+          sequenceDiagram : true,
+      });
+  })
+
+</script>
+{% endblock %}
 
 
 {% block content %}
@@ -42,7 +75,7 @@
 
             {% if content.body %}
             <p>
-                {{ content.body|linebreaksbr }}
+                <div id="content"><textarea>{{ content.body }}</textarea></div>
             </p>
             {% endif %}
 

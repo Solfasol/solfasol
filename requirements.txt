@@ -3,7 +3,7 @@ pillow
 django-crispy-forms
 boto3
 gunicorn
-martor
+django-mdeditor
 django-tinymce
 django-froala-editor
 django-storages
