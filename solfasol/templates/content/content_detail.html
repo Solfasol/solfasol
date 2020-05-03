@@ -13,7 +13,12 @@
 
         <div class="col-md-12 col-lg-8">
             <img src="{{ content.image.url }}" alt="{{ content.title }}">
-            <h3 class="mt-30"><b>{{ content.title }}</b></h3>
+            <h3 class="mt-30">
+                <strong>{{ content.title }}</strong>
+                {% if content.subtitle %}
+                    <small class="d-block">{{ content.subtitle }}</small>
+                {% endif %}
+            </h3>
             <ul class="list-li-mr-20 mtb-15">
                 <li>
                     {% if content.owner %}

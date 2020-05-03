@@ -1,9 +1,9 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, CreateView
 from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.urls import translate_url
 from django.utils.translation import LANGUAGE_SESSION_KEY
-from solfasol.content.models import Content, Category
+from solfasol.content.models import Content
 
 
 class IndexView(TemplateView):

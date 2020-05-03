@@ -22,6 +22,9 @@ class Content(PolymorphicModel):
 
     image = models.ImageField(_('image'), upload_to='content/')
 
+    summary = models.TextField(_('summary'), blank=True, null=True)
+    body = MartorField(_('text body'), blank=True, null=True)
+
     related_content = models.ManyToManyField('self', verbose_name=_('related content'), blank=True)
 
     publish = models.BooleanField(_('publish'), default=False)
@@ -60,9 +63,6 @@ class Content(PolymorphicModel):
 
 
 class Article(Content):
-    #summary = models.TextField(_('summary'), blank=True, null=True)
-    body = MartorField(_('text body'))
-
     author = models.ForeignKey(
         'Contributor', verbose_name=_('author'),
         blank=True, null=True,
@@ -86,9 +86,6 @@ class Article(Content):
 
 class Video(Content):
     video_url = models.URLField(_('video url'))
-
-    #summary = models.TextField(_('summary'), blank=True, null=True)
-    transcript = MartorField(_('video transcript'), blank=True, null=True)
     podcast = models.URLField(_('podcast url'), blank=True, null=True)
 
     host = models.ForeignKey(
