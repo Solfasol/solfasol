@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'markdownify',
 
     'solfasol.content',
+    'solfasol.feedback',
 ]
 
 MIDDLEWARE = [
