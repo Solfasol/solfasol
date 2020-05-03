@@ -6,9 +6,8 @@ from django.http import HttpResponse
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 from .models import Content, Article, Video, Contributor, Tag, Category, Series
-from django.db.models import TextField
-from martor.models import MartorField
-from martor.widgets import AdminMartorWidget
+from mdeditor.fields import MDTextField
+from mdeditor.widgets import MDEditorWidget
 
 
 #@admin.register(Content)
@@ -22,7 +21,7 @@ class ContentAdmin(admin.ModelAdmin):
 #    autocomplete_fields = ['tags', 'category', 'related_content']
     actions = ['publish', 'get_qr']
     formfield_overrides = {
-        MartorField: {'widget': AdminMartorWidget},
+        MDTextField: {'widget': MDEditorWidget},
     }
 
     def publish(self, request, queryset):

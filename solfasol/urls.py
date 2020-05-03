@@ -4,13 +4,14 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from .content.views import ContentListView, ContentDetailView
+from .feedback.views import feedback
 from .views import IndexView, set_language
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('martor/', include('martor.urls')),
+    path(r'mdeditor/', include('mdeditor.urls')),
 
     path('', IndexView.as_view(), name='index'),
 
@@ -18,6 +19,8 @@ urlpatterns = [
     path('etiket/<slug:tag>/', ContentListView.as_view(), name='content_tag_list'),
     path('kim/<slug:contributor>/', ContentListView.as_view(), name='content_contributor_list'),
     path('populer/', ContentListView.as_view(), {'popular': True}, name='content_popular_list'),
+
+    path('oneri/', feedback, name='feedback_form'),
 
     path('<slug:slug>/', ContentDetailView.as_view(), name='content_detail'),
 

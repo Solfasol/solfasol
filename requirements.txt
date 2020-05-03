@@ -4,6 +4,7 @@ django-crispy-forms
 boto3
 gunicorn
 django-mdeditor
+django-markdownify
 django-tinymce
 django-froala-editor
 django-storages
