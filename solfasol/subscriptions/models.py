@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.core.exceptions import ValidationError
 
 
 class Subscription(models.Model):
@@ -21,6 +22,10 @@ class Subscription(models.Model):
 
     def __str__(self):
         return self.name
+
+    def clean(self):
+        if self.type != 'dijital' and not self.address:
+            raise ValidationError("Lütfen posta adresinizi belirtin.")
 
     class Meta:
         verbose_name = _('subscription')

@@ -23,7 +23,6 @@ urlpatterns = [
     path('populer/', ContentListView.as_view(), {'popular': True}, name='content_popular_list'),
 
     path('abonelik/', subscribe, name='subscription_form'),
-    path('tesekkurler/', TemplateView.as_view(template_name='subscriptions/done.html'), name='subscription_done'),
     path('oneri/', feedback, name='feedback_form'),
 
     path('<slug:slug>/', ContentDetailView.as_view(), name='content_detail'),

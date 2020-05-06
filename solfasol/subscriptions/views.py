@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
-from django.contrib import messages
 from .models import Subscription
 
 
@@ -16,6 +15,7 @@ class SubscriptionForm(forms.ModelForm):
         }
 
 def subscribe(request):
+    subscription = None
     if request.method == 'POST':
         form = SubscriptionForm(request.POST)
         if form.is_valid():
@@ -29,10 +29,9 @@ def subscribe(request):
                 recipient_list=[subscription.email] + settings.DEFAULT_RECIPIENTS,
                 fail_silently=True,
             )
-            messages.success(request, 'Thank you for your support! We will contact you soon!')
-            return redirect('subscription_done')
     else:
         form = SubscriptionForm()
-    return render(request, 'subscriptions/form.html', {
+    return render(request, 'subscriptions/subscription.html', {
         'form': form,
+        'subscription': subscription,
     })
