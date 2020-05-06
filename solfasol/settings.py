@@ -136,7 +136,7 @@ LOCALE_PATHS = (
 EMAIL_BACKEND = 'django_ses.SESBackend'
 DEFAULT_FROM_EMAIL = 'Solfasol TV <abonelik@solfasol.tv>'
 DEFAULT_RECIPIENTS = [
-    #'dilanozgen@gmail.com',
+    'dilan@gazetesolfasol.com',
     'onurmatik@gmail.com',
 ]
 

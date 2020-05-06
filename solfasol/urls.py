@@ -3,6 +3,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
+from django.views.generic import TemplateView
 from .content.views import ContentListView, ContentDetailView
 from .feedback.views import feedback
 from .subscriptions.views import subscribe
@@ -22,6 +23,7 @@ urlpatterns = [
     path('populer/', ContentListView.as_view(), {'popular': True}, name='content_popular_list'),
 
     path('abonelik/', subscribe, name='subscription_form'),
+    path('tesekkurler/', TemplateView.as_view(template_name='subscriptions/done.html'), name='subscription_done'),
     path('oneri/', feedback, name='feedback_form'),
 
     path('<slug:slug>/', ContentDetailView.as_view(), name='content_detail'),

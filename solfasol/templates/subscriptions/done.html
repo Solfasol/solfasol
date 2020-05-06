@@ -8,26 +8,15 @@
 
         <h2 class="text-center">Abonelik ve Destek</h2>
 
-
-        <div class="alert alert-warning alert-dismissible mb-4 fade show my-4" role="alert">
-            <strong>Yeni!</strong>
-            Solfasol'e artık Patreon'dan aylık ödemelerle de abone ve destek olabilirsiniz!
-            <a class="text-primary" href="https://www.patreon.com/solfasol" target="_blank">Tıklayın ...</a>
+        <div class="alert alert-success alert-dismissible mb-4 fade show my-4" role="alert">
+            Desteğiniz için teşekkürler.
+            Bilgilerinizi aldık ve eposta adresinize bilgilendirme mesajı gönderdik.
+            En kısa zamanda sizinle iletişime geçeceğiz.
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
 
-        <p class="my-2">
-            Ankara'nın Gayriresmi Gazetesi Solfasol desteğinizle var oluyor. Bu yüzden aboneliğiniz bizim için çok önemli.
-            Aşağıdaki formu doldurarak veya abone@gazetesolfasol.com adresine aşağıdaki bilgileri içeren bir e-mail göndererek aboneliğinizi başlatabilirsiniz.
-        </p>
-
-
-        <p class="my-2">
-            Daha sonra aşağıdaki banka hesabına seçtiğiniz abonelik türüne göre ücretinizi göndermenizi rica ediyoruz.
-            Faturanız ilk gazetenizle birlikte adresinize gönderilecektir.
-        </p>
 
         <p class="my-4">
             <strong>EFT ve HAVALE için Banka Hesap Bilgileri</strong>
@@ -38,31 +27,6 @@
             <br>
             Hesap Sahibi: Mehmet Onur Yılmaz SOLFASOL
         </p>
-
-        <p class="my-4">
-            <em>Uzaktayım diye endişe etmeyin, Solfasol dünyanın her yerine ulaşıyor!</em>
-        </p>
-
-
-        <div class="container">
-
-            <div class="row">
-
-                <form method="post">
-
-                    <input type="hidden" name="next" value="{{ request.GET.next }}">
-
-                    {% csrf_token %}
-
-                    {{ form|crispy }}
-
-                    <button type="submit" class="btn btn-primary">Gönder</button>
-
-                </form>
-
-            </div>
-
-        </div>
 
     </div>
 
