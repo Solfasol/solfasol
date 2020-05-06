@@ -8,6 +8,7 @@ django-markdownify
 django-tinymce
 django-froala-editor
 django-storages
+django-ses
 python-slugify
 django-polymorphic
 qrcode

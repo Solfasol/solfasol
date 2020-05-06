@@ -5,6 +5,7 @@ from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from .content.views import ContentListView, ContentDetailView
 from .feedback.views import feedback
+from .subscriptions.views import subscribe
 from .views import IndexView, set_language
 
 
@@ -20,6 +21,7 @@ urlpatterns = [
     path('kim/<slug:contributor>/', ContentListView.as_view(), name='content_contributor_list'),
     path('populer/', ContentListView.as_view(), {'popular': True}, name='content_popular_list'),
 
+    path('abonelik/', subscribe, name='subscription_form'),
     path('oneri/', feedback, name='feedback_form'),
 
     path('<slug:slug>/', ContentDetailView.as_view(), name='content_detail'),

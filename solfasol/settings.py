@@ -29,9 +29,11 @@ INSTALLED_APPS = [
 
     'mdeditor',
     'markdownify',
+    'crispy_forms',
 
     'solfasol.content',
     'solfasol.feedback',
+    'solfasol.subscriptions',
 ]
 
 MIDDLEWARE = [
@@ -129,6 +131,17 @@ MEDIA_URL = '/media/'
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
+
+
+EMAIL_BACKEND = 'django_ses.SESBackend'
+DEFAULT_FROM_EMAIL = 'Solfasol TV <abonelik@solfasol.tv>'
+DEFAULT_RECIPIENTS = [
+    #'dilanozgen@gmail.com',
+    'onurmatik@gmail.com',
+]
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 # mdeditor
