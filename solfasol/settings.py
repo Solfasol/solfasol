@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'mdeditor',
     'markdownify',
     'crispy_forms',
+    'captcha',
 
     'solfasol.content',
     'solfasol.feedback',

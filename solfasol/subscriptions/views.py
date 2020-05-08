@@ -3,16 +3,20 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
+from captcha.fields import ReCaptchaField
 from .models import Subscription
 
 
 class SubscriptionForm(forms.ModelForm):
+    captcha = ReCaptchaField()
+
     class Meta:
         model = Subscription
         fields = ['name', 'email', 'address', 'type', 'phone', 'notes']
         widgets = {
             'type': forms.RadioSelect()
         }
+
 
 def subscribe(request):
     subscription = None
