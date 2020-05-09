@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-06 14:00+0300\n"
+"POT-Creation-Date: 2020-05-09 13:55+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -166,23 +166,23 @@ msgstr "kategoriler"
 msgid "popular"
 msgstr "popüler"
 
-#: solfasol/subscriptions/apps.py:7 solfasol/subscriptions/models.py:27
+#: solfasol/subscriptions/apps.py:7 solfasol/subscriptions/models.py:32
 msgid "subscriptions"
 msgstr "abonelikler"
 
-#: solfasol/subscriptions/models.py:26
+#: solfasol/subscriptions/models.py:31
 msgid "subscription"
 msgstr "abonelik"
 
-#: solfasol/templates/base.html:31
-msgid "PDF Archive"
-msgstr "PDF Arşivi"
+#: solfasol/templates/base.html:39
+msgid "Archive"
+msgstr "Arşiv"
 
-#: solfasol/templates/base.html:32 solfasol/templates/base.html:149
+#: solfasol/templates/base.html:40 solfasol/templates/base.html:151
 msgid "Subscribe"
-msgstr "Abone ol"
+msgstr "Abonelik"
 
-#: solfasol/templates/base.html:150
+#: solfasol/templates/base.html:152
 msgid "Contact us"
 msgstr "Bize ulaş"
 
@@ -221,7 +221,7 @@ msgstr "Sonraki"
 msgid "Articles"
 msgstr "Makaleler"
 
-#: solfasol/urls.py:34 solfasol/urls.py:35
+#: solfasol/urls.py:35 solfasol/urls.py:36
 msgid "Solfasol Administration"
 msgstr "Solfasol Yönetimi"
 
