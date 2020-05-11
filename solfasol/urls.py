@@ -3,9 +3,9 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import TemplateView
+from django.views.generic import RedirectView
 from .content.views import ContentListView, ContentDetailView
-from .feedback.views import feedback
+from .feedback.views import feedback_form
 from .subscriptions.views import subscribe
 from .views import IndexView, set_language
 
@@ -23,7 +23,11 @@ urlpatterns = [
     path('populer/', ContentListView.as_view(), {'popular': True}, name='content_popular_list'),
 
     path('abonelik/', subscribe, name='subscription_form'),
-    path('oneri/', feedback, name='feedback_form'),
+
+    path('form/<slug:slug>/', feedback_form, name='feedback_form'),
+    path('oneri/', RedirectView.as_view(
+        pattern_name='feedback_form', permanent=True,
+    ), kwargs={'slug': 'program-oneri'}),
 
     path('<slug:slug>/', ContentDetailView.as_view(), name='content_detail'),
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-09 13:55+0300\n"
+"POT-Creation-Date: 2020-05-11 23:54+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -143,6 +143,7 @@ msgstr "video içerik"
 
 #: solfasol/content/models.py:129 solfasol/content/models.py:147
 #: solfasol/content/models.py:162 solfasol/content/models.py:183
+#: solfasol/feedback/models.py:6
 msgid "name"
 msgstr "isim"
 
@@ -166,6 +167,18 @@ msgstr "kategoriler"
 msgid "popular"
 msgstr "popüler"
 
+#: solfasol/feedback/models.py:8
+msgid "description"
+msgstr "tanım"
+
+#: solfasol/feedback/models.py:15
+msgid "feedback form"
+msgstr "bilgi formu"
+
+#: solfasol/feedback/models.py:16
+msgid "feedback forms"
+msgstr "bilgi formları"
+
 #: solfasol/subscriptions/apps.py:7 solfasol/subscriptions/models.py:32
 msgid "subscriptions"
 msgstr "abonelikler"
@@ -174,15 +187,15 @@ msgstr "abonelikler"
 msgid "subscription"
 msgstr "abonelik"
 
-#: solfasol/templates/base.html:39
+#: solfasol/templates/base.html:41
 msgid "Archive"
 msgstr "Arşiv"
 
-#: solfasol/templates/base.html:40 solfasol/templates/base.html:151
+#: solfasol/templates/base.html:42 solfasol/templates/base.html:153
 msgid "Subscribe"
 msgstr "Abonelik"
 
-#: solfasol/templates/base.html:152
+#: solfasol/templates/base.html:154
 msgid "Contact us"
 msgstr "Bize ulaş"
 
@@ -198,6 +211,10 @@ msgstr "İLGİNİZİ ÇEKEBİLİR"
 #: solfasol/templates/index.html:147
 msgid "POPULAR POSTS"
 msgstr "POPÜLER İÇERİK"
+
+#: solfasol/templates/feedback/form.html:24
+msgid "Loading"
+msgstr "Yükleniyor"
 
 #: solfasol/templates/search/search.html:13
 #: solfasol/templates/search_result.html:13
@@ -221,7 +238,7 @@ msgstr "Sonraki"
 msgid "Articles"
 msgstr "Makaleler"
 
-#: solfasol/urls.py:35 solfasol/urls.py:36
+#: solfasol/urls.py:39 solfasol/urls.py:40
 msgid "Solfasol Administration"
 msgstr "Solfasol Yönetimi"
 
