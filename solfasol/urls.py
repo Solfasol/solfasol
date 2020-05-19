@@ -3,7 +3,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import RedirectView
+from django.views.generic import RedirectView, TemplateView
 from .content.views import ContentListView, ContentDetailView
 from .feedback.views import feedback_form
 from .subscriptions.views import subscribe
@@ -11,6 +11,7 @@ from .views import IndexView, set_language
 
 
 urlpatterns = [
+
     path('admin/', admin.site.urls),
 
     path(r'mdeditor/', include('mdeditor.urls')),
@@ -29,9 +30,12 @@ urlpatterns = [
         pattern_name='feedback_form', permanent=True,
     ), kwargs={'slug': 'program-oneri'}),
 
-    path('<slug:slug>/', ContentDetailView.as_view(), name='content_detail'),
+    path('satis-sozlesmesi/', TemplateView.as_view(template_name='sales-agreement.html'),name='sales_agreement'),
 
     path('dil/', set_language, name='set_lang'),
+
+    path('<slug:slug>/', ContentDetailView.as_view(), name='content_detail'),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

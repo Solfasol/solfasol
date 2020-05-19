@@ -11,4 +11,5 @@ django-storages
 django-ses
 python-slugify
 django-polymorphic
+django-recaptcha
 qrcode
