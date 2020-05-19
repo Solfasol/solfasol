@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-11 23:54+0300\n"
+"POT-Creation-Date: 2020-05-20 01:43+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,7 +57,7 @@ msgstr "kategori"
 msgid "series"
 msgstr "dizi"
 
-#: solfasol/content/models.py:23
+#: solfasol/content/models.py:23 solfasol/shop/models.py:12
 msgid "image"
 msgstr "görsel"
 
@@ -89,7 +89,8 @@ msgstr "öne çıkan"
 msgid "pinned"
 msgstr "sabitlenmiş"
 
-#: solfasol/content/models.py:40
+#: solfasol/content/models.py:40 solfasol/shop/models.py:14
+#: solfasol/shop/models.py:47
 msgid "date"
 msgstr "tarih"
 
@@ -143,7 +144,7 @@ msgstr "video içerik"
 
 #: solfasol/content/models.py:129 solfasol/content/models.py:147
 #: solfasol/content/models.py:162 solfasol/content/models.py:183
-#: solfasol/feedback/models.py:6
+#: solfasol/feedback/models.py:6 solfasol/shop/models.py:8
 msgid "name"
 msgstr "isim"
 
@@ -167,7 +168,11 @@ msgstr "kategoriler"
 msgid "popular"
 msgstr "popüler"
 
-#: solfasol/feedback/models.py:8
+#: solfasol/feedback/apps.py:7
+msgid "feedback"
+msgstr "yorumlar"
+
+#: solfasol/feedback/models.py:8 solfasol/shop/models.py:10
 msgid "description"
 msgstr "tanım"
 
@@ -179,6 +184,38 @@ msgstr "bilgi formu"
 msgid "feedback forms"
 msgstr "bilgi formları"
 
+#: solfasol/shop/apps.py:7
+msgid "shop"
+msgstr "dükkan"
+
+#: solfasol/shop/models.py:13
+msgid "available"
+msgstr "mevcut"
+
+#: solfasol/shop/models.py:23 solfasol/shop/models.py:46
+msgid "item"
+msgstr "parça"
+
+#: solfasol/shop/models.py:24
+msgid "items"
+msgstr "parçalar"
+
+#: solfasol/shop/models.py:31 solfasol/shop/models.py:45
+msgid "session"
+msgstr "oturum"
+
+#: solfasol/shop/models.py:40
+msgid "cart"
+msgstr "sepet"
+
+#: solfasol/shop/models.py:41
+msgid "carts"
+msgstr "sepetler"
+
+#: solfasol/shop/models.py:48
+msgid "paid"
+msgstr "ödenmiş"
+
 #: solfasol/subscriptions/apps.py:7 solfasol/subscriptions/models.py:32
 msgid "subscriptions"
 msgstr "abonelikler"
@@ -187,19 +224,20 @@ msgstr "abonelikler"
 msgid "subscription"
 msgstr "abonelik"
 
-#: solfasol/templates/base.html:41
+#: solfasol/templates/base.html:43
 msgid "Archive"
 msgstr "Arşiv"
 
-#: solfasol/templates/base.html:42 solfasol/templates/base.html:153
+#: solfasol/templates/base.html:44 solfasol/templates/base.html:155
 msgid "Subscribe"
 msgstr "Abonelik"
 
-#: solfasol/templates/base.html:154
+#: solfasol/templates/base.html:156
 msgid "Contact us"
 msgstr "Bize ulaş"
 
 #: solfasol/templates/content/content_detail.html:57
+#: solfasol/templates/shop/item_detail.html:32
 msgid "Share"
 msgstr "Paylaş"
 
@@ -238,7 +276,15 @@ msgstr "Sonraki"
 msgid "Articles"
 msgstr "Makaleler"
 
-#: solfasol/urls.py:39 solfasol/urls.py:40
+#: solfasol/templates/shop/item_detail.html:46
+msgid "OTHER ITEMS"
+msgstr "DİĞER PARÇALAR"
+
+#: solfasol/templates/shop/item_list.html:9
+msgid "Shop"
+msgstr "Dükkan"
+
+#: solfasol/urls.py:48 solfasol/urls.py:49
 msgid "Solfasol Administration"
 msgstr "Solfasol Yönetimi"
 

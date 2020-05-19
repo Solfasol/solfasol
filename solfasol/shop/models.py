@@ -11,12 +11,18 @@ class Item(models.Model):
     price = models.PositiveIntegerField()
     image = models.ImageField(_('image'), upload_to='shop/')
     available = models.BooleanField(_('available'), default=True)
+    added = models.DateTimeField(_('date'), auto_now_add=True)
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
         return reverse('shop_item_detail', kwargs={'slug': self.slug})
+
+    class Meta:
+        verbose_name = _('item')
+        verbose_name_plural = _('items')
+        ordering = ('-added',)
 
 
 class Cart(models.Model):
@@ -30,10 +36,15 @@ class Cart(models.Model):
     def __str__(self):
         return self.session.id
 
+    class Meta:
+        verbose_name = _('cart')
+        verbose_name_plural = _('carts')
+
 
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, verbose_name=_('session'), on_delete=models.CASCADE)
     item = models.ForeignKey(Item, verbose_name=_('item'), on_delete=models.CASCADE)
+    added = models.DateTimeField(_('date'), auto_now_add=True)
     paid = models.BooleanField(_('paid'), default=False)
 
     def __str__(self):
