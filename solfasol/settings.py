@@ -32,9 +32,11 @@ INSTALLED_APPS = [
     'crispy_forms',
     'captcha',
 
-    'solfasol.content',
-    'solfasol.feedback',
-    'solfasol.subscriptions',
+    'solfasol.content.apps.ContentConfig',
+    'solfasol.feedback.apps.FeedbackConfig',
+    'solfasol.subscriptions.apps.SubscriptionsConfig',
+    'solfasol.shop.apps.ShopConfig',
+
 ]
 
 MIDDLEWARE = [

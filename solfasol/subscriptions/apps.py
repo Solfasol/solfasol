@@ -3,5 +3,5 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class SubscriptionsConfig(AppConfig):
-    name = 'subscriptions'
+    name = 'solfasol.subscriptions'
     verbose_name = _('subscriptions')
