@@ -106,6 +106,11 @@ class ContributionTypeAdmin(admin.ModelAdmin):
     list_editable = ['primary']
 
 
+@admin.register(ContentContributor)
+class ContentContributorAdmin(admin.ModelAdmin):
+    list_display = ['content', 'contributor', 'contribution_type']
+
+
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
     list_display = ['name']
