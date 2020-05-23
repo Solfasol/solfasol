@@ -26,8 +26,12 @@ class Content(PolymorphicModel):
     tags = models.ManyToManyField('tag', verbose_name=_('tags'), blank=True)
     category = models.ForeignKey('category', verbose_name=_('category'), blank=True, null=True, on_delete=models.SET_NULL)
     series = models.ForeignKey('series', verbose_name=_('series'), blank=True, null=True, on_delete=models.SET_NULL)
+    issue = models.PositiveSmallIntegerField(blank=True, null=True)
 
     image = models.ImageField(_('image'), upload_to='content/')
+
+    video_url = models.URLField(_('video url'), blank=True, null=True)
+    podcast = models.URLField(_('podcast url'), blank=True, null=True)
 
     summary = models.TextField(_('summary'), blank=True, null=True)
     body = MDTextField(_('text body'), blank=True, null=True)
@@ -77,17 +81,7 @@ class Content(PolymorphicModel):
 
 
 class Article(Content):
-    author = models.ForeignKey(
-        'Contributor', verbose_name=_('author'),
-        blank=True, null=True,
-        on_delete=models.CASCADE, related_name='article_set'
-    )
-    photo_credits = models.ManyToManyField(
-        'Contributor', verbose_name=_('Photo credits'),
-        blank=True, related_name='photographed_articles'
-    )
-
-    issue = models.PositiveSmallIntegerField(blank=True, null=True)
+    issue_x = models.PositiveSmallIntegerField(blank=True, null=True)
 
     class Meta:
         verbose_name = _('article')
@@ -95,18 +89,8 @@ class Article(Content):
 
 
 class Video(Content):
-    video_url = models.URLField(_('video url'))
-    podcast = models.URLField(_('podcast url'), blank=True, null=True)
-
-    host = models.ForeignKey(
-        'Contributor', verbose_name=_('host'),
-        blank=True, null=True,
-        on_delete=models.CASCADE, related_name='hosted_video_set'
-    )
-    guests = models.ManyToManyField(
-        'Contributor', verbose_name=_('guests'),
-        blank=True,
-    )
+    video_url_x = models.URLField(_('video url'))
+    podcast_x = models.URLField(_('podcast url'), blank=True, null=True)
 
     def clean(self):
         if not 'youtube.com/embed/' in self.video_url:

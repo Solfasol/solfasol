@@ -67,12 +67,10 @@ class ContentAdmin(admin.ModelAdmin):
 
 @admin.register(Article)
 class ArticleAdmin(ContentAdmin):
-    list_display = ['title', 'author', 'added', 'category', 'publish', 'published_by', 'featured', 'pinned', 'view_count']
-    search_fields = ['title', 'author', 'summary', 'tags__name']
+    list_display = ['title', 'added', 'category', 'publish', 'published_by', 'featured', 'pinned', 'view_count']
+    search_fields = ['title', 'summary', 'tags__name']
     autocomplete_fields = [
         #'series',
-        #'author',
-        'photo_credits',
         'tags',
         #'category',
         #'related_content'
@@ -81,12 +79,10 @@ class ArticleAdmin(ContentAdmin):
 
 @admin.register(Video)
 class VideoAdmin(ContentAdmin):
-    list_display = ['title', 'host', 'added', 'category', 'publish', 'published_by', 'featured', 'pinned', 'view_count']
-    search_fields = ['title', 'host', 'guests', 'summary', 'tags__name']
+    list_display = ['title', 'added', 'category', 'publish', 'published_by', 'featured', 'pinned', 'view_count']
+    search_fields = ['title', 'summary', 'tags__name']
     autocomplete_fields = [
         #'series',
-        #'host',
-        'guests',
         'tags',
         #'category',
         #'related_content'
