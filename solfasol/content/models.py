@@ -11,7 +11,7 @@ from polymorphic.models import PolymorphicModel
 from mdeditor.fields import MDTextField
 
 
-class Content(PolymorphicModel):
+class Content(models.Model):
     title = models.CharField(_('title'), max_length=200)
     slug = models.SlugField(unique=True)
     subtitle = models.CharField(_('subtitle'), max_length=200, blank=True, null=True)
@@ -63,6 +63,25 @@ class Content(PolymorphicModel):
     def get_absolute_url(self):
         return reverse('content_detail', kwargs={'slug': self.slug})
 
+    def clean(self):
+        if self.video_url:
+            if not 'youtube.com/embed/' in self.video_url:
+                if 'youtube.com/' or 'youtu.be/' in self.video_url:
+                    vid = None
+                    if 'youtube.com/' in self.video_url:
+                        if 'watch?v=' in self.video_url:
+                            parts = urlparse(self.video_url)
+                            params = parse_qs(parts.query)
+                            vid = params.get('v', [])[0]
+                    elif 'youtu.be/' in self.video_url:
+                        vid = self.video_url.split('/')[-1]
+                    if vid:
+                        self.video_url = f"https://youtube.com/embed/{vid}"
+                    else:
+                        raise ValidationError(_('Invalid Youtube video link!'))
+                else:
+                    raise ValidationError(_('Please submit a Youtube video link!'))
+
     @cached_property
     def owners(self):
         return ContentContributor.objects.filter(
@@ -78,45 +97,6 @@ class Content(PolymorphicModel):
         verbose_name = _('content')
         verbose_name_plural = _('content')
         ordering = ('-pinned', '-added',)
-
-
-class Article(Content):
-    issue_x = models.PositiveSmallIntegerField(blank=True, null=True)
-
-    class Meta:
-        verbose_name = _('article')
-        verbose_name_plural = _('articles')
-
-
-class Video(Content):
-    video_url_x = models.URLField(_('video url'))
-    podcast_x = models.URLField(_('podcast url'), blank=True, null=True)
-
-    def clean(self):
-        if not 'youtube.com/embed/' in self.video_url:
-            if 'youtube.com/' or 'youtu.be/' in self.video_url:
-                vid = None
-                if 'youtube.com/' in self.video_url:
-                    if 'watch?v=' in self.video_url:
-                        parts = urlparse(self.video_url)
-                        params = parse_qs(parts.query)
-                        vid = params.get('v', [])[0]
-                elif 'youtu.be/' in self.video_url:
-                    vid = self.video_url.split('/')[-1]
-                if vid:
-                    self.video_url = f"https://youtube.com/embed/{vid}"
-                else:
-                    raise ValidationError(_('Invalid Youtube video link!'))
-            else:
-                raise ValidationError(_('Please submit a Youtube video link!'))
-
-    @cached_property
-    def owner(self):
-        return self.host
-
-    class Meta:
-        verbose_name = _('video content')
-        verbose_name_plural = _('video content')
 
 
 class Contributor(models.Model):

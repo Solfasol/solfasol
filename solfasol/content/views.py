@@ -1,4 +1,3 @@
-from django.db.models import Q
 from django.views.generic import ListView, DetailView
 from django.utils.translation import ugettext as _
 from django.shortcuts import get_object_or_404
@@ -20,10 +19,7 @@ class ContentListView(ListView):
         elif self.kwargs.get('series'):
             qs = qs.filter(series__slug=self.kwargs.get('series'))
         elif self.kwargs.get('contributor'):
-            qs = qs.filter(
-                Q(Article___author__slug=self.kwargs.get('contributor')) |
-                Q(Video___host__slug=self.kwargs.get('contributor'))
-            )
+            qs = qs.filter(contributors__slug=self.kwargs.get('contributor'))
         return qs.distinct()
 
     def get_context_data(self, **kwargs):

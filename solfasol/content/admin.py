@@ -5,7 +5,7 @@ from slugify import slugify
 from django.http import HttpResponse
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
-from .models import Content, Article, Video, Contributor, ContentContributor, ContributionType, Tag, Category, Series
+from .models import Content, Contributor, ContentContributor, ContributionType, Tag, Category, Series
 from mdeditor.fields import MDTextField
 from mdeditor.widgets import MDEditorWidget
 
@@ -63,30 +63,6 @@ class ContentAdmin(admin.ModelAdmin):
             break
         return response
     get_qr.short_description = _('Get QR code')
-
-
-@admin.register(Article)
-class ArticleAdmin(ContentAdmin):
-    list_display = ['title', 'added', 'category', 'publish', 'published_by', 'featured', 'pinned', 'view_count']
-    search_fields = ['title', 'summary', 'tags__name']
-    autocomplete_fields = [
-        #'series',
-        'tags',
-        #'category',
-        #'related_content'
-    ]
-
-
-@admin.register(Video)
-class VideoAdmin(ContentAdmin):
-    list_display = ['title', 'added', 'category', 'publish', 'published_by', 'featured', 'pinned', 'view_count']
-    search_fields = ['title', 'summary', 'tags__name']
-    autocomplete_fields = [
-        #'series',
-        'tags',
-        #'category',
-        #'related_content'
-    ]
 
 
 @admin.register(Contributor)
