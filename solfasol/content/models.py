@@ -15,6 +15,12 @@ class Content(PolymorphicModel):
     title = models.CharField(_('title'), max_length=200)
     slug = models.SlugField(unique=True)
     subtitle = models.CharField(_('subtitle'), max_length=200, blank=True, null=True)
+    contributors = models.ManyToManyField(
+        'Contributor',
+        verbose_name=_('contributor'),
+        blank=True,
+        related_name='content_set'
+    )
     lang = models.CharField(_('language'), max_length=7, choices=settings.LANGUAGES, default='tr')
     tags = models.ManyToManyField('tag', verbose_name=_('tags'), blank=True)
     category = models.ForeignKey('category', verbose_name=_('category'), blank=True, null=True, on_delete=models.SET_NULL)
