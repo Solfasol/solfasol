@@ -7,7 +7,6 @@ from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
-from polymorphic.models import PolymorphicModel
 from mdeditor.fields import MDTextField
 
 
@@ -124,6 +123,11 @@ class ContributionType(models.Model):
     def __str__(self):
         return self.description
 
+    class Meta:
+        ordering = ('id',)
+        verbose_name = _('contribution type')
+        verbose_name_plural = _('contribution types')
+
 
 class ContentContributor(models.Model):
     content = models.ForeignKey(Content, verbose_name=_('content'), on_delete=models.CASCADE)
@@ -137,6 +141,10 @@ class ContentContributor(models.Model):
 
     def __str__(self):
         return self.contributor.name
+
+    class Meta:
+        verbose_name = _('contributor')
+        verbose_name_plural = _('contributors')
 
 
 class Tag(models.Model):
