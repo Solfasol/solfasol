@@ -143,8 +143,8 @@ class ContentContributor(models.Model):
         return self.contributor.name
 
     class Meta:
-        verbose_name = _('contributor')
-        verbose_name_plural = _('contributors')
+        verbose_name = _('content - contributor')
+        verbose_name_plural = _('content - contributors')
 
 
 class Tag(models.Model):

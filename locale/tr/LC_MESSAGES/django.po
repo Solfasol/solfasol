@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-23 21:07+0300\n"
+"POT-Creation-Date: 2020-05-23 21:13+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,8 +40,7 @@ msgid "subtitle"
 msgstr "altbaşlık"
 
 #: solfasol/content/models.py:19 solfasol/content/models.py:115
-#: solfasol/content/models.py:134 solfasol/content/models.py:146
-#: solfasol/content/views.py:56
+#: solfasol/content/models.py:134 solfasol/content/views.py:56
 msgid "contributor"
 msgstr "katkıda bulunan"
 
@@ -126,7 +125,7 @@ msgstr "Geçerli bir Youtube bağlantısı girin!"
 msgid "name"
 msgstr "isim"
 
-#: solfasol/content/models.py:116 solfasol/content/models.py:147
+#: solfasol/content/models.py:116
 msgid "contributors"
 msgstr "katkıda bulunanlar"
 
@@ -146,6 +145,14 @@ msgstr "katkı tipi"
 #: solfasol/content/models.py:129
 msgid "contribution types"
 msgstr "katkı tipleri"
+
+#: solfasol/content/models.py:146
+msgid "content - contributor"
+msgstr "içerik - katkıda bulunan"
+
+#: solfasol/content/models.py:147
+msgid "content - contributors"
+msgstr "içerik - katkıda bulunanlar"
 
 #: solfasol/content/models.py:161 solfasol/content/views.py:37
 msgid "tag"
