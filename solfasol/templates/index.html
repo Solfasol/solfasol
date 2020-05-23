@@ -21,9 +21,17 @@
 							<h3 class="mb-15 mb-sm-5 font-sm-13"><b>{{ content.title }}</b></h3>
 							<ul class="list-li-mr-10">
 								<li>
-									<span class="color-primary">
-										{% if content.owner %}<b>{{ content.owner }}</b> &middot; {% endif %}
-									</span>
+									{% with content.owners.all as owners %}
+										{% if owners %}
+										<span class="color-primary">
+											{% for owner in owners %}
+												<strong>{{ owner }}</strong>
+												{% if not forloop.last %} & {% endif %}
+											{% endfor %}
+											 &middot;
+										</span>
+										{% endif %}
+									{% endwith %}
 									{{ content.added|date:"j F" }}
 									{% if content.video_url %}
 										<li><i class="color-primary font-12 ion-ios-videocam"></i></li>
@@ -47,9 +55,17 @@
 							<div class="abs-blr color-white p-20 bg-sm-color-7">
 								<h4 class="mb-10 mb-sm-5"><b>{{ content.title }}</b></h4>
 								<ul class="list-li-mr-10">
-									<span class="color-primary">
-										{% if content.owner %}<b>{{ content.owner }}</b> &middot; {% endif %}
-									</span>
+									{% with content.owners.all as owners %}
+										{% if owners %}
+										<span class="color-primary">
+											{% for owner in owners %}
+												<strong>{{ owner }}</strong>
+												{% if not forloop.last %} & {% endif %}
+											{% endfor %}
+											 &middot;
+										</span>
+										{% endif %}
+									{% endwith %}
 									<li>{{ content.added|date:"j F" }}</li>
 									{% if content.video_url %}
 										<li><i class="color-primary mr-5 font-12 ion-ios-videocam"></i></li>
@@ -79,7 +95,17 @@
 							<h4 class="mb-10 mb-sm-5"><b>{{ content.title }}</b></h4>
 							<ul class="list-li-mr-10">
 								<span class="color-primary">
-									{% if content.owner %}<b>{{ content.owner }}</b> &middot; {% endif %}
+									{% with content.owners.all as owners %}
+										{% if owners %}
+										<span class="color-primary">
+											{% for owner in owners %}
+												<strong>{{ owner }}</strong>
+												{% if not forloop.last %} & {% endif %}
+											{% endfor %}
+											 &middot;
+										</span>
+										{% endif %}
+									{% endwith %}
 								</span>
 								<li>{{ content.added|date:"j F" }}</li>
 								{% if content.video_url %}
@@ -121,7 +147,17 @@
 							<h4 class="pt-20"><a href="{{ content.get_absolute_url }}"><b>{{ content.title }}</b></a></h4>
 							<ul class="list-li-mr-10 pt-10 mb-30">
 								<li class="color-lite-black">
-									{% if content.owner %}<a href="{{ content.owner.get_absolute_url }}" class="color-black"><b>{{ content.owner }}</b> &middot; </a>{% endif %}
+									{% with content.owners.all as owners %}
+										{% if owners %}
+										<span class="color-black">
+											{% for owner in owners %}
+												<strong>{{ owner }}</strong>
+												{% if not forloop.last %} & {% endif %}
+											{% endfor %}
+											 &middot;
+										</span>
+										{% endif %}
+									{% endwith %}
 									{{ content.added|date:"j F" }}
 								</li>
 								{% if content.video_url %}
@@ -152,7 +188,20 @@
 							<div class="wh-100x abs-tlr"><img src="{{ content.image.url }}" alt=""></div>
 							<div class="ml-120 min-h-100x">
 								<h5><b>{{ content.title }}</b></h5>
-								<h6 class="color-lite-black pt-10">{% if content.owner %}<span class="color-black"><b>{{ content.owner }}</b></span> &middot; {% endif %}{{ content.added|date:"j F" }}</h6>
+								<h6 class="color-lite-black pt-10">
+								{% with content.owners.all as owners %}
+									{% if owners %}
+									<span class="color-black">
+										{% for owner in owners %}
+											<strong>{{ owner }}</strong>
+											{% if not forloop.last %} & {% endif %}
+										{% endfor %}
+										 &middot;
+									</span>
+									{% endif %}
+								{% endwith %}
+								{{ content.added|date:"j F" }}
+								</h6>
 							</div>
 						</a><!-- oflow-hidden -->
 

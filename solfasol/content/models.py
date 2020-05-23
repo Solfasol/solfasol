@@ -19,7 +19,8 @@ class Content(PolymorphicModel):
         'Contributor',
         verbose_name=_('contributor'),
         blank=True,
-        related_name='content_set'
+        related_name='content_set',
+        through='ContentContributor',
     )
     lang = models.CharField(_('language'), max_length=7, choices=settings.LANGUAGES, default='tr')
     tags = models.ManyToManyField('tag', verbose_name=_('tags'), blank=True)
@@ -59,6 +60,13 @@ class Content(PolymorphicModel):
         return reverse('content_detail', kwargs={'slug': self.slug})
 
     @cached_property
+    def owners(self):
+        return ContentContributor.objects.filter(
+            content=self,
+            contribution_type__primary=True,
+        )
+
+    @cached_property
     def similar_content(self):
         return self.related_content.filter(publish=True)
 
@@ -80,10 +88,6 @@ class Article(Content):
     )
 
     issue = models.PositiveSmallIntegerField(blank=True, null=True)
-
-    @cached_property
-    def owner(self):
-        return self.author
 
     class Meta:
         verbose_name = _('article')
@@ -147,6 +151,28 @@ class Contributor(models.Model):
     class Meta:
         verbose_name = _('contributor')
         verbose_name_plural = _('contributors')
+
+
+class ContributionType(models.Model):
+    description = models.CharField(_('description'), max_length=20)
+    primary = models.BooleanField(_('primary'), default=False)
+
+    def __str__(self):
+        return self.description
+
+
+class ContentContributor(models.Model):
+    content = models.ForeignKey(Content, verbose_name=_('content'), on_delete=models.CASCADE)
+    contributor = models.ForeignKey(Contributor, verbose_name=_('contributor'), on_delete=models.CASCADE)
+    contribution_type = models.ForeignKey(
+        ContributionType,
+        verbose_name=_('contribution type'),
+        on_delete=models.SET_NULL,
+        blank=True, null=True,
+    )
+
+    def __str__(self):
+        return self.contributor.name
 
 
 class Tag(models.Model):

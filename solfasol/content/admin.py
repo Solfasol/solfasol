@@ -5,24 +5,29 @@ from slugify import slugify
 from django.http import HttpResponse
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
-from .models import Content, Article, Video, Contributor, Tag, Category, Series
+from .models import Content, Article, Video, Contributor, ContentContributor, ContributionType, Tag, Category, Series
 from mdeditor.fields import MDTextField
 from mdeditor.widgets import MDEditorWidget
 
 
-#@admin.register(Content)
+class ContributorsInline(admin.TabularInline):
+    model = ContentContributor
+
+
+@admin.register(Content)
 class ContentAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
-    list_display = ['title', 'added', 'modified', 'publish', 'published_by', 'featured', 'pinned', 'view_count']
+    list_display = ['title', 'added', 'category', 'publish', 'published_by', 'featured', 'pinned', 'view_count']
     search_fields = ['title', 'summary', 'tags__name']
     exclude = ['published_by']
-    list_editable = ['publish', 'featured', 'category']
+    list_editable = ['publish', 'featured', 'category', 'pinned']
     list_filter = ['publish', 'added', 'modified', 'featured']
 #    autocomplete_fields = ['tags', 'category', 'related_content']
     actions = ['publish', 'get_qr']
     formfield_overrides = {
         MDTextField: {'widget': MDEditorWidget},
     }
+    inlines = [ContributorsInline]
 
     def publish(self, request, queryset):
         for article in queryset:
@@ -93,6 +98,12 @@ class ContributorAdmin(admin.ModelAdmin):
     list_display = ['name']
     search_fields = ['name']
     prepopulated_fields = {"slug": ("name",)}
+
+
+@admin.register(ContributionType)
+class ContributionTypeAdmin(admin.ModelAdmin):
+    list_display = ['description', 'primary']
+    list_editable = ['primary']
 
 
 @admin.register(Tag)
