@@ -15,7 +15,7 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
 
-    path(r'mdeditor/', include('mdeditor.urls')),
+    #path(r'martor/', include('martor.urls')),
 
     path('', IndexView.as_view(), name='index'),
 

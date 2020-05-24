@@ -5,29 +5,38 @@ from slugify import slugify
 from django.http import HttpResponse
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
-from .models import Content, Contributor, ContentContributor, ContributionType, Tag, Category, Series
-from mdeditor.fields import MDTextField
-from mdeditor.widgets import MDEditorWidget
+from nested_inline.admin import NestedStackedInline, NestedModelAdmin
+from .models import Content, ContentSection, ContentSectionImage, Contributor, ContentContributor, ContributionType, \
+    Tag, Category, Series
+
+
+class ContentSectionImageInline(NestedStackedInline):
+    model = ContentSectionImage
+    extra = 1
+
+
+class ContentSectionInline(NestedStackedInline):
+    model = ContentSection
+    extra = 1
+    inlines = [ContentSectionImageInline]
 
 
 class ContributorsInline(admin.TabularInline):
     model = ContentContributor
+    autocomplete_fields = ['contributor']
 
 
 @admin.register(Content)
-class ContentAdmin(admin.ModelAdmin):
+class ContentAdmin(NestedModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
     list_display = ['title', 'added', 'category', 'publish', 'published_by', 'featured', 'pinned', 'view_count']
     search_fields = ['title', 'summary', 'tags__name']
     exclude = ['published_by']
     list_editable = ['publish', 'featured', 'category', 'pinned']
     list_filter = ['publish', 'added', 'modified', 'featured']
-#    autocomplete_fields = ['tags', 'category', 'related_content']
+    autocomplete_fields = ['tags', 'category', 'related_content']
     actions = ['publish', 'get_qr']
-    formfield_overrides = {
-        MDTextField: {'widget': MDEditorWidget},
-    }
-    inlines = [ContributorsInline]
+    inlines = [ContributorsInline, ContentSectionInline]
 
     def publish(self, request, queryset):
         for article in queryset:

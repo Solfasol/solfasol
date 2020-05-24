@@ -7,7 +7,6 @@ from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
-from mdeditor.fields import MDTextField
 
 
 class Content(models.Model):
@@ -33,7 +32,7 @@ class Content(models.Model):
     podcast = models.URLField(_('podcast url'), blank=True, null=True)
 
     summary = models.TextField(_('summary'), blank=True, null=True)
-    body = MDTextField(_('text body'), blank=True, null=True)
+    body = models.TextField(_('text body'), blank=True, null=True)
 
     related_content = models.ManyToManyField('self', verbose_name=_('related content'), blank=True)
 
@@ -96,6 +95,34 @@ class Content(models.Model):
         verbose_name = _('content')
         verbose_name_plural = _('content')
         ordering = ('-pinned', '-added',)
+
+
+class ContentSection(models.Model):
+    content = models.ForeignKey(Content, verbose_name=_('content'), on_delete=models.CASCADE)
+    section_title = models.CharField(_('section title'), max_length=200, blank=True, null=True)
+    body = models.TextField(_('section text'), blank=True, null=True)
+
+    def get_section_no(self):
+        return self.content.contentsection_set.filter(id__lte=self.id).count()
+
+    def __str__(self):
+        return '%s - %s' % (
+            str(self.content),
+            self.get_section_no(),
+        )
+
+    class Meta:
+        ordering = ('id',)
+        verbose_name = _('content section')
+        verbose_name_plural = _('content sections')
+
+
+class ContentSectionImage(models.Model):
+    content_section = models.ForeignKey(ContentSection, verbose_name=_('section image'), on_delete=models.CASCADE)
+    image = models.ImageField(_('image'), upload_to='content_images/')
+
+    def __str__(self):
+        return self.image
 
 
 class Contributor(models.Model):
