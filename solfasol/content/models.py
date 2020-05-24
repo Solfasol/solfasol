@@ -28,11 +28,10 @@ class Content(models.Model):
 
     image = models.ImageField(_('image'), upload_to='content/')
 
+    summary = models.TextField(_('summary'), blank=True, null=True)
+
     video_url = models.URLField(_('video url'), blank=True, null=True)
     podcast = models.URLField(_('podcast url'), blank=True, null=True)
-
-    summary = models.TextField(_('summary'), blank=True, null=True)
-    body = models.TextField(_('text body'), blank=True, null=True)
 
     related_content = models.ManyToManyField('self', verbose_name=_('related content'), blank=True)
 
