@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n static markdownify %}
+{% load i18n static %}
 
 
 {% block title %}{{ content.title }} - {{ block.super }}{% endblock %}
@@ -50,7 +50,7 @@
 
             {% if content.body %}
             <p>
-                {{ content.body|markdownify|linebreaks }}
+                {{ content.body|linebreaks }}
             </p>
             {% endif %}
 
