@@ -97,6 +97,11 @@ class Content(models.Model):
 
 
 class ContentSection(models.Model):
+    section_type = models.CharField(max_length=1, choices=(
+        ('t', _('text')),
+        ('s', _('spot')),
+        ('i', _('image')),
+    ), default='t')
     content = models.ForeignKey(Content, verbose_name=_('content'), on_delete=models.CASCADE)
     section_title = models.CharField(_('section title'), max_length=200, blank=True, null=True)
     body = models.TextField(_('section text'), blank=True, null=True)
@@ -119,9 +124,15 @@ class ContentSection(models.Model):
 class ContentSectionImage(models.Model):
     content_section = models.ForeignKey(ContentSection, verbose_name=_('section image'), on_delete=models.CASCADE)
     image = models.ImageField(_('image'), upload_to='content_images/')
+    description = models.CharField(_('description'), blank=True, null=True, max_length=100)
 
     def __str__(self):
-        return self.image
+        return self.image.url
+
+    class Meta:
+        ordering = ('id',)
+        verbose_name = _('section image')
+        verbose_name_plural = _('section images')
 
 
 class Contributor(models.Model):

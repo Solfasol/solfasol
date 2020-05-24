@@ -48,11 +48,62 @@
             </p>
             {% endif %}
 
-            {% if content.body %}
-            <p>
-                {{ content.body|linebreaks }}
-            </p>
-            {% endif %}
+
+            {% for section in content.contentsection_set.all %}
+
+                {% if section.section_title %}
+
+                    <h5>
+                        {{ section.section_title }}
+                    </h5>
+
+                {% endif %}
+
+
+                {% with section.contentsectionimage_set.all as images %}
+
+                    {% if images %}
+
+                        <div class="row">
+
+                            {% for image in images %}
+
+                            <div class="col my-4">
+
+                                <img src="{{ image.image.url }}" alt="{{ image.description }}">
+
+                                {% if image.description %}
+                                <em class="text-center d-block">
+                                    {{ image.description }}
+                                </em>
+                                {% endif %}
+
+                            </div>
+
+                            {% endfor %}
+
+                        </div>
+
+                        <em>
+                            {{ section.body }}
+                        </em>
+
+                    {% else %}
+
+                        <p class="{% if section.section_type == 's' %}lead{% endif %} my-4">
+                            {{ section.body }}
+                        </p>
+
+                    {% endif %}
+
+                {% endwith %}
+
+                <p>
+                    {{ content.body|linebreaks }}
+                </p>
+
+            {% endfor %}
+
 
             <div class="float-left-right text-center mt-40 mt-sm-20">
 

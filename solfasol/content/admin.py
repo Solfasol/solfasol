@@ -12,13 +12,15 @@ from .models import Content, ContentSection, ContentSectionImage, Contributor, C
 
 class ContentSectionImageInline(NestedStackedInline):
     model = ContentSectionImage
-    extra = 1
+    extra = 0
+    fk_name = 'content_section'
 
 
 class ContentSectionInline(NestedStackedInline):
     model = ContentSection
-    extra = 1
+    extra = 0
     inlines = [ContentSectionImageInline]
+    fk_name = 'content'
 
 
 class ContributorsInline(admin.TabularInline):
