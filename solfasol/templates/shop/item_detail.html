@@ -26,39 +26,92 @@
                 {{ item.description|safe }}
             </p>
 
-            <div class="float-left-right text-center mt-40 mt-sm-20">
+            <div class="row mt-40 mt-sm-20 mb-30">
 
-                <ul class="mb-30 list-a-bg-grey list-a-hw-radial-35 list-a-hvr-primary list-li-ml-5">
-                    <li class="mr-10 ml-0">{% trans "Share" %}</li>
-                    <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank"><i class="ion-social-facebook"></i></a></li>
-                    <li><a href="https://www.twitter.com/share?url={{ request.build_absolute_uri }}&text={{ item.name }} - Solfasol" target="_blank"><i class="ion-social-twitter"></i></a></li>
-                </ul>
+                <div class="col">
+                    <a href="{% url 'shop_cart_add' item_id=item.id %}" class="btn btn-success">{% trans "Add to cart" %}</a>
+                </div>
 
-            </div><!-- float-left-right -->
+                <div class="col">
 
-            <div class="brdr-ash-1 opacty-5"></div>
+                    <div class="float-left-right text-center">
+
+                        <ul class="list-a-bg-grey list-a-hw-radial-35 list-a-hvr-primary list-li-ml-5">
+                            <li class="mr-10 ml-0">{% trans "Share" %}</li>
+                            <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank"><i class="ion-social-facebook"></i></a></li>
+                            <li><a href="https://www.twitter.com/share?url={{ request.build_absolute_uri }}&text={{ item.name }} - Solfasol" target="_blank"><i class="ion-social-twitter"></i></a></li>
+                        </ul>
+
+                    </div>
+
+                </div><!-- float-left-right -->
+
+            </div>
+
+
+            <div class="brdr-ash-1 opacty-5 my-4"></div>
+
+            <h4 class="p-title"><b>{% trans "OTHER ITEMS" %}</b></h4>
+
+            {% for item in other_items %}
+
+            <a class="oflow-hidden pos-relative mb-20 dplay-block" href="{{ item.get_absolute_url }}">
+                <div class="wh-100x abs-tlr"><img src="{{ item.image.url }}" alt=""></div>
+                <div class="ml-120 min-h-100x">
+                    <h5><b>{{ item.name }}</b></h5>
+                    <h6 class="color-lite-black pt-10">{{ item.price }} TL</h6>
+                </div>
+            </a><!-- oflow-hidden -->
+
+            {% endfor %}
 
         </div>
 
         <div class="col-md-6 col-lg-4">
             <div class="pl-20 pl-md-0">
 
-                <h4 class="p-title"><b>{% trans "OTHER ITEMS" %}</b></h4>
+                <h4 class="p-title"><b>{% trans "Shopping cart" %}</b></h4>
 
-                {% for item in other_items %}
+                {% for item in cart %}
 
-                <a class="oflow-hidden pos-relative mb-20 dplay-block" href="{{ item.get_absolute_url }}">
-                    <div class="wh-100x abs-tlr"><img src="{{ item.image.url }}" alt=""></div>
-                    <div class="ml-120 min-h-100x">
-                        <h5><b>{{ item.name }}</b></h5>
-                        <h6 class="color-lite-black pt-10">{{ item.price }}</h6>
-                    </div>
-                </a><!-- oflow-hidden -->
+                <div class="media">
+                  <img src="{{ item.image.url }}" class="mr-3 w-50" alt="{{ item.name }}">
+                  <div class="media-body">
+                      <h4 class="mt-0"><b>{{ item.name }}</b></h4>
+                      {{ item.description }}
+                      <br>
+                      {{ item.price }} TL
+                      <br><br>
+                      <a href="{% url 'shop_cart_remove' item_id=item.id %}" class="btn btn-sm btn-warning">{% trans "Remove" %}</a>
+                  </div>
+                </div>
+
+                {% empty %}
+
+                    {% trans "Your cart is empty" %}
 
                 {% endfor %}
 
-
             </div><!--  pl-20 -->
+
+            <div class="col my-4">
+                <div class="text-right ">
+                    <img src="{% static 'iyzi-logo.png' %}">
+                </div>
+
+                {% if cart %}
+
+                    <div class="my-4 text-primary">
+                        <input type="checkbox" class="mr-2">
+                        <a href="{% url 'sales_agreement' %}">{% trans "I accept the sales agreement" %}</a>
+                        <a href="" class="btn btn-success d-block my-4">{% trans "Buy" %}</a>
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
         </div><!-- col-md-3 -->
 
 
