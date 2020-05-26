@@ -38,7 +38,7 @@
 
             {% if content.summary %}
             <p>
-                {{ content.summary|safe }}
+                {{ content.summary|linebreaksbr }}
             </p>
             {% endif %}
 
@@ -90,10 +90,6 @@
                     {% endif %}
 
                 {% endwith %}
-
-                <p>
-                    {{ content.body|linebreaks }}
-                </p>
 
             {% endfor %}
 
