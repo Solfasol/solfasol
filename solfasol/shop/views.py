@@ -32,7 +32,7 @@ class ItemDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context.update({
             'other_items': Item.objects.filter(available=True).exclude(id=self.get_object().id),
-            'cart': Item.objects.filter(id__in=self.request.session['cart']),
+            'cart': Item.objects.filter(id__in=self.request.session.get('cart', [])),
         })
         return context
 
