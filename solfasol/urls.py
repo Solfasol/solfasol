@@ -31,11 +31,10 @@ urlpatterns = [
         pattern_name='feedback_form', permanent=True,
     ), kwargs={'slug': 'program-oneri'}),
 
-    path('dukkan/', ItemListView.as_view(), name='shop_item_list'),
-    path('dukkan/<slug:slug>/', ItemDetailView.as_view(), name='shop_item_detail'),
     path('dukkan/satis-sozlesmesi/',
          TemplateView.as_view(template_name='shop/sales-agreement.html'),
          name='sales_agreement'),
+    path('dukkan/', ItemListView.as_view(), name='shop_item_list'),
 
     path('dil/', set_language, name='set_lang'),
 
