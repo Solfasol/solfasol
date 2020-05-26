@@ -15,7 +15,7 @@ class ItemListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update({
-            'cart': Item.objects.filter(id__in=self.request.session['cart']),
+            'cart': Item.objects.filter(id__in=self.request.session.get('cart', [])),
         })
         return context
 
