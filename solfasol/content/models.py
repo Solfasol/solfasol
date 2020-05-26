@@ -1,4 +1,5 @@
 from urllib.parse import urlparse, parse_qs
+from collections import defaultdict
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.contrib.auth.models import User
@@ -85,6 +86,13 @@ class Content(models.Model):
             content=self,
             contribution_type__primary=True,
         )
+
+    @cached_property
+    def contributors_dict(self):
+        contributors = defaultdict(list)
+        for contributor in  ContentContributor.objects.filter(content=self).order_by('-contribution_type__primary'):
+            contributors[contributor.contribution_type].append(contributor)
+        return dict(contributors)
 
     @cached_property
     def similar_content(self):

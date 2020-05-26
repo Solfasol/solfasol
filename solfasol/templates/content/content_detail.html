@@ -53,12 +53,15 @@
 
                 {% if section.section_title %}
 
-                    <h5>
-                        {{ section.section_title }}
-                    </h5>
+                    <h4>
+                        <b>{{ section.section_title }}</b>
+                    </h4>
 
                 {% endif %}
 
+                <div class="{% if section.section_type == 's' %}lead text-warning text-right{% endif %} my-4">
+                    {{ section.body|linebreaksbr }}
+                </div>
 
                 {% with section.contentsectionimage_set.all as images %}
 
@@ -84,16 +87,6 @@
 
                         </div>
 
-                        <em>
-                            {{ section.body }}
-                        </em>
-
-                    {% else %}
-
-                        <p class="{% if section.section_type == 's' %}lead{% endif %} my-4">
-                            {{ section.body }}
-                        </p>
-
                     {% endif %}
 
                 {% endwith %}
@@ -103,6 +96,24 @@
                 </p>
 
             {% endfor %}
+
+
+            <table class="table my-4">
+            {% for contribution_type, contributors in content.contributors_dict.items %}
+                <tr>
+                    <td>{{ contribution_type }}</td>
+                    <td>
+                        {% for contributor in contributors %}
+                            <a href="{{ contributor.contributor.get_absolute_url }}" class="text-warning">{{ contributor.contributor.name }}</a>
+                            {% if not forloop.last %} & {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+
+
+
+            {% endfor %}
+            </table>
 
 
             <div class="float-left-right text-center mt-40 mt-sm-20">
