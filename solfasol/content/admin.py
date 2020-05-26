@@ -8,6 +8,8 @@ from django.utils.translation import ugettext_lazy as _
 from nested_inline.admin import NestedStackedInline, NestedModelAdmin
 from .models import Content, ContentSection, ContentSectionImage, Contributor, ContentContributor, ContributionType, \
     Tag, Category, Series
+from django.db.models import TextField
+from ckeditor.widgets import CKEditorWidget
 
 
 class ContentSectionImageInline(NestedStackedInline):
@@ -21,6 +23,9 @@ class ContentSectionInline(NestedStackedInline):
     extra = 0
     inlines = [ContentSectionImageInline]
     fk_name = 'content'
+    formfield_overrides = {
+        TextField: {'widget': CKEditorWidget},
+    }
 
 
 class ContributorsInline(admin.TabularInline):

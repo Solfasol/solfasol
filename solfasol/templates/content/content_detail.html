@@ -60,7 +60,7 @@
                 {% endif %}
 
                 <div class="{% if section.section_type == 's' %}lead text-warning text-right{% endif %} my-4">
-                    {{ section.body|linebreaksbr }}
+                    {{ section.body|safe|linebreaksbr }}
                 </div>
 
                 {% with section.contentsectionimage_set.all as images %}

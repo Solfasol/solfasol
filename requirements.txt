@@ -3,7 +3,6 @@ pillow
 django-crispy-forms
 boto3
 gunicorn
-django-mdeditor
 django-markdownify
 django-tinymce
 django-froala-editor
@@ -13,3 +12,4 @@ python-slugify
 django-polymorphic
 django-recaptcha
 qrcode
+django-ckeditor
