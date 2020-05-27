@@ -58,6 +58,7 @@ a, button{ display: inline-block; text-decoration: none; color: inherit; line-he
 
 a:focus, a:active, a:hover,
 button:focus, button:active, button:hover,
+a { text-decoration: none; color: #F9B500; }  // onur
 a b.light-color:hover{ text-decoration: none; color: #F9B500; }
 
 b{ font-weight: 700; }

@@ -53,13 +53,13 @@
 
                 {% if section.section_title %}
 
-                    <h4>
+                    <h4 class="mt-4">
                         <b>{{ section.section_title }}</b>
                     </h4>
 
                 {% endif %}
 
-                <div class="{% if section.section_type == 's' %}lead text-warning text-right{% endif %} my-4">
+                <div class="{% if section.section_type == 's' %}lead ml-100{% endif %} my-2">
                     {{ section.body|safe|linebreaksbr }}
                 </div>
 
@@ -116,13 +116,13 @@
 
                 <ul class="mb-30 list-li-mt-10 list-li-mr-5 list-a-plr-15 list-a-ptb-7 list-a-bg-grey list-a-br-2 list-a-hvr-primary ">
                     {% for tag in content.tags.all %}
-                    <li><a href="{% url 'content_tag_list' tag=tag.slug %}">{{ tag.name }}</a></li>
+                    <li><a href="{% url 'content_tag_list' tag=tag.slug %}" class="text-info">{{ tag.name }}</a></li>
                     {% endfor %}
                 </ul>
                 <ul class="mb-30 list-a-bg-grey list-a-hw-radial-35 list-a-hvr-primary list-li-ml-5">
                     <li class="mr-10 ml-0">{% trans "Share" %}</li>
-                    <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank"><i class="ion-social-facebook"></i></a></li>
-                    <li><a href="https://www.twitter.com/share?url={{ request.build_absolute_uri }}&text={{ content.title }} - Solfasol" target="_blank"><i class="ion-social-twitter"></i></a></li>
+                    <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="text-info"><i class="ion-social-facebook"></i></a></li>
+                    <li><a href="https://www.twitter.com/share?url={{ request.build_absolute_uri }}&text={{ content.title }} - Solfasol" target="_blank" class="text-info"><i class="ion-social-twitter"></i></a></li>
                 </ul>
 
             </div><!-- float-left-right -->
