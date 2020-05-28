@@ -116,7 +116,7 @@
 
                 <ul class="mb-30 list-li-mt-10 list-li-mr-5 list-a-plr-15 list-a-ptb-7 list-a-bg-grey list-a-br-2 list-a-hvr-primary ">
                     {% for tag in content.tags.all %}
-                    <li><a href="{% url 'content_tag_list' tag=tag.slug %}" class="text-info">{{ tag.name }}</a></li>
+                    <li><a href="{% url 'content_tag_list' tag=tag.slug %}">{{ tag.name }}</a></li>
                     {% endfor %}
                 </ul>
                 <ul class="mb-30 list-a-bg-grey list-a-hw-radial-35 list-a-hvr-primary list-li-ml-5">
