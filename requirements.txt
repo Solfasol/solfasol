@@ -13,3 +13,6 @@ django-polymorphic
 django-recaptcha
 qrcode
 django-ckeditor
+#django-nested-inline
+django-nested-admin
+python-slugify

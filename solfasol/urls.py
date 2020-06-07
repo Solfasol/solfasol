@@ -7,7 +7,7 @@ from django.views.generic import RedirectView, TemplateView
 from .content.views import ContentListView, ContentDetailView
 from .feedback.views import feedback_form
 from .subscriptions.views import subscribe
-from .shop.views import ItemListView, ItemDetailView, cart_add, cart_remove
+from .shop.views import ItemListView, ItemDetailView, cart_add, cart_remove, payment_form
 from .views import IndexView, set_language
 
 
@@ -32,6 +32,7 @@ urlpatterns = [
     ), kwargs={'slug': 'program-oneri'}),
 
     path('dukkan/', ItemListView.as_view(), name='shop_item_list'),
+    path('dukkan/odeme/', payment_form, name='shop_payment_form'),
     path('dukkan/satis-sozlesmesi/',
          TemplateView.as_view(template_name='shop/sales-agreement.html'),
          name='sales_agreement'),

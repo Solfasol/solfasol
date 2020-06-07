@@ -1,12 +1,38 @@
 from django.contrib import admin
-from .models import Item, Cart, CartItem
+from nested_admin import NestedStackedInline, NestedTabularInline, NestedModelAdmin
+from .models import Item, ItemAlternative, Category, Tag, Cart, CartItem
+
+
+class ItemAlternativeInline(NestedTabularInline):
+    model = ItemAlternative
+    extra = 0
+
+
+class ItemInline(NestedTabularInline):
+    model = Item
+    autocomplete_fields = ['category', 'tags']
+    extra = 0
+    inlines = [ItemAlternativeInline]
+
+
+@admin.register(Category)
+class CategoryAdmin(NestedModelAdmin):
+    list_display = ['name']
+    search_fields = ['name']
+    inlines = [ItemInline]
+
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    search_fields = ['name']
 
 
 @admin.register(Item)
 class ItemAdmin(admin.ModelAdmin):
     list_display = ['name', 'price', 'available']
     list_editable = ['price', 'available']
-    prepopulated_fields = {"slug": ("name",)}
+    autocomplete_fields = ['category', 'tags']
 
 
 @admin.register(Cart)

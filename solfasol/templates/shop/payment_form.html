@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load i18n static crispy_forms_filters %}
+
+
+{% block title %}{{ item.name }} - {{ block.super }}{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-12 col-lg-8">
+
+            <form method="post">
+
+                {% csrf_token %}
+
+                <h4 class="my-3">{% trans "Identity and address information" %}</h4>
+
+                {{ form.name|as_crispy_field }}
+
+                {{ form.email|as_crispy_field }}
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        {{ form.identity_number|as_crispy_field }}
+                    </div>
+
+                    <div class="col-md-6">
+                        {{ form.gsm_number|as_crispy_field }}
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-9">
+                        {{ form.address|as_crispy_field }}
+                    </div>
+
+                    <div class="col-md-3">
+                        {{ form.zipcode|as_crispy_field }}
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        {{ form.city|as_crispy_field }}
+                    </div>
+
+                    <div class="col-md-6">
+                        {{ form.country|as_crispy_field }}
+                    </div>
+
+                </div>
+
+
+                <h4 class="my-3">{% trans "Credit card information" %}</h4>
+
+                {{ form.card_holder_name|as_crispy_field }}
+
+                {{ form.card_number|as_crispy_field }}
+
+                <div class="row">
+
+                    <div class="col-md-4">
+
+                        <div id="div_id_expiry_month" class="form-group">
+
+                            <label for="id_expiry_month" class=" requiredField">
+                                {% trans "Expiry date" %}<span class="asteriskField">*</span>
+                            </label>
+
+                            <div class="">
+                                <select name="expiry_month" class="select form-control" id="id_expiry_month">
+                                    {% for x, y in form.fields.expiry_month.choices %}
+                                        <option value="{{ x }}"{% if form.fields.customer.value == x %} selected{% endif %}>{{ y }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        <div id="div_id_expiry_year" class="form-group">
+
+                            <label for="id_expiry_year" class=" requiredField">
+                                &nbsp;
+                            </label>
+
+                            <div class="">
+                                <select name="expiry_year" class="select form-control" id="id_expiry_year">
+                                    {% for x, y in form.fields.expiry_year.choices %}
+                                        <option value="{{ x }}"{% if form.fields.customer.value == x %} selected{% endif %}>{{ y }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-4">
+
+                        {{ form.cvc|as_crispy_field }}
+
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="m-4">
+                            {{ form.secure3d|as_crispy_field }}
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 text-right">
+                        <button class="btn btn-primary my-3" type="submit">{% trans "Submit" %}</button>
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <div class="col-md-6 col-lg-4">
+
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+{% endblock %}

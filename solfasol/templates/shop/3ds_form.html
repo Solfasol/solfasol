@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+
+{% block title %}{{ item.name }} - {{ block.super }}{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-12 col-lg-8">
+
+            {{ 3ds_bank_form }}
+
+        </div>
+
+
+        <div class="col-md-6 col-lg-4">
+
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+{% endblock %}

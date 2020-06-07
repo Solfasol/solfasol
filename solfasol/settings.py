@@ -31,7 +31,8 @@ INSTALLED_APPS = [
     'ckeditor',
     'crispy_forms',
     'captcha',
-    'nested_inline',
+    #'nested_inline',
+    'nested_admin',
 
     'solfasol.content.apps.ContentConfig',
     'solfasol.feedback.apps.FeedbackConfig',

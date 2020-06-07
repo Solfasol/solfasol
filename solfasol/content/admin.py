@@ -5,7 +5,7 @@ from slugify import slugify
 from django.http import HttpResponse
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
-from nested_inline.admin import NestedStackedInline, NestedModelAdmin
+from nested_admin import NestedStackedInline, NestedTabularInline, NestedModelAdmin
 from .models import Content, ContentSection, ContentSectionImage, Contributor, ContentContributor, ContributionType, \
     Tag, Category, Series
 from django.db.models import TextField
