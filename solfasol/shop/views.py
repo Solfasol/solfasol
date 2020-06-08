@@ -8,6 +8,7 @@ from django.conf import settings
 from django.contrib import messages
 from django import forms
 from django.utils.translation import ugettext as _
+from django.views.decorators.csrf import csrf_exempt
 import iyzipay
 from .fields import CreditCardNumberField, VerificationValueField
 from .models import Item, Cart, CartItem, Order
@@ -174,6 +175,7 @@ def payment_form(request):
     })
 
 
+@csrf_exempt
 def callback_3d(request):
     response = render(request, 'shop/test.html', {
         'callback_params': request.POST,
