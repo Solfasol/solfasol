@@ -177,21 +177,18 @@ def payment_form(request):
 
 @csrf_exempt
 def callback_3d(request):
-    response = render(request, 'shop/test.html', {
-        'callback_params': request.POST,
-    })
-    return response
     if request.POST.get('status') == 'success':
         if request.POST.get('mdStatus') == '1':
             params = {
                 'locale': 'tr',
                 'paymentId': request.POST.get('paymentId'),
                 'conversationId': request.POST.get('conversationId'),
-                'conversationData': request.POST.get('conversationData'),
             }
+            if request.POST.get('conversationData'):
+                params.update({
+                    'conversationData': request.POST.get('conversationData'),
+                })
             payment = iyzipay.Payment().create(params, API_PARAMS)
-            response = render(request, 'shop/test.html', {
-                'callback_params': request.POST,
+            return render(request, 'shop/test.html', {
                 'payment_params': payment.read(),
             })
-    return response
