@@ -188,7 +188,7 @@ def callback_3d(request):
                 params.update({
                     'conversationData': request.POST.get('conversationData'),
                 })
-            payment = iyzipay.Payment().create(params, API_PARAMS)
+            payment = iyzipay.ThreedsPayment().create(params, API_PARAMS)
             return render(request, 'shop/test.html', {
                 'payment_params': payment.read(),
             })
