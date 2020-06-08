@@ -162,7 +162,7 @@ def payment_form(request):
                     if response['status'] == 'success':
                         print(response['threeDSHtmlContent'])
                         return render(request, 'shop/3ds_form.html', {
-                            '3ds_bank_form': b64decode(response['threeDSHtmlContent']),
+                            '3ds_bank_form': b64decode(response['threeDSHtmlContent']).decode('utf-8'),
                         })
             else:
                 payment = iyzipay.Payment().create(req, API_PARAMS)
