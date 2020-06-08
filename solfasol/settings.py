@@ -17,6 +17,9 @@ ALLOWED_HOSTS = [
 ]
 
 
+SITE_BASE_URL = 'https://solfasol.tv'
+
+
 # Application definition
 
 INSTALLED_APPS = [

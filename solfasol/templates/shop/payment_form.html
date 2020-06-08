@@ -79,7 +79,7 @@
                             <div class="">
                                 <select name="expiry_month" class="select form-control" id="id_expiry_month">
                                     {% for x, y in form.fields.expiry_month.choices %}
-                                        <option value="{{ x }}"{% if form.fields.customer.value == x %} selected{% endif %}>{{ y }}</option>
+                                        <option value="{{ x }}"{% if form.fields.expiry_month.value == x %} selected{% endif %}>{{ y }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -99,7 +99,7 @@
                             <div class="">
                                 <select name="expiry_year" class="select form-control" id="id_expiry_year">
                                     {% for x, y in form.fields.expiry_year.choices %}
-                                        <option value="{{ x }}"{% if form.fields.customer.value == x %} selected{% endif %}>{{ y }}</option>
+                                        <option value="{{ x }}"{% if form.fields.expiry_year.value == x %} selected{% endif %}>{{ y }}</option>
                                     {% endfor %}
                                 </select>
                             </div>

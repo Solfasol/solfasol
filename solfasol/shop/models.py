@@ -105,3 +105,20 @@ class CartItem(models.Model):
             self.cart.__str__(),
             self.item.__str__()
         )
+
+
+class Order(models.Model):
+    name = models.CharField(_('Full name'), max_length=100)
+    email = models.EmailField(_('Email'))
+    gsm_number = models.CharField(_('Phone number'), max_length=20, blank=True, null=True)
+    identity_number = models.CharField(_('Identity number'), max_length=11)
+    address = models.CharField(_('Address'), max_length=200)
+    city = models.CharField(_('City'), max_length=50)
+    country = models.CharField(_('Country'), max_length=50)
+    zipcode = models.CharField(_('Zip code'), max_length=6)
+
+    cart = models.ForeignKey(Cart, on_delete=models.SET_NULL, verbose_name=_('cart'), blank=True, null=True)
+    time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
