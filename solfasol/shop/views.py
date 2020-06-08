@@ -180,13 +180,16 @@ def callback_3d(request):
     response = render(request, 'shop/test.html', {
         'callback_params': request.POST,
     })
+    return response
     if request.POST.get('status') == 'success':
         if request.POST.get('mdStatus') == '1':
-            payment = iyzipay.Payment().create({
+            params = {
+                'locale': 'tr',
                 'paymentId': request.POST.get('paymentId'),
                 'conversationId': request.POST.get('conversationId'),
                 'conversationData': request.POST.get('conversationData'),
-            }, API_PARAMS)
+            }
+            payment = iyzipay.Payment().create(params, API_PARAMS)
             response = render(request, 'shop/test.html', {
                 'callback_params': request.POST,
                 'payment_params': payment.read(),
