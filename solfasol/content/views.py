@@ -65,10 +65,6 @@ class ContentDetailView(DetailView):
     template_name = 'content/content_detail.html'
     context_object_name = 'content'
 
-    def get_queryset(self):
-        qs = super().get_queryset()
-        return qs.filter(publish=True)
-
     def get_object(self, **kwargs):
         obj = super().get_object(**kwargs)
         obj.view_count += 1
