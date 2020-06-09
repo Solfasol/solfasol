@@ -28,10 +28,9 @@ class ContentSectionInline(NestedStackedInline):
     }
 
 
-class ContributorsInline(admin.TabularInline):
+class ContributorsInline(NestedTabularInline):
     model = ContentContributor
     autocomplete_fields = ['contributor']
-    inlines = []  # monkey patch nested inlines' bug
 
 
 @admin.register(Content)

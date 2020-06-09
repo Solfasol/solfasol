@@ -192,3 +192,7 @@ def callback_3d(request):
             return render(request, 'shop/test.html', {
                 'payment_params': payment.read(),
             })
+
+"""
+b'{"status":"success","locale":"tr","systemTime":1591653859298,"conversationId":"7","price":1.00000000,"paidPrice":1.00000000,"installment":1,"paymentId":"843442341","fraudStatus":1,"merchantCommissionRate":0E-8,"merchantCommissionRateAmount":0E-8,"iyziCommissionRateAmount":0.02290000,"iyziCommissionFee":0.25000000,"cardType":"CREDIT_CARD","cardAssociation":"VISA","cardFamily":"Maximum","binNumber":"454360","lastFourDigits":"5485","currency":"TRY","itemTransactions":[{"itemId":"12345","paymentTransactionId":"703942696","transactionStatus":2,"price":1.00000000,"paidPrice":1.00000000,"merchantCommissionRate":0E-8,"merchantCommissionRateAmount":0E-8,"iyziCommissionRateAmount":0.02290000,"iyziCommissionFee":0.25000000,"blockageRate":0E-8,"blockageRateAmountMerchant":0E-8,"blockageRateAmountSubMerchant":0,"blockageResolvedDate":"2020-06-12 00:00:00","subMerchantPrice":0,"subMerchantPayoutRate":0E-8,"subMerchantPayoutAmount":0,"merchantPayoutAmount":0.72710000,"convertedPayout":{"paidPrice":1.00000000,"iyziCommissionRateAmount":0.02290000,"iyziCommissionFee":0.25000000,"blockageRateAmountMerchant":0E-8,"blockageRateAmountSubMerchant":0E-8,"subMerchantPayoutAmount":0E-8,"merchantPayoutAmount":0.72710000,"iyziConversionRate":0,"iyziConversionRateAmount":0,"currency":"TRY"}}],"authCode":"426031","phase":"AUTH","mdStatus":1,"hostReference":"016101767396"}'
+"""
