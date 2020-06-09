@@ -104,7 +104,7 @@
                     <div class="my-4 text-primary">
                         <input type="checkbox" class="mr-2">
                         <a href="{% url 'sales_agreement' %}">{% trans "I accept the sales agreement" %}</a>
-                        <a href="" class="btn btn-success d-block my-4">{% trans "Buy" %}</a>
+                        <a href="{% url 'shop_payment_form' %}" class="btn btn-success d-block my-4">{% trans "Buy" %}</a>
                     </div>
 
                 {% endif %}

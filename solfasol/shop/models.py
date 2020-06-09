@@ -29,7 +29,10 @@ class Item(models.Model):
     slug = models.SlugField(unique=True, editable=False)
     description = models.CharField(_('description'), max_length=250)
     tags = models.ManyToManyField('tag', verbose_name=_('tags'), blank=True)
-    category = models.ForeignKey('category', verbose_name=_('category'), blank=True, null=True, on_delete=models.SET_NULL)
+    category = models.ForeignKey(
+        Category, verbose_name=_('category'),
+        on_delete=models.CASCADE
+    )
     price = models.PositiveIntegerField()
     image = models.ImageField(_('image'), upload_to='shop/')
     available = models.BooleanField(_('available'), default=True)
@@ -116,6 +119,8 @@ class Order(models.Model):
     city = models.CharField(_('City'), max_length=50)
     country = models.CharField(_('Country'), max_length=50)
     zipcode = models.CharField(_('Zip code'), max_length=6)
+
+    notes = models.TextField(_('notes'), blank=True, null=True)
 
     cart = models.ForeignKey(Cart, on_delete=models.SET_NULL, verbose_name=_('cart'), blank=True, null=True)
     time = models.DateTimeField(auto_now_add=True)

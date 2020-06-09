@@ -9,9 +9,11 @@
 
 <div class="container">
 
-    <div class="row">
+    <div class="row mt-4">
 
         <div class="col-md-12 col-lg-8">
+
+            <h4 class="p-title"><b>{% trans "Payment" %}</b></h4>
 
             <form method="post">
 
@@ -138,6 +140,34 @@
 
         <div class="col-md-6 col-lg-4">
 
+            <h4 class="p-title"><b>{% trans "Shopping cart" %}</b></h4>
+
+            {% for item in cart %}
+
+            <div class="media">
+              <img src="{{ item.image.url }}" class="mr-3 w-50" alt="{{ item.name }}">
+              <div class="media-body">
+                  <h4 class="mt-0"><b>{{ item.name }}</b></h4>
+                  {{ item.description }}
+                  <br>
+                  {{ item.price }} TL
+                  <br><br>
+                  <a href="{% url 'shop_cart_remove' item_id=item.id %}?next={% url 'shop_payment_form' %}" class="btn btn-sm btn-warning">{% trans "Remove" %}</a>
+              </div>
+            </div>
+
+            {% empty %}
+
+                {% trans "Your cart is empty" %}
+
+            {% endfor %}
+
+            <div class="alert alert-info my-4">
+                <strong>
+                    {% trans "Total price" %}:
+                    {{ price_total }} TL
+                </strong>
+            </div>
 
 
         </div>

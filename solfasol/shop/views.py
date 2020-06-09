@@ -14,14 +14,13 @@ from .fields import CreditCardNumberField, VerificationValueField
 from .models import Item, Cart, CartItem, Order
 
 
-YEAR = date.today().year
-
 API_PARAMS = {
     'api_key': settings.IYZICO_API_KEY,
     'secret_key': settings.IYZICO_SECRET_KEY,
     'base_url': 'api.iyzipay.com'
 }
 
+YEAR = date.today().year
 
 
 class ItemListView(ListView):
@@ -73,7 +72,7 @@ def cart_remove(request, item_id):
     except ValueError:
         pass
     request.session['cart'] = cart
-    return redirect('shop_item_list')
+    return redirect(request.GET.get('next') or 'shop_item_list')
 
 
 class PaymentForm(forms.ModelForm):
@@ -90,6 +89,8 @@ class PaymentForm(forms.ModelForm):
 
 
 def payment_form(request):
+    cart = Item.objects.filter(id__in=request.session.get('cart', []))
+    price_total = sum([item.price for item in cart])
     if request.method == 'POST':
         form = PaymentForm(request.POST)
         if form.is_valid():
@@ -138,8 +139,8 @@ def payment_form(request):
             req = {
                 'locale': 'tr',
                 'conversationId': str(order.id),
-                'price': '1',
-                'paidPrice': '1',
+                'price': price_total,
+                'paidPrice': price_total,
                 'currency': 'TRY',
                 'installment': '1',
                 'paymentGroup': 'PRODUCT',  # PRODUCT, LISTING, SUBSCRIPTION, OTHER
@@ -172,6 +173,8 @@ def payment_form(request):
         form = PaymentForm()
     return render(request, 'shop/payment_form.html', {
         'form': form,
+        'cart': cart,
+        'price_total': price_total,
     })
 
 
