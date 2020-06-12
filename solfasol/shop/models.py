@@ -98,7 +98,7 @@ class Cart(models.Model):
 
 
 class CartItem(models.Model):
-    cart = models.ForeignKey(Cart, verbose_name=_('session'), on_delete=models.CASCADE)
+    cart = models.ForeignKey(Cart, verbose_name=_('cart'), on_delete=models.CASCADE)
     item = models.ForeignKey(Item, verbose_name=_('item'), on_delete=models.CASCADE)
     added = models.DateTimeField(_('date'), auto_now_add=True)
     paid = models.BooleanField(_('paid'), default=False)
