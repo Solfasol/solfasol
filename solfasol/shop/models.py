@@ -31,7 +31,8 @@ class Item(models.Model):
     tags = models.ManyToManyField('tag', verbose_name=_('tags'), blank=True)
     category = models.ForeignKey(
         Category, verbose_name=_('category'),
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        blank=True, null=True,
     )
     price = models.PositiveIntegerField()
     image = models.ImageField(_('image'), upload_to='shop/')
