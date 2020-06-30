@@ -8,7 +8,7 @@ from django.utils.decorators import method_decorator
 from solfasol.content.models import Content
 
 
-@method_decorator(cache_page(5*60*60), name='dispatch')
+@method_decorator(cache_page(5*60), name='dispatch')  # 5 mins
 class IndexView(TemplateView):
     template_name = 'index.html'
 
