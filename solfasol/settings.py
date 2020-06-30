@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     #'nested_inline',
     'nested_admin',
 
+    'solfasol.issues.apps.IssuesConfig',
     'solfasol.content.apps.ContentConfig',
+    'solfasol.tags.apps.TagsConfig',
+    'solfasol.contributors.apps.ContributorsConfig',
     'solfasol.feedback.apps.FeedbackConfig',
     'solfasol.subscriptions.apps.SubscriptionsConfig',
     'solfasol.shop.apps.ShopConfig',

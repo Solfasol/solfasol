@@ -45,6 +45,12 @@ class ContentAdmin(NestedModelAdmin):
     actions = ['publish', 'get_qr']
     inlines = [ContributorsInline, ContentSectionInline]
 
+    class Media:
+        js = (
+            '//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js',
+            'admin/issue_page_filter.js',
+        )
+
     def publish(self, request, queryset):
         for article in queryset:
             if not article.publish:

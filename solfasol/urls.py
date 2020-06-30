@@ -8,6 +8,7 @@ from .content.views import ContentListView, ContentDetailView
 from .feedback.views import feedback_form
 from .subscriptions.views import subscribe
 from .shop.views import ItemListView, ItemDetailView, cart_add, cart_remove, payment_form, callback_3d
+from .tags.views import tag_detail
 from .views import IndexView, set_language
 
 
@@ -23,6 +24,9 @@ urlpatterns = [
     path('etiket/<slug:tag>/', ContentListView.as_view(), name='content_tag_list'),
     path('kim/<slug:contributor>/', ContentListView.as_view(), name='content_contributor_list'),
     path('populer/', ContentListView.as_view(), {'popular': True}, name='content_popular_list'),
+
+    #path('dizin/', ContentListView.as_view(), name='tag_list'),
+    path('dizin/<str:tag_name>/', tag_detail, name='tag_detail'),
 
     path('abonelik/', subscribe, name='subscription_form'),
 
