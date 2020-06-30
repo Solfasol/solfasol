@@ -16,3 +16,7 @@ django-ckeditor
 #django-nested-inline
 django-nested-admin
 python-slugify
+pdf2image
+iyzipay
+martor
+django-mdeditor
