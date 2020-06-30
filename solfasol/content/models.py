@@ -25,8 +25,7 @@ class Content(models.Model):
         through='ContentContributor',
     )
     lang = models.CharField(_('language'), max_length=7, choices=settings.LANGUAGES, default='tr')
-    tags = models.ManyToManyField('tag', verbose_name=_('tags'), blank=True)
-    new_tags = models.ManyToManyField(NewTag, verbose_name=_('tags'), blank=True)
+    tags = models.ManyToManyField(NewTag, verbose_name=_('tags'), blank=True)
     category = models.ForeignKey('category', verbose_name=_('category'), blank=True, null=True, on_delete=models.SET_NULL)
     series = models.ForeignKey('series', verbose_name=_('series'), blank=True, null=True, on_delete=models.SET_NULL)
 

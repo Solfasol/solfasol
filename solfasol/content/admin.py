@@ -41,7 +41,11 @@ class ContentAdmin(NestedModelAdmin):
     exclude = ['published_by']
     list_editable = ['publish', 'featured', 'category', 'pinned']
     list_filter = ['publish', 'added', 'modified', 'featured']
-    autocomplete_fields = ['tags', 'category', 'related_content']
+    autocomplete_fields = [
+        'tags',
+        'category',
+        'related_content',
+    ]
     actions = ['publish', 'get_qr']
     inlines = [ContributorsInline, ContentSectionInline]
 
