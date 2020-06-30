@@ -11,7 +11,7 @@
 
     <div class="row">
 
-        <div class="col-md-12 col-lg-8">
+        <blockquote class="col-md-12 col-lg-8">
             <img src="{{ content.image.url }}" alt="{{ content.title }}">
             <h3 class="mt-30">
                 <strong>{{ content.title }}</strong>
@@ -59,37 +59,55 @@
 
                 {% endif %}
 
-                <div class="{% if section.section_type == 's' %}lead ml-100{% endif %} my-2">
-                    {{ section.body|safe|linebreaksbr }}
-                </div>
+                {% if section.section_type == 's' %}
 
-                {% with section.contentsectionimage_set.all as images %}
+                    <blockquote class="blockquote">
+                        <p class="mb-0">
+                            {{ section.body|safe }}
+                        </p>
+                        <footer class="blockquote-footer">
+                            <a href="https://www.twitter.com/share?url={{ request.build_absolute_uri }}&text={{ section.body|striptags }} - Solfasol" target="_blank" class="text-info">
+                                {% trans "Tweet" %}
+                            </a>
+                        </footer>
+                    </blockquote>
 
-                    {% if images %}
+                {% else %}
 
-                        <div class="row">
+                    <div class="my-2">
+                        {{ section.body|safe|linebreaksbr }}
+                    </div>
 
-                            {% for image in images %}
+                    {% with section.contentsectionimage_set.all as images %}
 
-                            <div class="col my-4">
+                        {% if images %}
 
-                                <img src="{{ image.image.url }}" alt="{{ image.description }}">
+                            <div class="row">
 
-                                {% if image.description %}
-                                <em class="text-center d-block">
-                                    {{ image.description }}
-                                </em>
-                                {% endif %}
+                                {% for image in images %}
+
+                                <div class="col my-4">
+
+                                    <img src="{{ image.image.url }}" alt="{{ image.description }}">
+
+                                    {% if image.description %}
+                                    <em class="text-center d-block">
+                                        {{ image.description }}
+                                    </em>
+                                    {% endif %}
+
+                                </div>
+
+                                {% endfor %}
 
                             </div>
 
-                            {% endfor %}
+                        {% endif %}
 
-                        </div>
+                    {% endwith %}
 
-                    {% endif %}
+                {% endif %}
 
-                {% endwith %}
 
             {% endfor %}
 
