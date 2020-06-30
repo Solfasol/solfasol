@@ -10,7 +10,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from solfasol.issues.models import Issue, Page
 from solfasol.tags.models import Tag as NewTag
-from solfasol.contributors.models import Contributor as NewContributor
+from solfasol.contributors.models import Contributor
 
 
 class Content(models.Model):
@@ -18,7 +18,7 @@ class Content(models.Model):
     slug = models.SlugField(unique=True)
     subtitle = models.CharField(_('subtitle'), max_length=200, blank=True, null=True)
     contributors = models.ManyToManyField(
-        'Contributor',
+        Contributor,
         verbose_name=_('contributor'),
         blank=True,
         related_name='content_set',
@@ -147,24 +147,6 @@ class ContentSectionImage(models.Model):
         ordering = ('id',)
         verbose_name = _('section image')
         verbose_name_plural = _('section images')
-
-
-class Contributor(models.Model):
-    name = models.CharField(_('name'), max_length=100)
-    slug = models.SlugField(unique=True)
-    photo = models.ImageField(upload_to='contributor/', blank=True, null=True)
-    twitter = models.CharField(max_length=50, blank=True, null=True)
-    instagram = models.CharField(max_length=50, blank=True, null=True)
-
-    def __str__(self):
-        return self.name
-
-    def get_absolute_url(self):
-        return reverse('content_contributor_list', kwargs={'contributor': self.slug})
-
-    class Meta:
-        verbose_name = _('contributor')
-        verbose_name_plural = _('contributors')
 
 
 class ContributionType(models.Model):
