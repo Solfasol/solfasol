@@ -61,12 +61,12 @@
 
                 {% if section.section_type == 's' %}
 
-                    <blockquote class="blockquote">
-                        <p class="mb-0">
-                            {{ section.body|safe }}
+                    <blockquote class="blockquote my-4">
+                        <p class="mb-2">
+                            {{ section.body|safe|striptags }}
                         </p>
                         <footer class="blockquote-footer">
-                            <a href="https://www.twitter.com/share?url={{ request.build_absolute_uri }}&text={{ section.body|striptags }} - Solfasol" target="_blank" class="text-info">
+                            <a href="https://www.twitter.com/share?url={{ request.build_absolute_uri }}&text={{ section.body|safe|striptags }}" target="_blank" class="text-info">
                                 {% trans "Tweet" %}
                             </a>
                         </footer>
