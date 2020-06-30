@@ -3,9 +3,12 @@ from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.urls import translate_url
 from django.utils.translation import LANGUAGE_SESSION_KEY
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 from solfasol.content.models import Content
 
 
+@method_decorator(cache_page(5*60*60), name='dispatch')
 class IndexView(TemplateView):
     template_name = 'index.html'
 
