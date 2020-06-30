@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 from nested_admin import NestedStackedInline, NestedTabularInline, NestedModelAdmin
-from .models import Content, ContentSection, ContentSectionImage, Contributor, ContentContributor, ContributionType, \
+from .models import Content, ContentSection, ContentSectionImage, ContentContributor, ContributionType, \
     Tag, Category, Series
 from django.db.models import TextField
 from ckeditor.widgets import CKEditorWidget
@@ -89,13 +89,6 @@ class ContentAdmin(NestedModelAdmin):
             break
         return response
     get_qr.short_description = _('Get QR code')
-
-
-@admin.register(Contributor)
-class ContributorAdmin(admin.ModelAdmin):
-    list_display = ['name']
-    search_fields = ['name']
-    prepopulated_fields = {"slug": ("name",)}
 
 
 @admin.register(ContributionType)
