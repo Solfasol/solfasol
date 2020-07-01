@@ -2,6 +2,7 @@
 !.gitignore
 *.sqlite3
 *.pyc
+*.pdf
 /env*
 /media/
 /docs/
