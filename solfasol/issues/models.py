@@ -27,7 +27,7 @@ def page_image_path(instance, filename):
 
 class Issue(models.Model):
     year = models.PositiveSmallIntegerField(_('year'),
-        choices=[(r, r) for r in range(2011, datetime.date.today().year)]
+        choices=[(r, r) for r in range(2011, datetime.date.today().year + 1)]
     )
     month = models.PositiveSmallIntegerField(_('month'),
         choices=list(((k, v) for k,v in enumerate(calendar.month_abbr)))[1:]
