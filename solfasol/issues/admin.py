@@ -13,7 +13,7 @@ class PageInline(admin.TabularInline):
 
 @admin.register(Issue)
 class IssueAdmin(admin.ModelAdmin):
-    list_display = ['number', 'date', 'page_count']
+    list_display = ['name', 'year', 'month', 'page_count']
     autocomplete_fields = ['tags']
     readonly_fields = ['page_count']
     actions = ['create_pages']
