@@ -1,6 +1,8 @@
 from django.views.generic import ListView, DetailView
 from django.utils.translation import ugettext as _
 from django.shortcuts import get_object_or_404
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 from .models import Content, Category, Tag, Contributor, Series
 
 
@@ -60,6 +62,7 @@ class ContentListView(ListView):
         return context
 
 
+@method_decorator(cache_page(5*60), name='dispatch')  # 5 mins
 class ContentDetailView(DetailView):
     model = Content
     template_name = 'content/content_detail.html'
