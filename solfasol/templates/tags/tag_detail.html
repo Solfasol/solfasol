@@ -10,6 +10,24 @@
 
                 <div class="row">
 
+
+                    {% for definition in tag.tagdefinition_set.all %}
+
+						<blockquote class="blockquote my-4">
+							<p class="mb-2">
+								{{ definition.definition|safe|striptags }}
+							</p>
+							<footer class="blockquote-footer">
+								<a href="{{ definition.contributor.get_absolute_url }}" class="text-info">
+									{{ definition.contributor.name }}
+								</a>
+							</footer>
+						</blockquote>
+
+                    {% endfor %}
+
+
+
                     {% for content in content_list %}
 
                         <div class="col-md-4 col-sm-6">
