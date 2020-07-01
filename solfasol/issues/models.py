@@ -7,8 +7,10 @@ from solfasol.tags.models import Tag
 
 
 def issue_pdf_path(instance, filename):
-    return 'issues/%(issue_no)s/solfasol-%(issue_no)s.pdf' % {
-        'issue_no': str(instance.number).zfill(3),
+    return 'issues/%(year)s-%(month)s/solfasol-%(year)s-%(month)s_%(name)s.pdf' % {
+        'year': str(instance.year),
+        'month': str(instance.month).zfill(2),
+        'name': str(instance.name),
     }
 
 
@@ -44,7 +46,7 @@ class Issue(models.Model):
         verbose_name_plural = _('issues')
 
     def __str__(self):
-        return str(self.number)
+        return str(f'{self.year} {self.get_month_display()} - {self.name}')
 
     def get_absolute_url(self):
         return reverse('issue_detail', kwargs={'issue_id': self.id})
