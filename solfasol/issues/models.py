@@ -1,3 +1,5 @@
+import datetime
+import calendar
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse
@@ -24,15 +26,20 @@ def page_image_path(instance, filename):
 
 
 class Issue(models.Model):
-    number = models.PositiveIntegerField(_('number'))
-    date = models.DateField()
+    year = models.PositiveSmallIntegerField(_('year'),
+        choices=[(r, r) for r in range(2011, datetime.date.today().year)]
+    )
+    month = models.PositiveSmallIntegerField(_('month'),
+        choices=list(((k, v) for k,v in enumerate(calendar.month_abbr)))[1:]
+    )
+    name = models.CharField(_('name / number'), max_length=50)
     pdf = models.FileField('PDF', upload_to=issue_pdf_path, blank=True, null=True)
     cover = models.ImageField(_('cover'), upload_to=issue_cover_image_path, blank=True, null=True)
     tags = models.ManyToManyField(Tag, verbose_name=_('tags'), blank=True)
     page_count = models.PositiveSmallIntegerField(_('page count'), blank=True, null=True)
 
     class Meta:
-        ordering = ('-number',)
+        ordering = ('-year', '-month')
         verbose_name = _('issue')
         verbose_name_plural = _('issues')
 
