@@ -32,7 +32,7 @@ class Issue(models.Model):
         choices=[(r, r) for r in range(2011, datetime.date.today().year + 1)]
     )
     month = models.PositiveSmallIntegerField(_('month'),
-        choices=list(((k, v) for k,v in enumerate(calendar.month_abbr)))[1:]
+        choices=list(((k, v) for k,v in enumerate(calendar.month_name)))[1:]
     )
     name = models.CharField(_('name / number'), max_length=50)
     pdf = models.FileField('PDF', upload_to=issue_pdf_path, blank=True, null=True)
@@ -47,6 +47,13 @@ class Issue(models.Model):
 
     def __str__(self):
         return str(f'{self.year} {self.get_month_display()} - {self.name}')
+
+    def save(self, **kwargs):
+        try:
+            self.name = str(int(self.name)).zfill(3)
+        except ValueError:
+            pass
+        super().save(**kwargs)
 
     def get_absolute_url(self):
         return reverse('issue_detail', kwargs={'issue_id': self.id})
