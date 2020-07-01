@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-26 23:40+0300\n"
+"POT-Creation-Date: 2020-07-01 17:17+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,183 +18,206 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: solfasol/content/admin.py:55
+#: solfasol/content/admin.py:64
 msgid "Publish"
 msgstr "Yayınla"
 
-#: solfasol/content/admin.py:82
+#: solfasol/content/admin.py:91
 msgid "Get QR code"
 msgstr "QR kodunu indir"
 
-#: solfasol/content/apps.py:7 solfasol/content/models.py:102
-#: solfasol/content/models.py:103 solfasol/content/models.py:113
-#: solfasol/content/models.py:178
+#: solfasol/content/apps.py:7 solfasol/content/models.py:107
+#: solfasol/content/models.py:108 solfasol/content/models.py:118
+#: solfasol/content/models.py:165
 msgid "content"
 msgstr "içerik"
 
-#: solfasol/content/models.py:14
+#: solfasol/content/models.py:17
 msgid "title"
 msgstr "başlık"
 
-#: solfasol/content/models.py:16
+#: solfasol/content/models.py:19
 msgid "subtitle"
 msgstr "altbaşlık"
 
-#: solfasol/content/models.py:19 solfasol/content/models.py:160
-#: solfasol/content/models.py:179 solfasol/content/views.py:56
+#: solfasol/content/models.py:22 solfasol/content/models.py:166
+#: solfasol/content/views.py:58 solfasol/contributors/models.py:20
+#: solfasol/tags/models.py:35 solfasol/tags/models.py:55
+#: solfasol/tags/models.py:75
 msgid "contributor"
 msgstr "katkıda bulunan"
 
-#: solfasol/content/models.py:24
+#: solfasol/content/models.py:27
 msgid "language"
 msgstr "dil"
 
-#: solfasol/content/models.py:25 solfasol/content/models.py:207
+#: solfasol/content/models.py:28 solfasol/content/models.py:194
+#: solfasol/issues/models.py:40 solfasol/issues/models.py:66
+#: solfasol/shop/models.py:31 solfasol/shop/models.py:82
+#: solfasol/tags/apps.py:7 solfasol/tags/models.py:26
 msgid "tags"
 msgstr "etiketler"
 
-#: solfasol/content/models.py:26 solfasol/content/models.py:226
-#: solfasol/content/models.py:235 solfasol/content/views.py:30
+#: solfasol/content/models.py:29 solfasol/content/models.py:213
+#: solfasol/content/models.py:222 solfasol/content/views.py:32
+#: solfasol/shop/models.py:22 solfasol/shop/models.py:33
 msgid "category"
 msgstr "kategori"
 
-#: solfasol/content/models.py:27 solfasol/content/models.py:251
-#: solfasol/content/models.py:252 solfasol/content/views.py:49
+#: solfasol/content/models.py:30 solfasol/content/models.py:238
+#: solfasol/content/models.py:239 solfasol/content/views.py:51
 msgid "series"
 msgstr "dizi"
 
-#: solfasol/content/models.py:30 solfasol/content/models.py:111
-#: solfasol/content/models.py:134 solfasol/shop/models.py:12
+#: solfasol/content/models.py:32 solfasol/issues/models.py:45
+#: solfasol/issues/models.py:63
+msgid "issue"
+msgstr "sayı"
+
+#: solfasol/content/models.py:33
+msgid "page"
+msgstr "sayfa"
+
+#: solfasol/content/models.py:35 solfasol/content/models.py:116
+#: solfasol/content/models.py:139 solfasol/shop/models.py:38
+#: solfasol/tags/models.py:50
 msgid "image"
 msgstr "görsel"
 
-#: solfasol/content/models.py:32
+#: solfasol/content/models.py:37
 msgid "summary"
 msgstr "özet"
 
-#: solfasol/content/models.py:34
+#: solfasol/content/models.py:39 solfasol/tags/models.py:70
 msgid "video url"
 msgstr "video url"
 
-#: solfasol/content/models.py:35
+#: solfasol/content/models.py:40
 msgid "podcast url"
 msgstr "podcast url"
 
-#: solfasol/content/models.py:37
+#: solfasol/content/models.py:42
 msgid "related content"
 msgstr "ilgili içerik"
 
-#: solfasol/content/models.py:39
+#: solfasol/content/models.py:44
 msgid "publish"
 msgstr "yayında"
 
-#: solfasol/content/models.py:41
+#: solfasol/content/models.py:46
 msgid "published by"
 msgstr "yayınlayan"
 
-#: solfasol/content/models.py:46
+#: solfasol/content/models.py:51
 msgid "featured"
 msgstr "öne çıkan"
 
-#: solfasol/content/models.py:47
+#: solfasol/content/models.py:52
 msgid "pinned"
 msgstr "sabitlenmiş"
 
-#: solfasol/content/models.py:49 solfasol/shop/models.py:14
-#: solfasol/shop/models.py:47
+#: solfasol/content/models.py:54 solfasol/shop/models.py:41
+#: solfasol/shop/models.py:104
 msgid "date"
 msgstr "tarih"
 
-#: solfasol/content/models.py:50
+#: solfasol/content/models.py:55
 msgid "modified"
 msgstr "değiştirilme"
 
-#: solfasol/content/models.py:79
+#: solfasol/content/models.py:84
 msgid "Invalid Youtube video link!"
 msgstr "Geçersiz Youtube bağlantısı!"
 
-#: solfasol/content/models.py:81
+#: solfasol/content/models.py:86
 msgid "Please submit a Youtube video link!"
 msgstr "Geçerli bir Youtube bağlantısı girin!"
 
-#: solfasol/content/models.py:109
+#: solfasol/content/models.py:114
 msgid "text"
 msgstr "metin"
 
-#: solfasol/content/models.py:110
+#: solfasol/content/models.py:115
 msgid "spot"
 msgstr "spot"
 
-#: solfasol/content/models.py:114
+#: solfasol/content/models.py:119
 msgid "section title"
 msgstr "bölüm başlığı"
 
-#: solfasol/content/models.py:115
+#: solfasol/content/models.py:120
 msgid "section text"
 msgstr "bölüm metni"
 
-#: solfasol/content/models.py:128
+#: solfasol/content/models.py:133
 msgid "content section"
 msgstr "bölüm"
 
-#: solfasol/content/models.py:129
+#: solfasol/content/models.py:134
 msgid "content sections"
 msgstr "bölümler"
 
-#: solfasol/content/models.py:133 solfasol/content/models.py:142
+#: solfasol/content/models.py:138 solfasol/content/models.py:147
 msgid "section image"
 msgstr "bölüm görseli"
 
-#: solfasol/content/models.py:135 solfasol/content/models.py:165
-#: solfasol/feedback/models.py:8 solfasol/shop/models.py:10
+#: solfasol/content/models.py:140 solfasol/content/models.py:152
+#: solfasol/feedback/models.py:8 solfasol/shop/models.py:30
+#: solfasol/shop/models.py:62 solfasol/tags/models.py:51
+#: solfasol/tags/models.py:71
 msgid "description"
 msgstr "tanım"
 
-#: solfasol/content/models.py:143
+#: solfasol/content/models.py:148
 msgid "section images"
 msgstr "bölüm görselleri"
 
-#: solfasol/content/models.py:147 solfasol/content/models.py:196
-#: solfasol/content/models.py:211 solfasol/content/models.py:232
-#: solfasol/feedback/models.py:6 solfasol/shop/models.py:8
-msgid "name"
-msgstr "isim"
-
-#: solfasol/content/models.py:161
-msgid "contributors"
-msgstr "katkıda bulunanlar"
-
-#: solfasol/content/models.py:166
+#: solfasol/content/models.py:153
 msgid "primary"
 msgstr "birincil"
 
-#: solfasol/content/models.py:173 solfasol/content/models.py:182
+#: solfasol/content/models.py:160 solfasol/content/models.py:169
 msgid "contribution type"
 msgstr "katkı tipi"
 
-#: solfasol/content/models.py:174
+#: solfasol/content/models.py:161
 msgid "contribution types"
 msgstr "katkı tipleri"
 
-#: solfasol/content/models.py:191
+#: solfasol/content/models.py:178
 msgid "content - contributor"
 msgstr "içerik - katkıda bulunan"
 
-#: solfasol/content/models.py:192
+#: solfasol/content/models.py:179
 msgid "content - contributors"
 msgstr "içerik - katkıda bulunanlar"
 
-#: solfasol/content/models.py:206 solfasol/content/views.py:37
+#: solfasol/content/models.py:183 solfasol/content/models.py:198
+#: solfasol/content/models.py:219 solfasol/contributors/models.py:7
+#: solfasol/feedback/models.py:6 solfasol/shop/models.py:9
+#: solfasol/shop/models.py:28 solfasol/shop/models.py:75
+#: solfasol/tags/models.py:9
+msgid "name"
+msgstr "isim"
+
+#: solfasol/content/models.py:193 solfasol/content/views.py:39
+#: solfasol/shop/models.py:81 solfasol/tags/models.py:25
+#: solfasol/tags/models.py:30 solfasol/tags/models.py:49
+#: solfasol/tags/models.py:69
 msgid "tag"
 msgstr "etiket"
 
-#: solfasol/content/models.py:227
+#: solfasol/content/models.py:214 solfasol/shop/models.py:23
 msgid "categories"
 msgstr "kategoriler"
 
-#: solfasol/content/views.py:43 solfasol/content/views.py:44
+#: solfasol/content/views.py:45 solfasol/content/views.py:46
 msgid "popular"
 msgstr "popüler"
+
+#: solfasol/contributors/apps.py:7 solfasol/contributors/models.py:21
+msgid "contributors"
+msgstr "katkıda bulunanlar"
 
 #: solfasol/feedback/apps.py:7
 msgid "feedback"
@@ -208,37 +231,166 @@ msgstr "bilgi formu"
 msgid "feedback forms"
 msgstr "bilgi formları"
 
+#: solfasol/issues/apps.py:7 solfasol/issues/models.py:46
+msgid "issues"
+msgstr "sayılar"
+
+#: solfasol/issues/models.py:31
+msgid "year"
+msgstr "yıl"
+
+#: solfasol/issues/models.py:34
+msgid "month"
+msgstr "ay"
+
+#: solfasol/issues/models.py:37
+msgid "name / number"
+msgstr "isim / sayı"
+
+#: solfasol/issues/models.py:39
+msgid "cover"
+msgstr "kapak"
+
+#: solfasol/issues/models.py:41
+msgid "page count"
+msgstr "sayfa sayısı"
+
+#: solfasol/issues/models.py:64
+msgid "number"
+msgstr "numara"
+
 #: solfasol/shop/apps.py:7
 msgid "shop"
 msgstr "dükkan"
 
-#: solfasol/shop/models.py:13
+#: solfasol/shop/fields.py:18
+msgid "Please enter a credit card number."
+msgstr "Lütfen bir kredi kartı girin."
+
+#: solfasol/shop/fields.py:19
+msgid "The credit card number you entered is invalid."
+msgstr "Girdiğiniz kredi kartı geçersiz."
+
+#: solfasol/shop/fields.py:49
+msgid "Please enter a valid month."
+msgstr "Lütfen geçerli bir ay girin."
+
+#: solfasol/shop/fields.py:50
+msgid "Please enter a valid year."
+msgstr "Lütfen geçerli bir yıl girin."
+
+#: solfasol/shop/fields.py:51
+msgid "This expiry date has passed."
+msgstr "Son kullanma tarihi geçmiş."
+
+#: solfasol/shop/fields.py:102
+msgid "Please enter the verification code for your credit card."
+msgstr "Lütfen kartınızın arkasındaki doğrulama kodunu girin."
+
+#: solfasol/shop/fields.py:103
+msgid "The verification value you entered is invalid."
+msgstr "Girdiğiniz doğrulama kodu geçersiz."
+
+#: solfasol/shop/models.py:11
+msgid "order"
+msgstr "sipariş ver"
+
+#: solfasol/shop/models.py:39 solfasol/shop/models.py:64
 msgid "available"
 msgstr "mevcut"
 
-#: solfasol/shop/models.py:23 solfasol/shop/models.py:46
+#: solfasol/shop/models.py:40
+msgid "promoted"
+msgstr "öne çıkan"
+
+#: solfasol/shop/models.py:55 solfasol/shop/models.py:103
 msgid "item"
 msgstr "parça"
 
-#: solfasol/shop/models.py:24
+#: solfasol/shop/models.py:56
 msgid "items"
 msgstr "parçalar"
 
-#: solfasol/shop/models.py:31 solfasol/shop/models.py:45
+#: solfasol/shop/models.py:63
+msgid "price"
+msgstr "fiyat"
+
+#: solfasol/shop/models.py:70
+msgid "alternative"
+msgstr "alternatif"
+
+#: solfasol/shop/models.py:71
+msgid "alternatives"
+msgstr "alternatifler"
+
+#: solfasol/shop/models.py:88
 msgid "session"
 msgstr "oturum"
 
-#: solfasol/shop/models.py:40
+#: solfasol/shop/models.py:97 solfasol/shop/models.py:102
+#: solfasol/shop/models.py:126
 msgid "cart"
 msgstr "sepet"
 
-#: solfasol/shop/models.py:41
+#: solfasol/shop/models.py:98
 msgid "carts"
 msgstr "sepetler"
 
-#: solfasol/shop/models.py:48
+#: solfasol/shop/models.py:105
 msgid "paid"
 msgstr "ödenmiş"
+
+#: solfasol/shop/models.py:115
+msgid "Full name"
+msgstr "İsim"
+
+#: solfasol/shop/models.py:116
+msgid "Email"
+msgstr "Eposta"
+
+#: solfasol/shop/models.py:117
+msgid "Phone number"
+msgstr "Telefon numarası"
+
+#: solfasol/shop/models.py:118
+msgid "Identity number"
+msgstr "TC kimlik numarası"
+
+#: solfasol/shop/models.py:119
+msgid "Address"
+msgstr "Adres"
+
+#: solfasol/shop/models.py:120
+msgid "City"
+msgstr "Şehir"
+
+#: solfasol/shop/models.py:121
+msgid "Country"
+msgstr "Ülke"
+
+#: solfasol/shop/models.py:122
+msgid "Zip code"
+msgstr "Posta kodu"
+
+#: solfasol/shop/models.py:124
+msgid "notes"
+msgstr "notlar"
+
+#: solfasol/shop/views.py:79
+msgid "Card holder name"
+msgstr "Kart sahibi"
+
+#: solfasol/shop/views.py:80
+msgid "Card number"
+msgstr "Kart numarası"
+
+#: solfasol/shop/views.py:83
+msgid "CVC"
+msgstr "CVC"
+
+#: solfasol/shop/views.py:84
+msgid "3D Secure"
+msgstr "3D Secure"
 
 #: solfasol/subscriptions/apps.py:7 solfasol/subscriptions/models.py:32
 msgid "subscriptions"
@@ -247,6 +399,58 @@ msgstr "abonelikler"
 #: solfasol/subscriptions/models.py:31
 msgid "subscription"
 msgstr "abonelik"
+
+#: solfasol/tags/admin.py:31
+msgid "content count"
+msgstr "içerik sayısı"
+
+#: solfasol/tags/admin.py:35
+msgid "definition count"
+msgstr "tanım sayısı"
+
+#: solfasol/tags/admin.py:39
+msgid "image count"
+msgstr "görsel sayısı"
+
+#: solfasol/tags/admin.py:43
+msgid "video count"
+msgstr "video sayısı"
+
+#: solfasol/tags/models.py:11
+msgid "related tags"
+msgstr "ilgili etiketler"
+
+#: solfasol/tags/models.py:31
+msgid "definition"
+msgstr "tanım"
+
+#: solfasol/tags/models.py:44
+msgid "tag definition"
+msgstr "etiket tanımı"
+
+#: solfasol/tags/models.py:45
+msgid "tag definitions"
+msgstr "etiket tanımları"
+
+#: solfasol/tags/models.py:50
+msgid "tags/"
+msgstr "etiketler/"
+
+#: solfasol/tags/models.py:64
+msgid "tag image"
+msgstr "görsel"
+
+#: solfasol/tags/models.py:65
+msgid "tag images"
+msgstr "görseller"
+
+#: solfasol/tags/models.py:84
+msgid "tag video"
+msgstr "video"
+
+#: solfasol/tags/models.py:85
+msgid "tag videos"
+msgstr "videolar"
 
 #: solfasol/templates/base.html:43
 msgid "Archive"
@@ -260,16 +464,20 @@ msgstr "Abonelik"
 msgid "Contact us"
 msgstr "Bize ulaş"
 
-#: solfasol/templates/content/content_detail.html:123
+#: solfasol/templates/content/content_detail.html:70
+msgid "Tweet"
+msgstr "Tweet'le"
+
+#: solfasol/templates/content/content_detail.html:138
 #: solfasol/templates/shop/item_detail.html:40
 msgid "Share"
 msgstr "Paylaş"
 
-#: solfasol/templates/content/content_detail.html:134
+#: solfasol/templates/content/content_detail.html:149
 msgid "YOU MAY ALSO LIKE"
 msgstr "İLGİNİZİ ÇEKEBİLİR"
 
-#: solfasol/templates/content/content_detail.html:174
+#: solfasol/templates/content/content_detail.html:189
 #: solfasol/templates/index.html:183
 msgid "POPULAR POSTS"
 msgstr "POPÜLER İÇERİK"
@@ -310,23 +518,29 @@ msgstr "DİĞER PARÇALAR"
 
 #: solfasol/templates/shop/item_detail.html:73
 #: solfasol/templates/shop/item_list.html:37
+#: solfasol/templates/shop/payment_form.html:143
 msgid "Shopping cart"
 msgstr "Alışveriş sepeti"
 
 #: solfasol/templates/shop/item_detail.html:85
+#: solfasol/templates/shop/item_list.html:49
+#: solfasol/templates/shop/payment_form.html:155
 msgid "Remove"
 msgstr "Kaldır"
 
 #: solfasol/templates/shop/item_detail.html:91
-#: solfasol/templates/shop/item_list.html:51
+#: solfasol/templates/shop/item_list.html:55
+#: solfasol/templates/shop/payment_form.html:161
 msgid "Your cart is empty"
 msgstr "Sepetin boş"
 
-#: solfasol/templates/shop/item_detail.html:104
+#: solfasol/templates/shop/item_detail.html:106
+#: solfasol/templates/shop/item_list.html:71
 msgid "I accept the sales agreement"
 msgstr "Satış sözleşmesini kabul ediyorum"
 
-#: solfasol/templates/shop/item_detail.html:105
+#: solfasol/templates/shop/item_detail.html:107
+#: solfasol/templates/shop/item_list.html:72
 msgid "Buy"
 msgstr "Satın al"
 
@@ -334,7 +548,31 @@ msgstr "Satın al"
 msgid "Shop"
 msgstr "Dükkan"
 
-#: solfasol/urls.py:50 solfasol/urls.py:51
+#: solfasol/templates/shop/payment_form.html:16
+msgid "Payment"
+msgstr "Ödeme"
+
+#: solfasol/templates/shop/payment_form.html:22
+msgid "Identity and address information"
+msgstr "Kimlik ve adres bilgileri"
+
+#: solfasol/templates/shop/payment_form.html:65
+msgid "Credit card information"
+msgstr "Kredi kartı bilgileri"
+
+#: solfasol/templates/shop/payment_form.html:78
+msgid "Expiry date"
+msgstr "Son kullanma tarihi"
+
+#: solfasol/templates/shop/payment_form.html:131
+msgid "Submit"
+msgstr "Gönder"
+
+#: solfasol/templates/shop/payment_form.html:167
+msgid "Total price"
+msgstr "Toplam ücret"
+
+#: solfasol/urls.py:56 solfasol/urls.py:57
 msgid "Solfasol Administration"
 msgstr "Solfasol Yönetimi"
 
@@ -355,9 +593,6 @@ msgstr "Solfasol Yönetimi"
 
 #~ msgid "guests"
 #~ msgstr "konuklar"
-
-#~ msgid "video content"
-#~ msgstr "video içerik"
 
 #~ msgid "video transcript"
 #~ msgstr "program metni"
