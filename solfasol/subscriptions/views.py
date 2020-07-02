@@ -12,7 +12,7 @@ class SubscriptionForm(forms.ModelForm):
 
     class Meta:
         model = Subscription
-        fields = ['name', 'email', 'address', 'type', 'phone', 'notes']
+        fields = ['name', 'email', 'address', 'type', 'renewal', 'phone', 'notes']
         widgets = {
             'type': forms.RadioSelect()
         }
