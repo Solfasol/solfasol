@@ -14,7 +14,8 @@ class SubscriptionForm(forms.ModelForm):
         model = Subscription
         fields = ['name', 'email', 'address', 'type', 'renewal', 'phone', 'notes']
         widgets = {
-            'type': forms.RadioSelect()
+            'type': forms.RadioSelect(),
+            'renewal': forms.Select(),
         }
 
 

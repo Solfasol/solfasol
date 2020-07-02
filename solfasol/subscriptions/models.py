@@ -17,7 +17,9 @@ class Subscription(models.Model):
                      "hem de Solfasol Ankara Gezilerinde misafirimiz olun!)"),
         ('yurtdisi', "Yurtdışı abonelik - 200 TL (Uzaktayım demeyin, Solfasol dünyanın her yerine ulaşıyor!)"),
     ))
-    renewal = models.BooleanField(_('renewal'), default=False)
+    renewal = models.BooleanField(_('subscription status'), default=False,
+        choices=((False, _('New subscription')),(True, _('Renewal')),)
+    )
     phone = models.CharField("Telefon numaranız", max_length=20)
     notes = models.TextField("Eklemek istedikleriniz (Bize Notunuz)", blank=True, null=True)
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-02 18:20+0300\n"
+"POT-Creation-Date: 2020-07-02 18:43+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -392,15 +392,23 @@ msgstr "CVC"
 msgid "3D Secure"
 msgstr "3D Secure"
 
-#: solfasol/subscriptions/apps.py:7 solfasol/subscriptions/models.py:33
+#: solfasol/subscriptions/apps.py:7 solfasol/subscriptions/models.py:35
 msgid "subscriptions"
 msgstr "abonelikler"
 
 #: solfasol/subscriptions/models.py:20
-msgid "renewal"
-msgstr "yenileme"
+msgid "subscription status"
+msgstr "abonelik durumu"
 
-#: solfasol/subscriptions/models.py:32
+#: solfasol/subscriptions/models.py:21
+msgid "New subscription"
+msgstr "Yeni abonelik"
+
+#: solfasol/subscriptions/models.py:21
+msgid "Renewal"
+msgstr "Yenileme"
+
+#: solfasol/subscriptions/models.py:34
 msgid "subscription"
 msgstr "abonelik"
 
