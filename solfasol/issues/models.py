@@ -15,14 +15,19 @@ def issue_pdf_path(instance, filename):
 
 
 def issue_cover_image_path(instance, filename):
-    return 'issues/%(issue_no)s/solfasol-%(issue_no)s-cover.png' % {
-        'issue_no': str(instance.number).zfill(3),
+    return 'issues/%(year)s-%(month)s/solfasol-%(year)s-%(month)s_%(name)s-cover.png' % {
+        'year': str(instance.year),
+        'month': str(instance.month).zfill(2),
+        'name': str(instance.name),
     }
 
 
 def page_image_path(instance, filename):
-    return 'issues/%(issue_no)s/solfasol-%(issue_no)s-%(page_no)s.png' % {
-        'issue_no': str(instance.issue.number).zfill(3),
+    return 'issues/%(issue_year)s-%(issue_month)s' \
+           '/solfasol-%(issue_year)s-%(issue_month)s_%(issue_name)s-%(page_no)s.png' % {
+        'issue_year': str(instance.issue.year),
+        'issue_month': str(instance.issue.month).zfill(2),
+        'issue_name': str(instance.issue.name),
         'page_no': str(instance.number).zfill(2),
     }
 
@@ -66,4 +71,4 @@ class Page(models.Model):
     tags = models.ManyToManyField(Tag, verbose_name=_('tags'), blank=True)
 
     def __str__(self):
-        return '%s - %s' % (self.issue.number, self.number)
+        return '%s - %s' % (str(self.issue), self.number)
