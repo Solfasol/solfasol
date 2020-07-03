@@ -3,6 +3,7 @@
 *.sqlite3
 *.pyc
 *.pdf
+*.json
 /env*
 /media/
 /docs/
