@@ -22,6 +22,7 @@ class IssueAdmin(admin.ModelAdmin):
     def create_pages(self, request, queryset):
         for issue in queryset:
             if issue.pdf:
+                issue.pdf.seek(0)
                 images = convert_from_bytes(issue.pdf.read())
             i = 1
             for image in images:
