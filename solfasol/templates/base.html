@@ -31,7 +31,15 @@
 			<div class="container">
 
 				<a style="position: absolute; top:10px; left:15px; z-index:100;" href="/">
-					<img src="{% static 'solfasol_logo_lg.png' %}" class="img-fluidx" alt="Responsive image" style="height: 100px; width: auto;">
+
+					<div class="d-block d-md-none">
+						<img src="{% static 'solfasoltv_logo_sm.png' %}" class="img-fluidx" alt="Solfasol TV" style="height: 100px; width: auto;">
+					</div>
+
+					<div class="d-none d-md-block">
+						<img src="{% static 'solfasol_logo_lg.png' %}" class="img-fluidx" alt="Solfasol TV" style="height: 100px; width: auto;">
+					</div>
+
 				</a>
 
 				<div class="oflow-hidden color-ash font-9 text-sm-center ptb-sm-5 offset-1">
