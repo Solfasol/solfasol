@@ -22,6 +22,7 @@ class Subscription(models.Model):
     )
     phone = models.CharField("Telefon numaranız", max_length=20)
     notes = models.TextField("Eklemek istedikleriniz (Bize Notunuz)", blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
