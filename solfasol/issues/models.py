@@ -51,7 +51,7 @@ class Issue(models.Model):
         verbose_name_plural = _('issues')
 
     def __str__(self):
-        return str(f'{self.year} {self.get_month_display()} - {self.name}')
+        return str(f'{self.get_month_display()} {self.year} - {self.name}')
 
     def save(self, **kwargs):
         try:
@@ -61,7 +61,7 @@ class Issue(models.Model):
         super().save(**kwargs)
 
     def get_absolute_url(self):
-        return reverse('issue_detail', kwargs={'issue_id': self.id})
+        return reverse('issue_detail', kwargs={'pk': self.id})
 
 
 class Page(models.Model):
@@ -72,6 +72,18 @@ class Page(models.Model):
 
     def __str__(self):
         return '%s - %s' % (str(self.issue), self.number)
+
+    def get_absolute_url(self):
+        return reverse('page_detail', kwargs={
+            'issue_id': self.issue.id,
+            'page_no': self.number,
+        })
+
+    def next(self):
+        return self.issue.page_set.filter(id__gt=self.id).first()
+
+    def prev(self):
+        return self.issue.page_set.filter(id__lt=self.id).first()
 
     class Meta:
         ordering = ('number',)

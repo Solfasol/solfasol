@@ -9,6 +9,7 @@ from .feedback.views import feedback_form
 from .subscriptions.views import subscribe
 from .shop.views import ItemListView, ItemDetailView, cart_add, cart_remove, payment_form, callback_3d
 from .tags.views import tag_detail
+from .issues.views import IssueListView, IssueDetailView, PageDetailView
 from .views import IndexView, set_language
 
 
@@ -27,6 +28,10 @@ urlpatterns = [
 
     #path('dizin/', ContentListView.as_view(), name='tag_list'),
     path('dizin/<str:tag_name>/', tag_detail, name='tag_detail'),
+
+    path('arsiv/', IssueListView.as_view(), name='issue_list'),
+    path('arsiv/<int:pk>/', IssueDetailView.as_view(), name='issue_detail'),
+    path('arsiv/<int:issue_id>/<int:page_no>/', PageDetailView.as_view(), name='page_detail'),
 
     path('abonelik/', subscribe, name='subscription_form'),
 

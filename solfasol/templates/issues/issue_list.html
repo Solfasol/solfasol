@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+
+{% block content %}
+
+		<div class="container">
+
+                <h4 class="p-title">
+					<strong>{% trans "Archive" %}</strong>
+				</h4>
+
+                <div class="row">
+
+                    {% for issue in issue_list %}
+
+                        <div class="col-md-4 col-sm-6">
+
+                            <a href="{{ issue.get_absolute_url }}">
+
+								<img src="{{ issue.cover.url }}" class="h-200xx">
+
+                            </a>
+
+							<a href="{{ issue.get_absolute_url }}">
+								{{ issue }}
+							</a>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div><!-- row -->
+
+		</div><!-- container -->
+
+{% endblock %}
