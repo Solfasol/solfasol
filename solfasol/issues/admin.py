@@ -1,7 +1,9 @@
+import os
 from io import BytesIO
-from django.core.files.base import ContentFile
 from pdf2image import convert_from_path, convert_from_bytes
+from django.core.files.base import ContentFile
 from django.contrib import admin
+from django.conf import settings
 from .models import Issue, Page
 
 
@@ -16,7 +18,7 @@ class IssueAdmin(admin.ModelAdmin):
     list_display = ['name', 'year', 'month', 'page_count']
     autocomplete_fields = ['tags']
     readonly_fields = ['page_count']
-    actions = ['create_pages']
+    actions = ['create_pages', 'delete_pages']
     inlines = [PageInline]
 
     def create_pages(self, request, queryset):
@@ -45,6 +47,22 @@ class IssueAdmin(admin.ModelAdmin):
                 ContentFile(cover_io.getvalue()),
                 save=False,
             )
+            issue.save()
+
+    def delete_pages(self, request, queryset):
+        for issue in queryset:
+            for page in issue.page_set.all():
+                try:
+                    os.remove(os.path.join(settings.MEDIA_ROOT, page.image.name))
+                except FileNotFoundError:
+                    pass
+                page.delete()
+            issue.page_count = None
+            try:
+                os.remove(os.path.join(settings.MEDIA_ROOT, issue.cover.name))
+            except FileNotFoundError:
+                pass
+            issue.cover = None
             issue.save()
 
 

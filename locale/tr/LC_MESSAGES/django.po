@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-02 18:43+0300\n"
+"POT-Creation-Date: 2020-07-18 17:08+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,7 +52,7 @@ msgid "language"
 msgstr "dil"
 
 #: solfasol/content/models.py:28 solfasol/content/models.py:194
-#: solfasol/issues/models.py:40 solfasol/issues/models.py:66
+#: solfasol/issues/models.py:45 solfasol/issues/models.py:71
 #: solfasol/shop/models.py:31 solfasol/shop/models.py:82
 #: solfasol/tags/apps.py:7 solfasol/tags/models.py:26
 msgid "tags"
@@ -69,12 +69,12 @@ msgstr "kategori"
 msgid "series"
 msgstr "dizi"
 
-#: solfasol/content/models.py:32 solfasol/issues/models.py:45
-#: solfasol/issues/models.py:63
+#: solfasol/content/models.py:32 solfasol/issues/models.py:50
+#: solfasol/issues/models.py:68
 msgid "issue"
 msgstr "sayı"
 
-#: solfasol/content/models.py:33
+#: solfasol/content/models.py:33 solfasol/issues/models.py:78
 msgid "page"
 msgstr "sayfa"
 
@@ -231,33 +231,37 @@ msgstr "bilgi formu"
 msgid "feedback forms"
 msgstr "bilgi formları"
 
-#: solfasol/issues/apps.py:7 solfasol/issues/models.py:46
+#: solfasol/issues/apps.py:7 solfasol/issues/models.py:51
 msgid "issues"
 msgstr "sayılar"
 
-#: solfasol/issues/models.py:31
+#: solfasol/issues/models.py:36
 msgid "year"
 msgstr "yıl"
 
-#: solfasol/issues/models.py:34
+#: solfasol/issues/models.py:39
 msgid "month"
 msgstr "ay"
 
-#: solfasol/issues/models.py:37
+#: solfasol/issues/models.py:42
 msgid "name / number"
 msgstr "isim / sayı"
 
-#: solfasol/issues/models.py:39
+#: solfasol/issues/models.py:44
 msgid "cover"
 msgstr "kapak"
 
-#: solfasol/issues/models.py:41
+#: solfasol/issues/models.py:46
 msgid "page count"
 msgstr "sayfa sayısı"
 
-#: solfasol/issues/models.py:64
+#: solfasol/issues/models.py:69
 msgid "number"
 msgstr "numara"
+
+#: solfasol/issues/models.py:79
+msgid "pages"
+msgstr "sayfalar"
 
 #: solfasol/shop/apps.py:7
 msgid "shop"
@@ -392,7 +396,7 @@ msgstr "CVC"
 msgid "3D Secure"
 msgstr "3D Secure"
 
-#: solfasol/subscriptions/apps.py:7 solfasol/subscriptions/models.py:35
+#: solfasol/subscriptions/apps.py:7 solfasol/subscriptions/models.py:36
 msgid "subscriptions"
 msgstr "abonelikler"
 
@@ -408,7 +412,7 @@ msgstr "Yeni abonelik"
 msgid "Renewal"
 msgstr "Yenileme"
 
-#: solfasol/subscriptions/models.py:34
+#: solfasol/subscriptions/models.py:35
 msgid "subscription"
 msgstr "abonelik"
 
@@ -464,15 +468,15 @@ msgstr "video"
 msgid "tag videos"
 msgstr "videolar"
 
-#: solfasol/templates/base.html:43
+#: solfasol/templates/base.html:51
 msgid "Archive"
 msgstr "Arşiv"
 
-#: solfasol/templates/base.html:44 solfasol/templates/base.html:155
+#: solfasol/templates/base.html:52 solfasol/templates/base.html:163
 msgid "Subscribe"
 msgstr "Abonelik"
 
-#: solfasol/templates/base.html:156
+#: solfasol/templates/base.html:164
 msgid "Contact us"
 msgstr "Bize ulaş"
 
