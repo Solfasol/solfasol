@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-18 17:08+0300\n"
+"POT-Creation-Date: 2020-07-24 18:04+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,7 +52,7 @@ msgid "language"
 msgstr "dil"
 
 #: solfasol/content/models.py:28 solfasol/content/models.py:194
-#: solfasol/issues/models.py:45 solfasol/issues/models.py:71
+#: solfasol/issues/models.py:46 solfasol/issues/models.py:72
 #: solfasol/shop/models.py:31 solfasol/shop/models.py:82
 #: solfasol/tags/apps.py:7 solfasol/tags/models.py:26
 msgid "tags"
@@ -69,12 +69,12 @@ msgstr "kategori"
 msgid "series"
 msgstr "dizi"
 
-#: solfasol/content/models.py:32 solfasol/issues/models.py:50
-#: solfasol/issues/models.py:68
+#: solfasol/content/models.py:32 solfasol/issues/models.py:51
+#: solfasol/issues/models.py:69
 msgid "issue"
 msgstr "sayı"
 
-#: solfasol/content/models.py:33 solfasol/issues/models.py:78
+#: solfasol/content/models.py:33 solfasol/issues/models.py:93
 msgid "page"
 msgstr "sayfa"
 
@@ -231,35 +231,35 @@ msgstr "bilgi formu"
 msgid "feedback forms"
 msgstr "bilgi formları"
 
-#: solfasol/issues/apps.py:7 solfasol/issues/models.py:51
+#: solfasol/issues/apps.py:7 solfasol/issues/models.py:52
 msgid "issues"
 msgstr "sayılar"
 
-#: solfasol/issues/models.py:36
+#: solfasol/issues/models.py:37
 msgid "year"
 msgstr "yıl"
 
-#: solfasol/issues/models.py:39
+#: solfasol/issues/models.py:40
 msgid "month"
 msgstr "ay"
 
-#: solfasol/issues/models.py:42
+#: solfasol/issues/models.py:43
 msgid "name / number"
 msgstr "isim / sayı"
 
-#: solfasol/issues/models.py:44
+#: solfasol/issues/models.py:45
 msgid "cover"
 msgstr "kapak"
 
-#: solfasol/issues/models.py:46
+#: solfasol/issues/models.py:47
 msgid "page count"
 msgstr "sayfa sayısı"
 
-#: solfasol/issues/models.py:69
+#: solfasol/issues/models.py:70
 msgid "number"
 msgstr "numara"
 
-#: solfasol/issues/models.py:79
+#: solfasol/issues/models.py:94
 msgid "pages"
 msgstr "sayfalar"
 
@@ -468,7 +468,7 @@ msgstr "video"
 msgid "tag videos"
 msgstr "videolar"
 
-#: solfasol/templates/base.html:51
+#: solfasol/templates/base.html:51 solfasol/templates/issues/issue_list.html:10
 msgid "Archive"
 msgstr "Arşiv"
 
@@ -485,6 +485,8 @@ msgid "Tweet"
 msgstr "Tweet'le"
 
 #: solfasol/templates/content/content_detail.html:138
+#: solfasol/templates/issues/issue_detail.html:52
+#: solfasol/templates/issues/page_detail.html:70
 #: solfasol/templates/shop/item_detail.html:40
 msgid "Share"
 msgstr "Paylaş"
@@ -501,6 +503,19 @@ msgstr "POPÜLER İÇERİK"
 #: solfasol/templates/feedback/form.html:24
 msgid "Loading"
 msgstr "Yükleniyor"
+
+#: solfasol/templates/issues/issue_detail.html:66
+#: solfasol/templates/issues/page_detail.html:84
+msgid "PAGES"
+msgstr "SAYFALAR"
+
+#: solfasol/templates/issues/page_detail.html:33
+msgid "Issue"
+msgstr "Sayı"
+
+#: solfasol/templates/issues/page_detail.html:35
+msgid "Page"
+msgstr "Sayfa"
 
 #: solfasol/templates/search/search.html:13
 #: solfasol/templates/search_result.html:13
@@ -588,7 +603,7 @@ msgstr "Gönder"
 msgid "Total price"
 msgstr "Toplam ücret"
 
-#: solfasol/urls.py:56 solfasol/urls.py:57
+#: solfasol/urls.py:61 solfasol/urls.py:62
 msgid "Solfasol Administration"
 msgstr "Solfasol Yönetimi"
 

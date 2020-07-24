@@ -3,6 +3,7 @@ import calendar
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse
+from django.utils.functional import cached_property
 from solfasol.tags.models import Tag
 
 
@@ -37,7 +38,7 @@ class Issue(models.Model):
         choices=[(r, r) for r in range(2011, datetime.date.today().year + 1)]
     )
     month = models.PositiveSmallIntegerField(_('month'),
-        choices=list(((k, v) for k,v in enumerate(calendar.month_name)))[1:]
+        choices=list(((k, _(v)) for k,v in enumerate(calendar.month_name)))[1:]
     )
     name = models.CharField(_('name / number'), max_length=50)
     pdf = models.FileField('PDF', upload_to=issue_pdf_path, blank=True, null=True)
@@ -79,11 +80,13 @@ class Page(models.Model):
             'page_no': self.number,
         })
 
+    @cached_property
     def next(self):
         return self.issue.page_set.filter(id__gt=self.id).first()
 
+    @cached_property
     def prev(self):
-        return self.issue.page_set.filter(id__lt=self.id).first()
+        return self.issue.page_set.filter(id__lt=self.id).last()
 
     class Meta:
         ordering = ('number',)

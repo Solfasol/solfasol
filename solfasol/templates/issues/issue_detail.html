@@ -2,7 +2,7 @@
 {% load i18n static %}
 
 
-{% block title %}{{ content.title }} - {{ block.super }}{% endblock %}
+{% block title %}{{ issue }} - {{ block.super }}{% endblock %}
 
 
 {% block content %}
@@ -12,12 +12,18 @@
     <div class="row">
 
         <div class="col-md-12 col-lg-8">
-            <img src="{{ issue.cover.url }}" alt="{{ issue }}">
             <h3 class="mt-30">
-                <strong>{{ issue }}</strong>
+                {{ issue }}
             </h3>
-            <ul class="list-li-mr-20 mtb-15">
-                <li>
+
+            <img src="{{ issue.cover.url }}" alt="{{ issue }}">
+
+
+            <table class="table my-4">
+            {% for content in issue.content_set.all %}
+                <tr>
+                    <td>{{ content }}</td>
+                    <td>
                     {% with content.owners.all as owners %}
                         {% if owners %}
                         <span class="color-primary">
@@ -29,95 +35,6 @@
                         </span>
                         {% endif %}
                     {% endwith %}
-                    {{ content.added|date:"j F Y" }}
-                </li>
-            </ul>
-
-            {% if content.summary %}
-            <p>
-                {{ content.summary|linebreaksbr }}
-            </p>
-            {% endif %}
-
-            {% if content.video_url %}
-            <p class="my-4">
-                <iframe width="100%" height="400" src="{{ content.video_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </p>
-            {% endif %}
-
-
-            {% for section in content.contentsection_set.all %}
-
-                {% if section.section_title %}
-
-                    <h4 class="mt-4">
-                        <b>{{ section.section_title }}</b>
-                    </h4>
-
-                {% endif %}
-
-                {% if section.section_type == 's' %}
-
-                    <blockquote class="blockquote my-4">
-                        <p class="mb-2">
-                            {{ section.body|safe|striptags }}
-                        </p>
-                        <footer class="blockquote-footer">
-                            <a href="https://www.twitter.com/share?url={{ request.build_absolute_uri }}&text={{ section.body|safe|striptags }}" target="_blank" class="text-info">
-                                {% trans "Tweet" %}
-                            </a>
-                        </footer>
-                    </blockquote>
-
-                {% else %}
-
-                    <div class="my-2">
-                        {{ section.body|safe|linebreaksbr }}
-                    </div>
-
-                    {% with section.contentsectionimage_set.all as images %}
-
-                        {% if images %}
-
-                            <div class="row">
-
-                                {% for image in images %}
-
-                                <div class="col my-4">
-
-                                    <img src="{{ image.image.url }}" alt="{{ image.description }}">
-
-                                    {% if image.description %}
-                                    <em class="text-center d-block">
-                                        {{ image.description }}
-                                    </em>
-                                    {% endif %}
-
-                                </div>
-
-                                {% endfor %}
-
-                            </div>
-
-                        {% endif %}
-
-                    {% endwith %}
-
-                {% endif %}
-
-
-            {% endfor %}
-
-
-            <table class="table my-4">
-            {% for contribution_type, contributors in content.contributors_dict.items %}
-                <tr>
-                    <td>{{ contribution_type }}</td>
-                    <td>
-                        {% for contributor in contributors %}
-                            <a href="{{ contributor.contributor.get_absolute_url }}" class="text-warning">{{ contributor.contributor.name }}</a>
-                            {% if not forloop.last %} & {% endif %}
-                        {% endfor %}
                     </td>
                 </tr>
             {% endfor %}
@@ -127,56 +44,19 @@
             <div class="float-left-right text-center mt-40 mt-sm-20">
 
                 <ul class="mb-30 list-li-mt-10 list-li-mr-5 list-a-plr-15 list-a-ptb-7 list-a-bg-grey list-a-br-2 list-a-hvr-primary ">
-                    {% for tag in content.tags.all %}
+                    {% for tag in issue.tags.all %}
                     <li><a href="{% url 'content_tag_list' tag=tag.slug %}">{{ tag.name }}</a></li>
                     {% endfor %}
                 </ul>
                 <ul class="mb-30 list-a-bg-grey list-a-hw-radial-35 list-a-hvr-primary list-li-ml-5">
                     <li class="mr-10 ml-0">{% trans "Share" %}</li>
                     <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="text-info"><i class="ion-social-facebook"></i></a></li>
-                    <li><a href="https://www.twitter.com/share?url={{ request.build_absolute_uri }}&text={{ content.title }} - Solfasol" target="_blank" class="text-info"><i class="ion-social-twitter"></i></a></li>
+                    <li><a href="https://www.twitter.com/share?url={{ request.build_absolute_uri }}&text=Solfasol - {{ issue }}" target="_blank" class="text-info"><i class="ion-social-twitter"></i></a></li>
                 </ul>
 
             </div><!-- float-left-right -->
 
             <div class="brdr-ash-1 opacty-5"></div>
-
-            {% if content.similar_content %}
-
-            <h4 class="p-title mt-50"><b>{% trans "YOU MAY ALSO LIKE" %}</b></h4>
-
-            <div class="row">
-
-                {% for content in content.similar_content %}
-
-                <div class="col-sm-6">
-                    <a href="{{ content.get_absolute_url }}">
-                        <img src="{{ content.image.url }}" class="h-200x" style="object-fit: cover;">
-                    </a>
-                    <h4 class="pt-20"><a href="{{ content.get_absolute_url }}"><b>{{ content.title }}</b></a></h4>
-                    <ul class="list-li-mr-20 pt-10 mb-30">
-                        <li class="color-lite-black">
-                            {% with content.owners.all as owners %}
-                                {% if owners %}
-                                <span class="color-black">
-                                    {% for owner in owners %}
-                                        <a href="{% url 'content_contributor_list' contributor=owner.contributor.slug %}"><strong>{{ owner }}</strong></a>
-                                        {% if not forloop.last %} & {% endif %}
-                                    {% endfor %}
-                                     &middot;
-                                </span>
-                                {% endif %}
-                            {% endwith %}
-                            {{ content.added|date:"j F Y" }}
-                        </li>
-                    </ul>
-                </div><!-- col-sm-6 -->
-
-                {% endfor %}
-
-            </div><!-- row -->
-
-            {% endif %}
 
         </div>
 
@@ -185,31 +65,19 @@
 
                 <h4 class="p-title"><b>{% trans "PAGES" %}</b></h4>
 
+                <div class="row">
+
                 {% for page in issue.page_set.all %}
 
-                    <a class="oflow-hidden pos-relative mb-20 dplay-block" href="{{ page.get_absolute_url }}">
-                        <div class="wh-100x abs-tlr"><img src="{{ page.image.url }}" alt=""></div>
-                        <div class="ml-120 min-h-100x">
-                            <h5><b>{{ content.title }}</b></h5>
-                            <h6 class="color-lite-black pt-10">
-                            {% with content.owners.all as owners %}
-                                {% if owners %}
-                                <span class="color-black">
-                                    {% for owner in owners %}
-                                        <strong>{{ owner }}</strong>
-                                        {% if not forloop.last %} & {% endif %}
-                                    {% endfor %}
-                                     &middot;
-                                </span>
-                                {% endif %}
-                            {% endwith %}
-                            {{ content.added|date:"j F" }}
-                            </h6>
-                        </div>
-                    </a><!-- oflow-hidden -->
+                <div class="col-md-6">
+                    <a class="" href="{{ page.get_absolute_url }}">
+                        <img src="{{ page.image.url }}" alt="{{ issue }} - {{ page.number }}">
+                    </a>
+                </div>
 
                 {% endfor %}
 
+                </div>
 
             </div><!--  pl-20 -->
         </div><!-- col-md-3 -->
