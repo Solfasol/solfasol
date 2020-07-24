@@ -40,7 +40,11 @@
             <table class="table my-4">
             {% for content in page.content_set.all %}
                 <tr>
-                    <td>{{ content }}</td>
+                    <td>
+                        <a href="{{ content.get_absolute_url }}">
+                            {{ content }}
+                        </a>
+                    </td>
                     <td>
                     {% with content.owners.all as owners %}
                         {% if owners %}
