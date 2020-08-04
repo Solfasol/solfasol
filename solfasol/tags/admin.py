@@ -10,10 +10,12 @@ class TagDefinitionInline(admin.StackedInline):
 
 class TagImageInline(admin.StackedInline):
     model = TagImage
+    extra = 0
 
 
 class TagVideoInline(admin.StackedInline):
     model = TagVideo
+    extra = 0
 
 
 @admin.register(Tag)
