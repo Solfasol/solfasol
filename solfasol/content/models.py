@@ -8,6 +8,7 @@ from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
+from django_editorjs import EditorJsField
 from solfasol.issues.models import Issue, Page
 from solfasol.tags.models import Tag as NewTag
 from solfasol.contributors.models import Contributor
@@ -17,6 +18,9 @@ class Content(models.Model):
     title = models.CharField(_('title'), max_length=200)
     slug = models.SlugField(unique=True)
     subtitle = models.CharField(_('subtitle'), max_length=200, blank=True, null=True)
+
+    body = EditorJsField(blank=True, null=True)
+
     contributors = models.ManyToManyField(
         Contributor,
         verbose_name=_('contributor'),

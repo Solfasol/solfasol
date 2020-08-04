@@ -30,10 +30,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    #'martor',
-    'ckeditor',
-    'crispy_forms',
     'captcha',
+    'crispy_forms',
+    'ckeditor',
+    'django_editorjs',
+
     #'nested_inline',
     'nested_admin',
 
