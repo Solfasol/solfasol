@@ -5,6 +5,7 @@ from .models import Tag, TagDefinition, TagImage, TagVideo
 
 class TagDefinitionInline(admin.StackedInline):
     model = TagDefinition
+    extra = 0
 
 
 class TagImageInline(admin.StackedInline):
@@ -17,6 +18,7 @@ class TagVideoInline(admin.StackedInline):
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ("name",)}
     list_display = ['name', 'content_count', 'definition_count', 'image_count', 'video_count']
     search_fields = ['name', 'slug']
     inlines = [
