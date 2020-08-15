@@ -5,6 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse
 from django.utils.functional import cached_property
 from solfasol.tags.models import Tag
+from solfasol.contributors.models import Contributor
 
 
 def issue_pdf_path(instance, filename):
@@ -67,12 +68,13 @@ class Issue(models.Model):
 
 class Page(models.Model):
     issue = models.ForeignKey(Issue, verbose_name=_('issue'), on_delete=models.CASCADE)
-    number = models.PositiveIntegerField(_('number'))
+    number = models.PositiveIntegerField(_('page number'))
     image = models.ImageField('image', upload_to=page_image_path, blank=True, null=True)
     tags = models.ManyToManyField(Tag, verbose_name=_('tags'), blank=True)
+    #contributors = models.ManyToManyField(Contributor, verbose_name=_('contributors'), blank=True)
 
     def __str__(self):
-        return '%s - %s' % (str(self.issue), self.number)
+        return '%s / %s' % (str(self.issue), self.number)
 
     def get_absolute_url(self):
         return reverse('page_detail', kwargs={
@@ -89,6 +91,7 @@ class Page(models.Model):
         return self.issue.page_set.filter(id__lt=self.id).last()
 
     class Meta:
-        ordering = ('number',)
+        ordering = ('issue', 'number',)
         verbose_name = _('page')
         verbose_name_plural = _('pages')
+

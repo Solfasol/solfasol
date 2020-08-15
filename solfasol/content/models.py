@@ -9,8 +9,9 @@ from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django_editorjs import EditorJsField
+from slugify import slugify
 from solfasol.issues.models import Issue, Page
-from solfasol.tags.models import Tag as NewTag
+from solfasol.tags.models import Tag
 from solfasol.contributors.models import Contributor
 
 
@@ -29,12 +30,16 @@ class Content(models.Model):
         through='ContentContributor',
     )
     lang = models.CharField(_('language'), max_length=7, choices=settings.LANGUAGES, default='tr')
-    tags = models.ManyToManyField(NewTag, verbose_name=_('tags'), blank=True)
+    tags = models.ManyToManyField(Tag, verbose_name=_('tags'), blank=True)
     category = models.ForeignKey('category', verbose_name=_('category'), blank=True, null=True, on_delete=models.SET_NULL)
     series = models.ForeignKey('series', verbose_name=_('series'), blank=True, null=True, on_delete=models.SET_NULL)
 
-    issue = models.ForeignKey(Issue, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=_('issue'))
-    pages = models.ManyToManyField(Page, blank=True, verbose_name=_('page'))
+    page = models.ForeignKey(
+        Page, verbose_name=_('page'),
+        help_text=_('Published on issue / page'),
+        blank=True, null=True,
+        on_delete=models.SET_NULL
+    )
 
     image = models.ImageField(_('image'), upload_to='content/')
 
@@ -60,6 +65,8 @@ class Content(models.Model):
     view_count = models.PositiveIntegerField(default=0, editable=False)
 
     def save(self, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
         super().save(**kwargs)
         if self.pinned:
             Content.objects.filter(pinned=True).exclude(id=self.id).update(pinned=False)
@@ -183,21 +190,6 @@ class ContentContributor(models.Model):
         verbose_name_plural = _('content - contributors')
 
 
-class Tag(models.Model):
-    name = models.CharField(_('name'), max_length=100)
-    slug = models.SlugField(unique=True)
-
-    def __str__(self):
-        return self.name
-
-    def get_absolute_url(self):
-        return reverse('content_tag_list', kwargs={'tag': self.slug})
-
-    class Meta:
-        verbose_name = _('tag')
-        verbose_name_plural = _('tags')
-
-
 class Category(models.Model):
     name = models.CharField(_('name'), max_length=100)
     slug = models.SlugField(unique=True)
@@ -222,11 +214,6 @@ class Category(models.Model):
 class Series(models.Model):
     name = models.CharField(_('name'), max_length=100)
     slug = models.SlugField(unique=True)
-    category = models.ForeignKey(
-        Category, verbose_name=_('category'),
-        blank=True, null=True,
-        on_delete=models.SET_NULL
-    )
 
     def __str__(self):
         return self.name

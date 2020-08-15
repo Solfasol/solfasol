@@ -23,6 +23,7 @@ urlpatterns = [
 
     path('kategori/<slug:category>/', ContentListView.as_view(), name='content_category_list'),
     path('etiket/<slug:tag>/', ContentListView.as_view(), name='content_tag_list'),
+    path('dosya/<slug:series>/', ContentListView.as_view(), name='content_series_list'),
     path('kim/<slug:contributor>/', ContentListView.as_view(), name='content_contributor_list'),
     path('populer/', ContentListView.as_view(), {'popular': True}, name='content_popular_list'),
 

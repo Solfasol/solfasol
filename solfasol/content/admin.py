@@ -102,22 +102,42 @@ class ContentContributorAdmin(admin.ModelAdmin):
     list_display = ['content', 'contributor', 'contribution_type']
 
 
-@admin.register(Tag)
-class TagAdmin(admin.ModelAdmin):
-    list_display = ['name']
-    search_fields = ['name']
-    prepopulated_fields = {"slug": ("name",)}
-
-
 @admin.register(Series)
 class SeriesAdmin(admin.ModelAdmin):
     list_display = ['name']
     search_fields = ['name']
     prepopulated_fields = {"slug": ("name",)}
+    actions = ['get_qr']
+
+    def get_qr(self, request, queryset):
+        factory = qrcode.image.svg.SvgFragmentImage
+        for obj in queryset:
+            qr = qrcode.QRCode(
+                version=None,
+                error_correction=qrcode.constants.ERROR_CORRECT_L,
+                box_size=6,
+                border=1,
+                image_factory=factory,
+            )
+            qr.add_data(
+                'http://solfasol.tv%s' % obj.get_absolute_url()
+            )
+            qr.make(fit=True)
+            img = qr.make_image(fill_color="black", back_color="white")
+            img_buffer = BytesIO()
+            img.save(img_buffer)
+            img_buffer.seek(0)
+            response = HttpResponse(
+                img_buffer.read(),
+                content_type='image/svg+xml',
+            )
+            response['Content-Disposition'] = 'attachment; filename="QR-%s.svg"' % slugify(obj.slug[:20])
+            break
+        return response
+    get_qr.short_description = _('Get QR code')
 
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name']
     search_fields = ['name']
-    prepopulated_fields = {"slug": ("name",)}

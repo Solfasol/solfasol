@@ -5,6 +5,8 @@ from django.core.files.base import ContentFile
 from django.contrib import admin
 from django.conf import settings
 from .models import Issue, Page
+from solfasol.content.models import Content, ContentContributor
+from nested_admin import NestedStackedInline, NestedTabularInline, NestedModelAdmin
 
 
 class PageInline(admin.TabularInline):
@@ -20,6 +22,7 @@ class IssueAdmin(admin.ModelAdmin):
     readonly_fields = ['page_count']
     actions = ['create_pages', 'delete_pages']
     inlines = [PageInline]
+    search_fields = ['name']
 
     def create_pages(self, request, queryset):
         for issue in queryset:
@@ -66,6 +69,24 @@ class IssueAdmin(admin.ModelAdmin):
             issue.save()
 
 
+class ContributorsInline(NestedTabularInline):
+    model = ContentContributor
+    autocomplete_fields = ['contributor']
+    extra = 1
+
+
+class PageContentInline(NestedStackedInline):
+    model = Content
+    fields = ['title', 'tags']
+    autocomplete_fields = ['tags']
+    inlines = [ContributorsInline]
+    extra = 1
+
+
 @admin.register(Page)
-class PageAdmin(admin.ModelAdmin):
+class PageAdmin(NestedModelAdmin):
     list_display = ['issue', 'number']
+    autocomplete_fields = ['tags']
+    readonly_fields = ['number']
+    inlines = [PageContentInline]
+    list_filter = ['issue']

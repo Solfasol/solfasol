@@ -16,6 +16,8 @@ class ContentListView(ListView):
             qs = qs.filter(category__slug=self.kwargs.get('category'))
         elif self.kwargs.get('tag'):
             qs = qs.filter(tags__slug=self.kwargs.get('tag'))
+        elif self.kwargs.get('series'):
+            qs = qs.filter(series__slug=self.kwargs.get('series'))
         elif self.kwargs.get('popular'):
             qs = qs.order_by('-view_count')[:20]
         elif self.kwargs.get('series'):
