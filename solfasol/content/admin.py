@@ -102,12 +102,30 @@ class ContentContributorAdmin(admin.ModelAdmin):
     list_display = ['content', 'contributor', 'contribution_type']
 
 
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ['name']
+    search_fields = ['name']
+
+
+class SeriesContentInline(NestedStackedInline):
+    model = Content
+    fields = ['title', 'tags']
+    autocomplete_fields = ['tags']
+    inlines = [ContributorsInline]
+    extra = 1
+
+
 @admin.register(Series)
-class SeriesAdmin(admin.ModelAdmin):
+class SeriesAdmin(NestedModelAdmin):
     list_display = ['name']
     search_fields = ['name']
     prepopulated_fields = {"slug": ("name",)}
+    autocomplete_fields = [
+        'tags',
+    ]
     actions = ['get_qr']
+    inlines = [SeriesContentInline]
 
     def get_qr(self, request, queryset):
         factory = qrcode.image.svg.SvgFragmentImage
@@ -135,9 +153,3 @@ class SeriesAdmin(admin.ModelAdmin):
             break
         return response
     get_qr.short_description = _('Get QR code')
-
-
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name']
-    search_fields = ['name']

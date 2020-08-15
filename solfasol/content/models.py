@@ -214,6 +214,7 @@ class Category(models.Model):
 class Series(models.Model):
     name = models.CharField(_('name'), max_length=100)
     slug = models.SlugField(unique=True)
+    tags = models.ManyToManyField(Tag, verbose_name=_('tags'), blank=True)
 
     def __str__(self):
         return self.name
