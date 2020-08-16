@@ -178,8 +178,7 @@ class ContentContributor(models.Model):
     contribution_type = models.ForeignKey(
         ContributionType,
         verbose_name=_('contribution type'),
-        on_delete=models.SET_NULL,
-        blank=True, null=True,
+        on_delete=models.CASCADE,
     )
 
     def __str__(self):
