@@ -8,7 +8,10 @@ from solfasol.contributors.models import Contributor
 class Tag(models.Model):
     name = models.CharField(_('name'), max_length=100)
     slug = models.SlugField(unique=True)
-    related_tags = models.ManyToManyField('self', verbose_name=_('related tags'), blank=True)
+    related_tags = models.ManyToManyField(
+        'self', through='RelatedTag',
+        verbose_name=_('related tags'), blank=True
+    )
 
     def __str__(self):
         return self.name
@@ -24,6 +27,16 @@ class Tag(models.Model):
     class Meta:
         verbose_name = _('tag')
         verbose_name_plural = _('tags')
+
+
+class RelatedTag(models.Model):
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
+    related_to = models.ForeignKey(Tag, on_delete=models.CASCADE, related_name='related_reverse_set')
+    relation_type = models.CharField(max_length=10, choices=(
+        ('=', '='),
+        ('>', '>'),
+        ('<', '<'),
+    ), default='=')
 
 
 class TagDefinition(models.Model):
