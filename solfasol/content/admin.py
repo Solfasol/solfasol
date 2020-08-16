@@ -38,7 +38,10 @@ class ContentAdmin(NestedModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
     list_display = ['title', 'added', 'category', 'publish', 'published_by', 'featured', 'pinned', 'view_count']
     search_fields = ['title', 'summary', 'tags__name']
-    exclude = ['published_by']
+    exclude = [
+        'published_by',
+        'body',
+    ]
     list_editable = ['publish', 'featured', 'category', 'pinned']
     list_filter = ['publish', 'added', 'modified', 'featured']
     autocomplete_fields = [
