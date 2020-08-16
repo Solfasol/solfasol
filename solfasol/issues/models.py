@@ -70,8 +70,6 @@ class Page(models.Model):
     issue = models.ForeignKey(Issue, verbose_name=_('issue'), on_delete=models.CASCADE)
     number = models.PositiveIntegerField(_('page number'))
     image = models.ImageField('image', upload_to=page_image_path, blank=True, null=True)
-    tags = models.ManyToManyField(Tag, verbose_name=_('tags'), blank=True)
-    #contributors = models.ManyToManyField(Contributor, verbose_name=_('contributors'), blank=True)
 
     def __str__(self):
         return '%s / %s' % (str(self.issue), self.number)

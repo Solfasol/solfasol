@@ -12,7 +12,6 @@ from nested_admin import NestedStackedInline, NestedTabularInline, NestedModelAd
 class PageInline(admin.TabularInline):
     model = Page
     extra = 0
-    autocomplete_fields = ['tags']
 
 
 @admin.register(Issue)
@@ -86,7 +85,6 @@ class PageContentInline(NestedStackedInline):
 @admin.register(Page)
 class PageAdmin(NestedModelAdmin):
     list_display = ['issue', 'number']
-    autocomplete_fields = ['tags']
     readonly_fields = ['number']
     inlines = [PageContentInline]
     list_filter = ['issue']
