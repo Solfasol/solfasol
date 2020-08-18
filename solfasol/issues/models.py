@@ -47,6 +47,11 @@ class Issue(models.Model):
     tags = models.ManyToManyField(Tag, verbose_name=_('tags'), blank=True)
     page_count = models.PositiveSmallIntegerField(_('page count'), blank=True, null=True)
 
+    page_data = models.TextField(
+        _('page data'), blank=True, null=True,
+        help_text=_('temporary page data for creating pages remotely'),
+    )
+
     class Meta:
         ordering = ('-year', '-month')
         verbose_name = _('issue')

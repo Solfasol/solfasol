@@ -1,6 +1,7 @@
 import os
 from io import BytesIO
 from pdf2image import convert_from_path, convert_from_bytes
+from django.core.serializers import serialize, deserialize
 from django.core.files.base import ContentFile
 from django.contrib import admin
 from django.conf import settings
@@ -18,12 +19,12 @@ class PageInline(admin.TabularInline):
 class IssueAdmin(admin.ModelAdmin):
     list_display = ['name', 'year', 'month', 'page_count']
     autocomplete_fields = ['tags']
-    readonly_fields = ['page_count']
-    actions = ['create_pages', 'delete_pages']
+    #readonly_fields = ['page_count']
+    actions = ['create_pages_from_pdf', 'dump_page_data', 'load_page_data', 'delete_pages']
     inlines = [PageInline]
     search_fields = ['name']
 
-    def create_pages(self, request, queryset):
+    def create_pages_from_pdf(self, request, queryset):
         for issue in queryset:
             if issue.pdf:
                 issue.pdf.seek(0)
@@ -66,6 +67,18 @@ class IssueAdmin(admin.ModelAdmin):
                 pass
             issue.cover = None
             issue.save()
+
+    def dump_page_data(self, request, queryset):
+        for issue in queryset:
+            data = serialize("json", issue.page_set.all())
+            with open(f'{issue}-pages.json', 'w') as f:
+                f.write(data)
+
+    def load_page_data(self, request, queryset):
+        for issue in queryset:
+            data = deserialize('json', issue.page_data)
+            for page in data:
+                page.save()
 
 
 class ContributorsInline(NestedTabularInline):
