@@ -79,6 +79,8 @@ class IssueAdmin(admin.ModelAdmin):
             data = deserialize('json', issue.page_data)
             for page in data:
                 page.save()
+            issue.page_count = len(data)
+            issue.save()
 
 
 class ContributorsInline(NestedTabularInline):
