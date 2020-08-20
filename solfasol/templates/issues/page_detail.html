@@ -41,9 +41,13 @@
             {% for content in page.content_set.all %}
                 <tr>
                     <td>
-                        <a href="{{ content.get_absolute_url }}">
+                        {% if content.publish %}
+                            <a href="{{ content.get_absolute_url }}">
+                                {{ content }}
+                            </a>
+                        {% else %}
                             {{ content }}
-                        </a>
+                        {% endif %}
                     </td>
                     <td>
                     {% with content.owners.all as owners %}

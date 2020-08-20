@@ -12,7 +12,11 @@
     <div class="row">
 
         <div class="col-md-12 col-lg-8">
-            <img src="{{ content.image.url }}" alt="{{ content.title }}">
+
+            {% if content.image %}
+                <img src="{{ content.image.url }}" alt="{{ content.title }}">
+            {% endif %}
+
             <h3 class="mt-30">
                 <strong>{{ content.title }}</strong>
                 {% if content.subtitle %}
