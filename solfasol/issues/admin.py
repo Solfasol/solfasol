@@ -19,7 +19,7 @@ class PageInline(admin.TabularInline):
 class IssueAdmin(admin.ModelAdmin):
     list_display = ['name', 'year', 'month', 'page_count']
     autocomplete_fields = ['tags']
-    #readonly_fields = ['page_count']
+    readonly_fields = ['page_count']
     actions = ['create_pages_from_pdf', 'dump_page_data', 'load_page_data', 'delete_pages']
     inlines = [PageInline]
     search_fields = ['name']
@@ -77,9 +77,11 @@ class IssueAdmin(admin.ModelAdmin):
     def load_page_data(self, request, queryset):
         for issue in queryset:
             data = deserialize('json', issue.page_data)
+            i = 0
             for page in data:
+                i += 1
                 page.save()
-            issue.page_count = len(data)
+            issue.page_count = i
             issue.save()
 
 

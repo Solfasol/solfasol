@@ -46,6 +46,27 @@
 
                 </div><!-- row -->
 
+
+
+                <div class="row">
+
+                    {% for page in pages %}
+
+                        <div class="col-md-4 col-sm-6">
+
+                            <a href="{{ page.get_absolute_url }}">
+
+								<img src="{{ page.image.url }}" class="h-200x" style="object-fit: cover;">
+
+                            </a>
+							<h4 class="pt-20"><a href="{{ page.get_absolute_url }}"><b>{{ page }}</b></a></h4>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div><!-- row -->
+
 		</div><!-- container -->
 
 {% endblock %}

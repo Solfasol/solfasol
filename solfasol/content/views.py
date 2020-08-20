@@ -3,6 +3,7 @@ from django.utils.translation import ugettext as _
 from django.shortcuts import get_object_or_404
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
+from solfasol.issues.models import Page
 from .models import Content, Category, Tag, Contributor, Series
 
 
@@ -41,6 +42,7 @@ class ContentListView(ListView):
                 'list_type': _('tag'),
                 'tag': tag,
                 'title': tag.name,
+                'pages': Page.objects.filter(content__tags=tag),
             })
         elif self.kwargs.get('popular'):
             context.update({
@@ -60,6 +62,7 @@ class ContentListView(ListView):
                 'list_type': _('contributor'),
                 'contributor': contributor,
                 'title': contributor.name,
+                'pages': Page.objects.filter(content__contributors=contributor),
             })
         return context
 
