@@ -40,7 +40,6 @@ class ContentAdmin(NestedModelAdmin):
     search_fields = ['title', 'summary', 'tags__name']
     exclude = [
         'published_by',
-        'body',
     ]
     list_editable = ['publish', 'featured', 'category', 'pinned']
     list_filter = ['publish', 'added', 'modified', 'featured']

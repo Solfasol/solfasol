@@ -20,7 +20,7 @@ class Content(models.Model):
     slug = models.SlugField(unique=True)
     subtitle = models.CharField(_('subtitle'), max_length=200, blank=True, null=True)
 
-    body = EditorJsField(blank=True, null=True)
+    body = models.JSONField(blank=True, null=True)
 
     contributors = models.ManyToManyField(
         Contributor,
@@ -29,6 +29,7 @@ class Content(models.Model):
         related_name='content_set',
         through='ContentContributor',
     )
+
     lang = models.CharField(_('language'), max_length=7, choices=settings.LANGUAGES, default='tr')
     tags = models.ManyToManyField(Tag, verbose_name=_('tags'), blank=True)
     category = models.ForeignKey('category', verbose_name=_('category'), blank=True, null=True, on_delete=models.SET_NULL)
