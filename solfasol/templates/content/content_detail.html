@@ -5,6 +5,17 @@
 {% block title %}{{ content.title }} - {{ block.super }}{% endblock %}
 
 
+{% block head %}
+
+<style>
+    p {
+      margin-bottom: 14px;
+    }
+</style>
+
+{% endblock %}
+
+
 {% block content %}
 
 <div class="container">
@@ -41,7 +52,7 @@
             </ul>
 
             {% if content.summary %}
-            <p>
+            <p class="my-4">
                 {{ content.summary|linebreaksbr }}
             </p>
             {% endif %}
@@ -78,9 +89,7 @@
 
                 {% else %}
 
-                    <div class="my-2">
-                        {{ section.body|safe|linebreaksbr }}
-                    </div>
+                    {{ section.body|safe }}
 
                     {% with section.contentsectionimage_set.all as images %}
 
