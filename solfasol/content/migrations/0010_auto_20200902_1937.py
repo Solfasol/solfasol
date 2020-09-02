@@ -13,11 +13,6 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterField(
             model_name='content',
-            name='body',
-            field=models.JSONField(blank=True, null=True),
-        ),
-        migrations.AlterField(
-            model_name='content',
             name='publish_at',
             field=models.DateTimeField(default=django.utils.timezone.now, help_text='Set a future date to publish later', verbose_name='publishing time'),
         ),
