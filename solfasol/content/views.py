@@ -3,6 +3,7 @@ from django.utils.translation import ugettext as _
 from django.shortcuts import get_object_or_404
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
+from django.utils.timezone import now
 from solfasol.issues.models import Page
 from .models import Content, Category, Tag, Contributor, Series
 
@@ -12,7 +13,10 @@ class ContentListView(ListView):
     context_object_name = 'content_list'
 
     def get_queryset(self):
-        qs = super().get_queryset().filter(publish=True)
+        qs = super().get_queryset().filter(
+            publish=True,
+            publish_at__lt=now(),
+        )
         if self.kwargs.get('category'):
             qs = qs.filter(category__slug=self.kwargs.get('category'))
         elif self.kwargs.get('tag'):

@@ -2,6 +2,7 @@ from django.views.generic import TemplateView
 from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.urls import translate_url
+from django.utils import timezone
 from django.utils.translation import LANGUAGE_SESSION_KEY
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
@@ -14,7 +15,10 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        content = Content.objects.filter(publish=True)
+        content = Content.objects.filter(
+            publish=True,
+            publish_at__lt=timezone.now(),
+        )
         context.update({
             'recent_content': content[:6],
             'featured_content': content.filter(featured=True)[:6],

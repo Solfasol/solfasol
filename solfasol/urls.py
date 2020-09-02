@@ -31,7 +31,8 @@ urlpatterns = [
     path('dizin/<str:tag_name>/', tag_detail, name='tag_detail'),
 
     path('arsiv/', IssueListView.as_view(), name='issue_list'),
-    path('arsiv/<int:pk>/', IssueDetailView.as_view(), name='issue_detail'),
+    path('arsiv/<int:year>/', IssueListView.as_view(), name='issue_list_year'),
+    path('arsiv/sayi/<int:pk>/', IssueDetailView.as_view(), name='issue_detail'),
     path('arsiv/<int:issue_id>/<int:page_no>/', PageDetailView.as_view(), name='page_detail'),
 
     path('abonelik/', subscribe, name='subscription_form'),

@@ -6,31 +6,37 @@
 
 		<div class="container">
 
-                <h4 class="p-title">
-					<strong>{% trans "Archive" %}</strong>
-				</h4>
+            <h4 class="p-title">
+                <strong>{% trans "Archive" %}</strong>
+            </h4>
 
-                <div class="row">
+            <div class="my-4">
+            {% for year in issue_years %}
+                <a href="{% url 'issue_list_year' year=year %}" class="btn btn{% if not year == selected_year %}-outline{% endif %}-warning" href="#">{{ year }}</a>
+            {% endfor %}
+            </div>
 
-                    {% for issue in issue_list %}
+            <div class="row">
 
-                        <div class="col-md-4 col-sm-6">
+                {% for issue in issue_list %}
 
-                            <a href="{{ issue.get_absolute_url }}">
+                    <div class="col-md-4 col-sm-6">
 
-								<img src="{{ issue.cover.url }}" class="h-200xx">
+                        <a href="{{ issue.get_absolute_url }}">
 
-                            </a>
+                            <img src="{{ issue.cover.url }}" class="h-200xx">
 
-							<a href="{{ issue.get_absolute_url }}">
-								{{ issue }}
-							</a>
+                        </a>
 
-                        </div>
+                        <a href="{{ issue.get_absolute_url }}">
+                            {{ issue }}
+                        </a>
 
-                    {% endfor %}
+                    </div>
 
-                </div><!-- row -->
+                {% endfor %}
+
+            </div><!-- row -->
 
 		</div><!-- container -->
 

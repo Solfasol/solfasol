@@ -14,6 +14,12 @@
         <div class="col-md-12 col-lg-8">
             <h3 class="mt-30">
                 {{ issue }}
+                <span class="float-right">
+                    <a href="{{ issue.pdf.url }}" class="btn btn-sm btn-outline-info" target="_blank">
+                        <i class="ion-android-download"></i>
+                        {% trans "Download PDF" %}
+                    </a>
+                </span>
             </h3>
 
             <img src="{{ issue.cover.url }}" alt="{{ issue }}">

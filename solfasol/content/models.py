@@ -51,6 +51,10 @@ class Content(models.Model):
     related_content = models.ManyToManyField('self', verbose_name=_('related content'), blank=True)
 
     publish = models.BooleanField(_('publish'), default=False)
+    publish_at = models.DateTimeField(
+        _('publishing time'), default=now,
+        help_text=_('Set a future date to publish later')
+    )
     published_by = models.ForeignKey(
         User, verbose_name=_('published by'),
         blank=True, null=True,
