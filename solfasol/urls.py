@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import RedirectView, TemplateView
-from .content.views import ContentListView, ContentDetailView
+from .content.views import ContentListView, ContentDetailView, ContentCreateView
 from .feedback.views import feedback_form
 from .subscriptions.views import subscribe
 from .shop.views import ItemListView, ItemDetailView, cart_add, cart_remove, payment_form, callback_3d
@@ -17,8 +17,6 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
 
-    #path(r'martor/', include('martor.urls')),
-
     path('', IndexView.as_view(), name='index'),
 
     path('kategori/<slug:category>/', ContentListView.as_view(), name='content_category_list'),
@@ -26,6 +24,8 @@ urlpatterns = [
     path('dosya/<slug:series>/', ContentListView.as_view(), name='content_series_list'),
     path('kim/<slug:contributor>/', ContentListView.as_view(), name='content_contributor_list'),
     path('populer/', ContentListView.as_view(), {'popular': True}, name='content_popular_list'),
+
+    path('yaz/', ContentCreateView.as_view(), name='content_create'),
 
     #path('dizin/', ContentListView.as_view(), name='tag_list'),
     path('dizin/<str:tag_name>/', tag_detail, name='tag_detail'),

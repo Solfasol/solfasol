@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'solfasol.feedback.apps.FeedbackConfig',
     'solfasol.subscriptions.apps.SubscriptionsConfig',
     'solfasol.shop.apps.ShopConfig',
+    'solfasol.publications.apps.PublicationsConfig',
 
 ]
 

@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from django.utils.translation import ugettext as _
 from django.shortcuts import get_object_or_404
 from django.views.decorators.cache import cache_page
@@ -82,3 +82,9 @@ class ContentDetailView(DetailView):
         obj.view_count += 1
         obj.save()
         return obj
+
+
+class ContentCreateView(CreateView):
+    model = Content
+    fields = ['body']
+

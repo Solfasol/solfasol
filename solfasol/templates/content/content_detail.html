@@ -63,6 +63,12 @@
             </p>
             {% endif %}
 
+            {% if content.embed_media %}
+            <p class="my-4">
+                {{ content.embed_media|safe }}
+            </p>
+            {% endif %}
+
 
             {% for section in content.contentsection_set.all %}
 

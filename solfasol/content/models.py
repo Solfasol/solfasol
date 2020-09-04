@@ -47,7 +47,8 @@ class Content(models.Model):
     summary = models.TextField(_('summary'), blank=True, null=True)
 
     video_url = models.URLField(_('video url'), blank=True, null=True)
-    podcast = models.URLField(_('podcast url'), blank=True, null=True)
+
+    embed_media = models.TextField(_('media embed code'), blank=True, null=True)
 
     related_content = models.ManyToManyField('self', verbose_name=_('related content'), blank=True)
 
