@@ -205,6 +205,15 @@
         <div class="col-md-6 col-lg-4">
             <div class="pl-20 pl-md-0">
 
+                {% if content.page %}
+                <h4 class="p-title mb-0"><b>{% trans "ON PAPER" %}</b></h4>
+                
+                <a href="{{ content.page.get_absolute_url }}">
+                    <img src="{{ content.page.image.url }}">
+                </a>
+                {% endif %}
+                
+
                 <h4 class="p-title"><b>{% trans "POPULAR POSTS" %}</b></h4>
 
                 {% for content in popular_content %}
