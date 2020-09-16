@@ -39,7 +39,7 @@ class Issue(models.Model):
         choices=[(r, r) for r in range(2011, datetime.date.today().year + 1)]
     )
     month = models.PositiveSmallIntegerField(_('month'),
-        choices=list(((k, _(v)) for k,v in enumerate(calendar.month_name)))[1:]
+        choices=list(((k, _(v)) for k, v in enumerate(calendar.month_name)))[1:]
     )
     name = models.CharField(_('name / number'), max_length=50)
     pdf = models.FileField('PDF', upload_to=issue_pdf_path, blank=True, null=True)

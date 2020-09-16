@@ -122,6 +122,33 @@
 		</div><!-- h-100vh -->
 	</div><!-- container -->
 
+	<section>
+
+		{# gecmis sayilar #}
+
+		<div class="container">
+
+			<h4 class="p-title"><b>GEÇMİŞ {{ past_issues.title|upper }}</b></h4>
+
+			<div class="row">
+
+				{% for issue in past_issues.issues %}
+				<div class="col">
+					<a href="{{ issue.get_absolute_url }}">
+						<img src="{{ issue.cover.url }}" class="h-200xx">
+						<span class="d-block text-center my-1">
+							<strong>{{ issue.year }}</strong>
+						</span>
+					</a>
+				</div>
+				{% endfor %}
+
+			</div>
+
+		</div>
+
+	</section>
+
 
 	<section>
 		<div class="container">

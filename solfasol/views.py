@@ -1,3 +1,4 @@
+from datetime import date
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.http import HttpResponseRedirect
@@ -7,6 +8,23 @@ from django.utils.translation import LANGUAGE_SESSION_KEY
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
 from solfasol.content.models import Content
+from solfasol.issues.models import Issue
+
+
+ISSUES_THIS_MONTH_TITLES = {
+    1: "Ocak'lar",
+    2: "Şubat'lar",
+    3: "Mart'lar",
+    4: "Nisan'lar",
+    5: "Mayıs'lar",
+    6: "Haziran'lar",
+    7: "Temmuz'lar",
+    8: "Ağustos'lar",
+    9: "Eylül'ler",
+    10: "Ekim'ler",
+    11: "Kasım'lar",
+    12: "Aralık'lar",
+}
 
 
 @method_decorator(cache_page(5*60), name='dispatch')  # 5 mins
@@ -19,9 +37,15 @@ class IndexView(TemplateView):
             publish=True,
             publish_at__lt=timezone.now(),
         )
+        this_month = date.today().month
         context.update({
             'recent_content': content[:6],
             'featured_content': content.filter(featured=True)[:6],
+            'past_issues': {
+                'title': ISSUES_THIS_MONTH_TITLES[this_month],
+                'issues': Issue.objects.filter(month=this_month),
+            }
+
         })
         return context
 
