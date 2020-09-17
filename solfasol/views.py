@@ -43,7 +43,7 @@ class IndexView(TemplateView):
             'featured_content': content.filter(featured=True)[:6],
             'past_issues': {
                 'title': ISSUES_THIS_MONTH_TITLES[this_month],
-                'issues': Issue.objects.filter(month=this_month),
+                'issues': Issue.objects.filter(month=this_month).exclude(year=date.today().year),
             }
 
         })
