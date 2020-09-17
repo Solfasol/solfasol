@@ -68,17 +68,22 @@ class IssueAdmin(admin.ModelAdmin):
             issue.cover = None
             issue.save()
 
-    def dump_page_data(self, request, queryset):
+    def dump_issue_data(self, request, queryset):
         for issue in queryset:
-            data = serialize("json", issue.page_set.all())
-            with open(f'{issue}-pages.json', 'w') as f:
+            data = {
+                'issue': serialize("json", Issue.objects.filter(id=issue.id))[0],
+                'pages': serialize("json", issue.page_set.all()),
+            }
+            with open(f'{issue}.json', 'w') as f:
                 f.write(data)
 
-    def load_page_data(self, request, queryset):
+    def load_issue_data(self, request, queryset):
         for issue in queryset:
-            data = deserialize('json', issue.page_data)
+            data = deserialize('json', issue.file_data)
+            issue.pdf = data['issue']['pdf']
+            issue.cover = data['issue']['cover']
             i = 0
-            for page in data:
+            for page in data['pages']:
                 i += 1
                 page.save()
             issue.page_count = i

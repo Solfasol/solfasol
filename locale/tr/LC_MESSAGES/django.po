@@ -263,7 +263,7 @@ msgstr "sayfa sayısı"
 
 #: solfasol/issues/models.py:51
 msgid "page data"
-msgstr "sayfa sayısı"
+msgstr "sayfa verileri"
 
 #: solfasol/issues/models.py:52
 msgid "temporary page data for creating pages remotely"
