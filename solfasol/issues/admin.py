@@ -5,7 +5,7 @@ from django.core.serializers import serialize, deserialize
 from django.core.files.base import ContentFile
 from django.contrib import admin
 from django.conf import settings
-from .models import Issue, Page
+from .models import Issue, Page, issue_pdf_path, issue_cover_image_path
 from solfasol.content.models import Content, ContentContributor
 from nested_admin import NestedStackedInline, NestedTabularInline, NestedModelAdmin
 
@@ -68,25 +68,22 @@ class IssueAdmin(admin.ModelAdmin):
             issue.cover = None
             issue.save()
 
-    def dump_issue_data(self, request, queryset):
+    def dump_page_data(self, request, queryset):
         for issue in queryset:
-            data = {
-                'issue': serialize("json", Issue.objects.filter(id=issue.id))[0],
-                'pages': serialize("json", issue.page_set.all()),
-            }
-            with open(f'{issue}.json', 'w') as f:
+            data = serialize("json", issue.page_set.all())
+            with open(f'{issue}-pages.json', 'w') as f:
                 f.write(data)
 
-    def load_issue_data(self, request, queryset):
+    def load_page_data(self, request, queryset):
         for issue in queryset:
-            data = deserialize('json', issue.file_data)
-            issue.pdf = data['issue']['pdf']
-            issue.cover = data['issue']['cover']
+            data = deserialize('json', issue.page_data)
             i = 0
-            for page in data['pages']:
+            for page in data:
                 i += 1
                 page.save()
             issue.page_count = i
+            issue.pdf = issue_pdf_path(issue)
+            issue.cover = issue_cover_image_path(issue)
             issue.save()
 
 

@@ -8,7 +8,7 @@ from solfasol.tags.models import Tag
 from solfasol.contributors.models import Contributor
 
 
-def issue_pdf_path(instance, filename):
+def issue_pdf_path(instance, filename=None):
     return 'issues/%(year)s-%(month)s/solfasol-%(year)s-%(month)s_%(name)s.pdf' % {
         'year': str(instance.year),
         'month': str(instance.month).zfill(2),
@@ -16,7 +16,7 @@ def issue_pdf_path(instance, filename):
     }
 
 
-def issue_cover_image_path(instance, filename):
+def issue_cover_image_path(instance, filename=None):
     return 'issues/%(year)s-%(month)s/solfasol-%(year)s-%(month)s_%(name)s-cover.png' % {
         'year': str(instance.year),
         'month': str(instance.month).zfill(2),
@@ -47,7 +47,7 @@ class Issue(models.Model):
     tags = models.ManyToManyField(Tag, verbose_name=_('tags'), blank=True)
     page_count = models.PositiveSmallIntegerField(_('page count'), blank=True, null=True)
 
-    file_data = models.TextField(blank=True, null=True, help_text=_('file data for creating pages remotely'))
+    page_data = models.TextField(blank=True, null=True, help_text=_('page data for creating pages remotely'))
 
     class Meta:
         ordering = ('-year', '-month')
