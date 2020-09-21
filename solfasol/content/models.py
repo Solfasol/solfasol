@@ -10,7 +10,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django_editorjs import EditorJsField
 from slugify import slugify
-from solfasol.issues.models import Issue, Page
+from solfasol.issues.models import Page
 from solfasol.tags.models import Tag
 from solfasol.contributors.models import Contributor
 
@@ -220,6 +220,12 @@ class Series(models.Model):
     name = models.CharField(_('name'), max_length=100)
     slug = models.SlugField(unique=True)
     tags = models.ManyToManyField(Tag, verbose_name=_('tags'), blank=True)
+    contributors = models.ManyToManyField(
+        Contributor,
+        verbose_name=_('contributor'),
+        blank=True,
+        through='SeriesContributor',
+    )
 
     def __str__(self):
         return self.name
@@ -234,3 +240,20 @@ class Series(models.Model):
     class Meta:
         verbose_name = _('series')
         verbose_name_plural = _('series')
+
+
+class SeriesContributor(models.Model):
+    series = models.ForeignKey(Series, verbose_name=_('content'), on_delete=models.CASCADE)
+    contributor = models.ForeignKey(Contributor, verbose_name=_('contributor'), on_delete=models.CASCADE)
+    contribution_type = models.ForeignKey(
+        ContributionType,
+        verbose_name=_('contribution type'),
+        on_delete=models.CASCADE,
+    )
+
+    def __str__(self):
+        return self.contributor.name
+
+    class Meta:
+        verbose_name = _('content - contributor')
+        verbose_name_plural = _('content - contributors')
