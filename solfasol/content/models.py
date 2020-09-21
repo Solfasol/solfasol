@@ -238,6 +238,13 @@ class Series(models.Model):
     def get_absolute_url(self):
         return reverse('content_series_list', kwargs={'series': self.slug})
 
+    @cached_property
+    def contributors_dict(self):
+        contributors = defaultdict(list)
+        for contributor in  SeriesContributor.objects.filter(series=self).order_by('-contribution_type__primary'):
+            contributors[contributor.contribution_type].append(contributor)
+        return dict(contributors)
+
     @property
     def content(self):
         return self.content_set.filter(publish=True)
