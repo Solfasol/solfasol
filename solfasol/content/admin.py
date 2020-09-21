@@ -7,7 +7,7 @@ from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 from nested_admin import NestedStackedInline, NestedTabularInline, NestedModelAdmin
 from .models import Content, ContentSection, ContentSectionImage, ContentContributor, ContributionType, \
-    Tag, Category, Series
+    Tag, Category, Series, SeriesContributor
 from django.db.models import TextField
 from ckeditor.widgets import CKEditorWidget
 
@@ -119,6 +119,11 @@ class SeriesContentInline(NestedStackedInline):
     extra = 1
 
 
+class SeriesContributorsInline(NestedTabularInline):
+    model = SeriesContributor
+    autocomplete_fields = ['contributor']
+
+
 @admin.register(Series)
 class SeriesAdmin(NestedModelAdmin):
     list_display = ['name']
@@ -128,7 +133,10 @@ class SeriesAdmin(NestedModelAdmin):
         'tags',
     ]
     actions = ['get_qr']
-    inlines = [SeriesContentInline]
+    inlines = [
+        SeriesContributorsInline,
+        #SeriesContentInline,
+    ]
 
     def get_qr(self, request, queryset):
         factory = qrcode.image.svg.SvgFragmentImage

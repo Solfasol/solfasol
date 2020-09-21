@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-09-07 01:17+0300\n"
+"POT-Creation-Date: 2020-09-21 11:24+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,13 +22,13 @@ msgstr ""
 msgid "Publish"
 msgstr "Yayınla"
 
-#: solfasol/content/admin.py:94 solfasol/content/admin.py:158
+#: solfasol/content/admin.py:94 solfasol/content/admin.py:166
 msgid "Get QR code"
 msgstr "QR kodunu indir"
 
 #: solfasol/content/apps.py:7 solfasol/content/models.py:124
 #: solfasol/content/models.py:125 solfasol/content/models.py:135
-#: solfasol/content/models.py:182
+#: solfasol/content/models.py:182 solfasol/content/models.py:246
 msgid "content"
 msgstr "içerik"
 
@@ -41,6 +41,7 @@ msgid "subtitle"
 msgstr "altbaşlık"
 
 #: solfasol/content/models.py:27 solfasol/content/models.py:183
+#: solfasol/content/models.py:225 solfasol/content/models.py:247
 #: solfasol/content/views.py:66 solfasol/contributors/models.py:20
 #: solfasol/tags/models.py:48 solfasol/tags/models.py:68
 #: solfasol/tags/models.py:88
@@ -64,12 +65,12 @@ msgstr "etiketler"
 msgid "category"
 msgstr "kategori"
 
-#: solfasol/content/models.py:36 solfasol/content/models.py:235
-#: solfasol/content/models.py:236 solfasol/content/views.py:59
+#: solfasol/content/models.py:36 solfasol/content/models.py:241
+#: solfasol/content/models.py:242 solfasol/content/views.py:59
 msgid "series"
 msgstr "dosya / dizi"
 
-#: solfasol/content/models.py:39 solfasol/issues/models.py:98
+#: solfasol/content/models.py:39 solfasol/issues/models.py:95
 msgid "page"
 msgstr "sayfa"
 
@@ -184,6 +185,7 @@ msgid "primary"
 msgstr "birincil"
 
 #: solfasol/content/models.py:177 solfasol/content/models.py:186
+#: solfasol/content/models.py:250
 msgid "contribution type"
 msgstr "katkı tipi"
 
@@ -211,6 +213,14 @@ msgstr "isim"
 msgid "categories"
 msgstr "kategoriler"
 
+#: solfasol/content/models.py:258
+msgid "series contributor"
+msgstr "dosyaya katkıda bulunan"
+
+#: solfasol/content/models.py:259
+msgid "series contributors"
+msgstr "dosyaya katkıda bulunanlar"
+
 #: solfasol/content/views.py:46 solfasol/shop/models.py:81
 #: solfasol/tags/models.py:28 solfasol/tags/models.py:43
 #: solfasol/tags/models.py:62 solfasol/tags/models.py:82
@@ -237,7 +247,7 @@ msgstr "bilgi formu"
 msgid "feedback forms"
 msgstr "bilgi formları"
 
-#: solfasol/issues/apps.py:7 solfasol/issues/models.py:58
+#: solfasol/issues/apps.py:7 solfasol/issues/models.py:55
 msgid "issues"
 msgstr "sayılar"
 
@@ -261,23 +271,19 @@ msgstr "kapak"
 msgid "page count"
 msgstr "sayfa sayısı"
 
-#: solfasol/issues/models.py:51
-msgid "page data"
-msgstr "sayfa verileri"
-
-#: solfasol/issues/models.py:52
-msgid "temporary page data for creating pages remotely"
+#: solfasol/issues/models.py:50
+msgid "page data for creating pages remotely"
 msgstr ""
 
-#: solfasol/issues/models.py:57 solfasol/issues/models.py:75
+#: solfasol/issues/models.py:54 solfasol/issues/models.py:72
 msgid "issue"
 msgstr "sayı"
 
-#: solfasol/issues/models.py:76
+#: solfasol/issues/models.py:73
 msgid "page number"
 msgstr "sayfa numarası"
 
-#: solfasol/issues/models.py:99
+#: solfasol/issues/models.py:96
 msgid "pages"
 msgstr "sayfalar"
 
@@ -532,7 +538,7 @@ msgid "ON PAPER"
 msgstr "YAZININ BASILI HALİ"
 
 #: solfasol/templates/content/content_detail.html:217
-#: solfasol/templates/index.html:183
+#: solfasol/templates/index.html:210
 msgid "POPULAR POSTS"
 msgstr "POPÜLER İÇERİK"
 
@@ -646,6 +652,9 @@ msgstr "Toplam ücret"
 #: solfasol/urls.py:63 solfasol/urls.py:64
 msgid "Solfasol Administration"
 msgstr "Solfasol Yönetimi"
+
+#~ msgid "page data"
+#~ msgstr "sayfa verileri"
 
 #~ msgid "podcast url"
 #~ msgstr "podcast url"

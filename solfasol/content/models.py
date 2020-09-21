@@ -255,5 +255,5 @@ class SeriesContributor(models.Model):
         return self.contributor.name
 
     class Meta:
-        verbose_name = _('content - contributor')
-        verbose_name_plural = _('content - contributors')
+        verbose_name = _('series contributor')
+        verbose_name_plural = _('series contributors')
