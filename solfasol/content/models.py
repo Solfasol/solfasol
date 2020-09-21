@@ -10,7 +10,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from django_editorjs import EditorJsField
 from slugify import slugify
-from solfasol.issues.models import Page
+from solfasol.issues.models import Issue, Page
 from solfasol.tags.models import Tag
 from solfasol.contributors.models import Contributor
 
@@ -219,6 +219,11 @@ class Category(models.Model):
 class Series(models.Model):
     name = models.CharField(_('name'), max_length=100)
     slug = models.SlugField(unique=True)
+    issue = models.ForeignKey(
+        Issue, verbose_name=_('issue'),
+        blank=True, null=True,
+        on_delete=models.SET_NULL,
+    )
     tags = models.ManyToManyField(Tag, verbose_name=_('tags'), blank=True)
     contributors = models.ManyToManyField(
         Contributor,
