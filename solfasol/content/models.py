@@ -219,10 +219,9 @@ class Category(models.Model):
 class Series(models.Model):
     name = models.CharField(_('name'), max_length=100)
     slug = models.SlugField(unique=True)
-    issue = models.ForeignKey(
-        Issue, verbose_name=_('issue'),
-        blank=True, null=True,
-        on_delete=models.SET_NULL,
+    issues = models.ManyToManyField(
+        Issue, verbose_name=_('issues'),
+        blank=True,
     )
     tags = models.ManyToManyField(Tag, verbose_name=_('tags'), blank=True)
     contributors = models.ManyToManyField(

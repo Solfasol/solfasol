@@ -131,6 +131,7 @@ class SeriesAdmin(NestedModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
     autocomplete_fields = [
         'tags',
+        'issues',
     ]
     actions = ['get_qr']
     inlines = [
