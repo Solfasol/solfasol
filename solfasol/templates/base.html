@@ -37,6 +37,7 @@
 
 <body>
 
+	{% block header %}
 	<header>
 		<div class="bg-191">
 			<div class="container">
@@ -75,6 +76,7 @@
 
 		<div class="container">
 
+			{% comment %}
 			<a class="right-area src-btn" href="#" >
 				<i class="active src-icn ion-search"></i>
 				<i class="close-icn ion-close"></i>
@@ -85,6 +87,7 @@
 					<button type="submit"><i class="ion-search"></i></a></button>
 				</form>
 			</div><!-- src-form -->
+			{% endcomment %}
 
 			<a class="menu-nav-icon" data-menu="#main-menu" href="#"><i class="ion-navicon"></i></a>
 
@@ -119,10 +122,23 @@
 			<div class="clearfix"></div>
 		</div><!-- container -->
 	</header>
+	{% endblock %}
+
+
+	{% for message in messages %}
+
+		<div class="alert alert-success" role="alert">
+			{{ message }}
+		</div>
+
+	{% endfor %}
 
 
     {% block content %}
     {% endblock %}
+
+
+	{% block footer %}
 
 	<div class="clearfix my-4">
 		<br>
@@ -184,6 +200,8 @@
 
 		</div><!-- container -->
 	</footer>
+
+	{% endblock %}
 
 
 {% block js %}{% endblock %}
