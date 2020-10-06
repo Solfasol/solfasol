@@ -12,6 +12,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
+    'farukbildirici.localhost',
     'solfasol.tv',
     'ec2-3-226-238-181.compute-1.amazonaws.com',
 ]
@@ -29,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     'captcha',
     'crispy_forms',
@@ -46,8 +48,11 @@ INSTALLED_APPS = [
     'solfasol.subscriptions.apps.SubscriptionsConfig',
     'solfasol.shop.apps.ShopConfig',
     'solfasol.publications.apps.PublicationsConfig',
-
 ]
+
+
+#SITE_ID = 1  # solfasol.tv
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -14,10 +14,18 @@
         <div class="col-md-12 col-lg-8">
             <h3 class="mt-30">
                 {{ issue }}
+
                 <span class="float-right">
                     <a href="{{ issue.pdf.url }}" class="btn btn-sm btn-outline-info" target="_blank">
                         <i class="ion-android-download"></i>
                         {% trans "Download PDF" %}
+                    </a>
+                </span>
+
+                <span class="float-right mx-1">
+                    <a href="{% url 'cart_add_issue' issue_id=issue.id %}" class="btn btn-sm btn-outline-info">
+                        <i class="ion-ios-cart"></i>
+                        {% trans "Buy" %}
                     </a>
                 </span>
             </h3>

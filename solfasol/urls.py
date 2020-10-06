@@ -7,15 +7,18 @@ from django.views.generic import RedirectView, TemplateView
 from .content.views import ContentListView, ContentDetailView, ContentCreateView
 from .feedback.views import feedback_form
 from .subscriptions.views import subscribe
-from .shop.views import ItemListView, ItemDetailView, cart_add, cart_remove, payment_form, callback_3d
+from .shop.views import ItemListView, CartDetailView, ItemDetailView, cart_add, cart_remove, payment_form, callback_3d
 from .tags.views import tag_detail
 from .issues.views import IssueListView, IssueDetailView, PageDetailView
+from .publications.views import content_editor, image_upload, content_save
 from .views import IndexView, set_language
 
 
 urlpatterns = [
 
     path('admin/', admin.site.urls),
+
+    path('', include('solfasol.publications.urls')),
 
     path('', IndexView.as_view(), name='index'),
 
@@ -24,8 +27,6 @@ urlpatterns = [
     path('dosya/<slug:series>/', ContentListView.as_view(), name='content_series_list'),
     path('kim/<slug:contributor>/', ContentListView.as_view(), name='content_contributor_list'),
     path('populer/', ContentListView.as_view(), {'popular': True}, name='content_popular_list'),
-
-    path('yaz/', ContentCreateView.as_view(), name='content_create'),
 
     #path('dizin/', ContentListView.as_view(), name='tag_list'),
     path('dizin/<str:tag_name>/', tag_detail, name='tag_detail'),
@@ -42,14 +43,17 @@ urlpatterns = [
         pattern_name='feedback_form', permanent=True,
     ), kwargs={'slug': 'program-oneri'}),
 
+    path('dukkan/', CartDetailView.as_view(), name='cart_detail'),
     path('dukkan/', ItemListView.as_view(), name='shop_item_list'),
     path('dukkan/odeme/', payment_form, name='shop_payment_form'),
     path('dukkan/odeme/3ds/callback', callback_3d, name='shop_3ds_callback'),
     path('dukkan/satis-sozlesmesi/',
          TemplateView.as_view(template_name='shop/sales-agreement.html'),
          name='sales_agreement'),
-    path('dukkan/cart/add/<int:item_id>/', cart_add, name='shop_cart_add'),
-    path('dukkan/cart/remove/<int:item_id>/', cart_remove, name='shop_cart_remove'),
+    path('dukkan/cart/add/item/<int:item_id>/', cart_add, name='cart_add_item'),
+    path('dukkan/cart/add/issue/<int:issue_id>/', cart_add, name='cart_add_issue'),
+    path('dukkan/cart/remove/item/<int:item_id>/', cart_remove, name='cart_remove_item'),
+    path('dukkan/cart/remove/issue/<int:issue_id>/', cart_remove, name='cart_remove_issue'),
     path('dukkan/<slug:slug>/', ItemDetailView.as_view(), name='shop_item_detail'),
 
     path('dil/', set_language, name='set_lang'),

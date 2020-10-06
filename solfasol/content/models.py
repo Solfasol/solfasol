@@ -1,23 +1,25 @@
+import secrets
 from urllib.parse import urlparse, parse_qs
 from collections import defaultdict
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.timezone import now
+from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
-from django_editorjs import EditorJsField
 from slugify import slugify
 from solfasol.issues.models import Issue, Page
 from solfasol.tags.models import Tag
 from solfasol.contributors.models import Contributor
+from solfasol.publications.models import Publication
 
 
 class Content(models.Model):
-    title = models.CharField(_('title'), max_length=200)
-    slug = models.SlugField(unique=True)
+    title = models.CharField(_('title'), max_length=200, blank=True, null=True)
+    slug = models.SlugField()
     subtitle = models.CharField(_('subtitle'), max_length=200, blank=True, null=True)
 
     body = models.JSONField(blank=True, null=True)
@@ -34,6 +36,12 @@ class Content(models.Model):
     tags = models.ManyToManyField(Tag, verbose_name=_('tags'), blank=True)
     category = models.ForeignKey('category', verbose_name=_('category'), blank=True, null=True, on_delete=models.SET_NULL)
     series = models.ForeignKey('series', verbose_name=_('series'), blank=True, null=True, on_delete=models.SET_NULL)
+
+    publication = models.ForeignKey(
+        Publication, verbose_name=_('publication'),
+        blank=True, null=True,
+        on_delete=models.SET_NULL,
+    )
 
     page = models.ForeignKey(
         Page, verbose_name=_('page'),
@@ -52,6 +60,13 @@ class Content(models.Model):
 
     related_content = models.ManyToManyField('self', verbose_name=_('related content'), blank=True)
 
+    added_by = models.ForeignKey(
+        User, verbose_name=_('added by'),
+        blank=True, null=True,
+        on_delete=models.SET_NULL,
+        related_name='added_content',
+    )
+
     publish = models.BooleanField(_('publish'), default=False)
     publish_at = models.DateTimeField(
         _('publishing time'), default=now,
@@ -60,7 +75,8 @@ class Content(models.Model):
     published_by = models.ForeignKey(
         User, verbose_name=_('published by'),
         blank=True, null=True,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
+        related_name='published_content',
     )
 
     featured = models.BooleanField(_('featured'), default=False)
@@ -72,7 +88,10 @@ class Content(models.Model):
 
     def save(self, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.title)
+            if self.title:
+                self.slug = slugify(self.title)
+            else:
+                self.slug = secrets.token_urlsafe()[:8]
         super().save(**kwargs)
         if self.pinned:
             Content.objects.filter(pinned=True).exclude(id=self.id).update(pinned=False)
@@ -103,6 +122,13 @@ class Content(models.Model):
                     raise ValidationError(_('Please submit a Youtube video link!'))
 
     @cached_property
+    def rendered(self):
+        rendered_doc = ''
+        for block in self.body['blocks']:
+            rendered_doc += render_to_string(f'content/blocks/{block["type"]}.html', block["data"])
+        return rendered_doc
+
+    @cached_property
     def owners(self):
         return ContentContributor.objects.filter(
             content=self,
@@ -124,6 +150,7 @@ class Content(models.Model):
         verbose_name = _('content')
         verbose_name_plural = _('content')
         ordering = ('-pinned', '-added',)
+        unique_together = (('slug', 'publication'),)
 
 
 class ContentSection(models.Model):

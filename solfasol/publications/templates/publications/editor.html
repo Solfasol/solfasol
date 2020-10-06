@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags i18n static %}
+
+
+{% block header %}{% endblock %}
+{% block footer %}{% endblock %}
+
+
+{% block head %}
+
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script><!-- Image -->
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script><!-- Header -->
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script><!-- Delimiter -->
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script><!-- List -->
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script><!-- Quote -->
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script><!-- Embed -->
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script><!-- Table -->
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/link@latest"></script><!-- Link -->
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/warning@latest"></script><!-- Warning -->
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/marker@latest"></script><!-- Marker -->
+
+{% endblock %}
+
+
+{% block content %}
+
+	<div class="container my-4">
+
+        <div id="editorjs" class="w-100 my-4">
+        </div>
+
+        <button id="btnSave" class="btn btn-success">
+            {% trans "Save draft" %}
+        </button>
+
+        <button id="btnPublish" class="btn btn-success">
+            {% trans "Publish" %}
+        </button>
+
+    </div>
+
+{% endblock %}
+
+
+{% block js %}
+
+
+<script>
+
+$(function() {
+
+    var docId = null;
+
+    var editor = new EditorJS({
+        holder: 'editorjs',
+        tools: {
+            header: {
+              class: Header,
+              inlineToolbar: ['link'],
+              config: {
+                placeholder: 'Header'
+              },
+              shortcut: 'CMD+SHIFT+H'
+            },
+            image: {
+              class: ImageTool,
+              inlineToolbar: ['image'],
+              config: {
+                endpoints: {
+                  byFile: '/yaz/img/'
+                }
+              },
+              // FIXME
+              additionalRequestHeaders: {
+                'HTTP_X_CSRFTOKEN': '{{ csrf_token }}'
+              }
+            },
+            list: {
+              class: List,
+              inlineToolbar: true,
+              shortcut: 'CMD+SHIFT+L'
+            },
+            quote: {
+              class: Quote,
+              inlineToolbar: true,
+              config: {
+                quotePlaceholder: 'Enter a quote',
+                captionPlaceholder: 'Quote\'s author',
+              },
+              shortcut: 'CMD+SHIFT+O'
+            },
+            warning: Warning,
+            marker: {
+              class:  Marker,
+              shortcut: 'CMD+SHIFT+M'
+            },
+            delimiter: Delimiter,
+            linkTool: LinkTool,
+            embed: Embed,
+            table: {
+              class: Table,
+              inlineToolbar: true,
+              shortcut: 'CMD+ALT+T'
+            },
+        },
+        data: {% if content.body %}{{ content.body }}{% else %}{}{% endif %}
+    });
+
+    function saveDocument(publish) {
+        editor.save().then((docContent) => {
+            console.log('Article data: ', docContent)
+            $.ajax({
+                type: 'POST',
+                url: '{% url "pub_content_save" %}',
+                data: {
+                    data: JSON.stringify(docContent),
+                    id: docId,
+                },
+                headers: {'X-CSRFTOKEN': '{{ csrf_token }}'},
+                success: function(data) {
+                    console.log(data);
+                    if (publish) {
+                        window.location = data.url;
+                    } else {
+                        docId = data.id;
+                    };
+                },
+                dataType: 'json'
+            });
+        }).catch((error) => {
+            console.log('Saving failed: ', error)
+        });
+    }
+
+    $('#btnSave').click(function() {
+        saveDocument(false);
+    });
+
+    $('#btnPublish').click(function() {
+        saveDocument(true);
+    });
+
+
+});
+
+</script>
+
+{% endblock %}
