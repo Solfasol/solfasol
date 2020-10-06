@@ -1,6 +1,6 @@
 from django.contrib import admin
 from nested_admin import NestedStackedInline, NestedTabularInline, NestedModelAdmin
-from .models import Item, ItemAlternative, Category, Tag, Cart, CartItem
+from .models import Item, ItemAlternative, Category, Tag, Cart, CartItem, CartIssue
 
 
 class ItemAlternativeInline(NestedTabularInline):
@@ -35,9 +35,23 @@ class ItemAdmin(admin.ModelAdmin):
     autocomplete_fields = ['category', 'tags']
 
 
+class CartItemInline(admin.TabularInline):
+    model = CartItem
+    extra = 0
+
+
+class CartIssueInline(admin.TabularInline):
+    model = CartIssue
+    extra = 0
+
+
 @admin.register(Cart)
 class CartAdmin(admin.ModelAdmin):
-    list_display = ['session', 'item_names']
+    list_display = ['id']
+    inlines = [
+        CartItemInline,
+        CartIssueInline,
+    ]
 
     def item_names(self, obj):
         return '; '.join(list(obj.items.all()))
@@ -45,5 +59,4 @@ class CartAdmin(admin.ModelAdmin):
 
 @admin.register(CartItem)
 class CartItemAdmin(admin.ModelAdmin):
-    list_display = ['cart', 'item', 'paid']
-    list_editable = ['paid']
+    list_display = ['cart', 'item']

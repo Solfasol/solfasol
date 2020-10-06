@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+
+{% block content %}
+
+    <div class="container mt-4">
+
+        <div class="row">
+
+            <td class="col-md-12 col-lg-8">
+
+                <h4 class="p-title"><b>{% trans "Shopping cart" %}</b></h4>
+
+                {% if cart.items or cart.issues %}
+
+                <table class="table">
+
+                    {% for item in cart.items.all %}
+
+                    <tr>
+                        <td>
+                            <a href="{{ item.get_absolute_url }}">
+                                <img src="{{ item.image.url }}" class="h-200x">
+                            </a>
+                        </td>
+                        <td>
+                            <h4 class="pt-20"><a href="{{ item.get_absolute_url }}"><b>{{ item.name }}</b></a></h4>
+                        </td>
+                        <td>
+                            {{ item.price }} TL
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                    {% for issue in cart.issues.all %}
+
+                    <tr>
+                        <td class="w-10">
+                            <a href="{{ issue.get_absolute_url }}">
+                                <img src="{{ issue.cover.url }}" class="">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{ issue.get_absolute_url }}"><b>{{ issue }}</b></a>
+                        </td>
+                        <td>
+                            {{ issue_price }} TL
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                </table>
+
+
+                <div class="">
+                    <img src="{% static 'iyzi-logo.png' %}">
+                </div>
+
+                {% if cart %}
+                    <div class="my-4 text-primary">
+                        <input type="checkbox" class="mr-2">
+                        <a href="{% url 'sales_agreement' %}">{% trans "I accept the sales agreement" %}</a>
+                        <a href="{% url 'shop_payment_form' %}" class="btn btn-success d-block my-4">{% trans "Buy" %}</a>
+                    </div>
+                {% endif %}
+
+
+                {% else %}
+
+                    {% trans "Your cart is empty" %}
+
+                {% endif %}
+
+            </div>
+
+
+            <div class="col-md-6 col-lg-4">
+
+            </div><!-- col-md-3 -->
+
+        </div><!-- row -->
+
+    </div><!-- container -->
+
+{% endblock %}

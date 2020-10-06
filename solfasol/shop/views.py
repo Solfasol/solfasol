@@ -12,6 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 import iyzipay
 from .fields import CreditCardNumberField, VerificationValueField
 from .models import Item, Cart, CartItem, Order
+from solfasol.issues.models import Issue
 
 
 API_PARAMS = {
@@ -20,7 +21,29 @@ API_PARAMS = {
     'base_url': 'api.iyzipay.com'
 }
 
+ISSUE_PRICE = 10
+
 YEAR = date.today().year
+
+
+class CartDetailView(DetailView):
+    model = Cart
+
+    def get_object(self):
+        cart_id = self.request.session.get('cart')
+        if cart_id:
+            cart = Cart.objects.filter(id=cart_id).first()
+        if not cart_id or not cart:
+            cart = Cart.objects.create()
+            self.request.session['cart'] = cart.id
+        return cart
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        context.update({
+            'issue_price': ISSUE_PRICE,
+        })
+        return context
 
 
 class ItemListView(ListView):
@@ -56,22 +79,38 @@ class ItemDetailView(DetailView):
         return context
 
 
-def cart_add(request, item_id):
-    item = get_object_or_404(Item, id=item_id)
-    cart = request.session.get('cart', [])
-    cart.append(item.id)
-    request.session['cart'] = cart
-    return redirect('shop_item_list')
+def cart_add(request, item_id=None, issue_id=None):
+    item = item_id and get_object_or_404(Item, id=item_id)
+    issue = issue_id and get_object_or_404(Issue, id=issue_id)
+    cart_id = request.session.get('cart')
+    if not cart_id:
+        cart = Cart.objects.create()
+        request.session['cart'] = cart.id
+    else:
+        cart = get_object_or_404(Cart, id=cart_id)
+    if item:
+        cart.items.add(item)
+    if issue:
+        cart.issues.add(issue)
+        messages.success(request, 'Solfasol %s sayısı sepetinize eklendi!' % issue)
+        return redirect(issue)
+    return redirect(request.GET.get('next') or 'shop_item_list')
 
 
-def cart_remove(request, item_id):
-    item = get_object_or_404(Item, id=item_id)
-    cart = request.session.get('cart', [])
-    try:
-        cart.remove(item.id)
-    except ValueError:
-        pass
-    request.session['cart'] = cart
+def cart_remove(request, item_id=None, issue_id=None):
+    item = item_id and get_object_or_404(Item, id=item_id)
+    issue = issue_id and get_object_or_404(Issue, id=issue_id)
+    cart = get_object_or_404(Cart, id=request.session.get('cart'))
+    if item_id:
+        try:
+            cart.items.remove(item)
+        except ValueError:
+            pass
+    if issue_id:
+        try:
+            cart.issues.remove(issue)
+        except ValueError:
+            pass
     return redirect(request.GET.get('next') or 'shop_item_list')
 
 

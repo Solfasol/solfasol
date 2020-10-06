@@ -3,6 +3,7 @@ from django.contrib.sessions.models import Session
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from slugify import slugify
+from solfasol.issues.models import Issue
 
 
 class Category(models.Model):
@@ -83,15 +84,12 @@ class Tag(models.Model):
 
 
 class Cart(models.Model):
-    session = models.ForeignKey(
-        Session,
-        verbose_name=_('session'),
-        on_delete=models.CASCADE,
-    )
-    items = models.ManyToManyField(Item, through='CartItem')
+    items = models.ManyToManyField(Item, blank=True, through='CartItem')
+    issues = models.ManyToManyField(Issue, blank=True, through='CartIssue')
+    created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.session.id
+        return str(self.id)
 
     class Meta:
         verbose_name = _('cart')
@@ -101,13 +99,24 @@ class Cart(models.Model):
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, verbose_name=_('cart'), on_delete=models.CASCADE)
     item = models.ForeignKey(Item, verbose_name=_('item'), on_delete=models.CASCADE)
-    added = models.DateTimeField(_('date'), auto_now_add=True)
-    paid = models.BooleanField(_('paid'), default=False)
+    count = models.PositiveSmallIntegerField(default=1)
 
     def __str__(self):
         return '%s:%s' % (
             self.cart.__str__(),
             self.item.__str__()
+        )
+
+
+class CartIssue(models.Model):
+    cart = models.ForeignKey(Cart, verbose_name=_('cart'), on_delete=models.CASCADE)
+    issue = models.ForeignKey(Issue, verbose_name=_('issue'), on_delete=models.CASCADE)
+    count = models.PositiveSmallIntegerField(default=1)
+
+    def __str__(self):
+        return '%s:%s' % (
+            self.cart.__str__(),
+            self.issue.__str__()
         )
 
 
