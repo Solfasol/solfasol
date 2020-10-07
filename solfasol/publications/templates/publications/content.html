@@ -46,6 +46,13 @@
 
             <div class="pl-20 pl-md-0">
 
+
+                {% if request.user in content.publication.users.all %}
+
+                    <a href="{% url 'pub_content_edit' content_id=content.id %}">{% trans "Edit" %}</a>
+
+                {% endif %}
+
                 {% if content.page %}
                 <h4 class="p-title mb-0"><b>{% trans "ON PAPER" %}</b></h4>
                 
@@ -81,7 +88,6 @@
                     </a><!-- oflow-hidden -->
 
                 {% endfor %}
-
 
             </div><!--  pl-20 -->
         </div><!-- col-md-3 -->

@@ -50,7 +50,7 @@
 
 $(function() {
 
-    var docId = null;
+    var docId = {% if content.id %}{{ content.id }}{% else %}null{% endif %};
 
     var editor = new EditorJS({
         holder: 'editorjs',
@@ -104,7 +104,7 @@ $(function() {
               shortcut: 'CMD+ALT+T'
             },
         },
-        data: {% if content.body %}{{ content.body }}{% else %}{}{% endif %}
+        data: {% if content.body %}{{ content.body|safe }}{% else %}{}{% endif %}
     });
 
     function saveDocument(publish) {

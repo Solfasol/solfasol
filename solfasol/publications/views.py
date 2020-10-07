@@ -22,7 +22,7 @@ def content_editor(request, content_id=None):
         content = Content.objects.filter(
             id=content_id,
             publication=publication,
-        )
+        ).first()
     else:
         content = None
     return render(request, 'publications/editor.html', {
