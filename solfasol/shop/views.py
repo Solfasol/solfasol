@@ -82,12 +82,16 @@ class ItemDetailView(DetailView):
 def cart_add(request, item_id=None, issue_id=None):
     item = item_id and get_object_or_404(Item, id=item_id)
     issue = issue_id and get_object_or_404(Issue, id=issue_id)
+    cart = None
     cart_id = request.session.get('cart')
-    if not cart_id:
+    if cart_id:
+        try:
+            cart = Cart.objects.get(id=cart_id)
+        except:
+            pass
+    if not cart:
         cart = Cart.objects.create()
         request.session['cart'] = cart.id
-    else:
-        cart = get_object_or_404(Cart, id=cart_id)
     if item:
         cart.items.add(item)
     if issue:
