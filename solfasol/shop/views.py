@@ -11,7 +11,7 @@ from django.utils.translation import ugettext as _
 from django.views.decorators.csrf import csrf_exempt
 import iyzipay
 from .fields import CreditCardNumberField, VerificationValueField
-from .models import Item, Cart, CartItem, Order
+from .models import Item, Cart, CartItem, CartIssue, Order
 from solfasol.issues.models import Issue
 
 
@@ -132,8 +132,19 @@ class PaymentForm(forms.ModelForm):
 
 
 def payment_form(request):
-    cart = Item.objects.filter(id__in=request.session.get('cart', []))
-    price_total = sum([item.price for item in cart])
+    try:
+        cart = Cart.objects.get(id=request.session.get('cart'))
+    except Cart.DoesNotExist:
+        cart = Cart.objects.create()
+        request.session['cart'] = cart.id
+    cart_items = CartItem.objects.filter(
+        cart=cart,
+    )
+    cart_issues = CartIssue.objects.filter(
+        cart=cart,
+    )
+    # FIXME:
+    price_total = sum([item.price for item in cart.items.all()])
     if request.method == 'POST':
         form = PaymentForm(request.POST)
         if form.is_valid():
