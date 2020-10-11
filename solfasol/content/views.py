@@ -1,10 +1,13 @@
 from django.views.generic import ListView, DetailView, CreateView
 from django.utils.translation import ugettext as _
 from django.shortcuts import get_object_or_404
+from django.shortcuts import render, redirect
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
 from django.utils.timezone import now
 from solfasol.issues.models import Page
+from solfasol.publications.models import Publication
+from solfasol.publications.views import content_detail as publication_content_detail
 from .models import Content, Category, Tag, Contributor, Series
 
 
@@ -71,20 +74,17 @@ class ContentListView(ListView):
         return context
 
 
-@method_decorator(cache_page(5*60), name='dispatch')  # 5 mins
-class ContentDetailView(DetailView):
-    model = Content
-    template_name = 'content/content_detail.html'
-    context_object_name = 'content'
+@cache_page(5*60)  # 5 mins
+def content_detail(request, slug):
+    publication = Publication.objects.filter(
+        site__domain=request.get_host()
+    ).first()
+    if publication:
+        return publication_content_detail(request, publication, slug)
 
-    def get_object(self, **kwargs):
-        obj = super().get_object(**kwargs)
-        obj.view_count += 1
-        obj.save()
-        return obj
-
-
-class ContentCreateView(CreateView):
-    model = Content
-    fields = ['body']
-
+    content = get_object_or_404(Content, slug=slug)
+    content.view_count += 1
+    content.save()
+    return render(request, 'content/content_detail.html', {
+        'content': content,
+    })

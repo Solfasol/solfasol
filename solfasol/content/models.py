@@ -1,4 +1,5 @@
 import secrets
+import json
 from urllib.parse import urlparse, parse_qs
 from collections import defaultdict
 from django.core.exceptions import ValidationError
@@ -22,7 +23,7 @@ class Content(models.Model):
     slug = models.SlugField()
     subtitle = models.CharField(_('subtitle'), max_length=200, blank=True, null=True)
 
-    body = models.JSONField(blank=True, null=True)
+    data = models.JSONField(blank=True, null=True)
 
     contributors = models.ManyToManyField(
         Contributor,
@@ -97,10 +98,13 @@ class Content(models.Model):
             Content.objects.filter(pinned=True).exclude(id=self.id).update(pinned=False)
 
     def __str__(self):
-        return self.title
+        return self.title or '-'
 
     def get_absolute_url(self):
-        return reverse('content_detail', kwargs={'slug': self.slug})
+        url = reverse('content_detail', kwargs={'slug': self.slug})
+        if self.publication:
+            url = f'//{self.publication.site.domain}{url}'
+        return url
 
     def clean(self):
         if self.video_url:
@@ -124,9 +128,13 @@ class Content(models.Model):
     @cached_property
     def rendered(self):
         rendered_doc = ''
-        for block in self.body['blocks']:
+        for block in self.data['blocks']:
             rendered_doc += render_to_string(f'content/blocks/{block["type"]}.html', block["data"])
         return rendered_doc
+
+    @cached_property
+    def data_js(self):
+        return json.dumps(self.data)
 
     @cached_property
     def owners(self):
@@ -225,6 +233,11 @@ class ContentContributor(models.Model):
 class Category(models.Model):
     name = models.CharField(_('name'), max_length=100)
     slug = models.SlugField(unique=True)
+    publication = models.ForeignKey(
+        Publication, verbose_name=_('publication'),
+        blank=True, null=True,
+        on_delete=models.CASCADE,
+    )
     order = models.PositiveSmallIntegerField(default=0)
 
     def __str__(self):

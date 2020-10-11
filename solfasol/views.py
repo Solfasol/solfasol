@@ -6,9 +6,11 @@ from django.urls import translate_url
 from django.utils import timezone
 from django.utils.translation import LANGUAGE_SESSION_KEY
 from django.views.decorators.cache import cache_page
-from django.utils.decorators import method_decorator
+from django.shortcuts import render, redirect
 from solfasol.content.models import Content
 from solfasol.issues.models import Issue
+from solfasol.publications.models import Publication
+from solfasol.publications.views import index as publication_index
 
 
 ISSUES_THIS_MONTH_TITLES = {
@@ -27,27 +29,27 @@ ISSUES_THIS_MONTH_TITLES = {
 }
 
 
-@method_decorator(cache_page(5*60), name='dispatch')  # 5 mins
-class IndexView(TemplateView):
-    template_name = 'index.html'
+@cache_page(5*60)  # 5 mins
+def index(request):
+    publication = Publication.objects.filter(
+        site__domain=request.get_host()
+    ).first()
+    if publication:
+        return publication_index(request, publication)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data()
-        content = Content.objects.filter(
-            publish=True,
-            publish_at__lt=timezone.now(),
-        )
-        this_month = date.today().month
-        context.update({
-            'recent_content': content[:6],
-            'featured_content': content.filter(featured=True)[:6],
-            'past_issues': {
-                'title': ISSUES_THIS_MONTH_TITLES[this_month],
-                'issues': Issue.objects.filter(month=this_month).exclude(year=date.today().year),
-            }
-
-        })
-        return context
+    this_month = date.today().month
+    content = Content.objects.filter(
+        publish=True,
+        publish_at__lt=timezone.now(),
+    )
+    return render(request, 'index.html', {
+        'recent_content': content[:6],
+        'featured_content': content.filter(featured=True)[:6],
+        'past_issues': {
+            'title': ISSUES_THIS_MONTH_TITLES[this_month],
+            'issues': Issue.objects.filter(month=this_month).exclude(year=date.today().year),
+        }
+    })
 
 
 class SearchResultView(TemplateView):

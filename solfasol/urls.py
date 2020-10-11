@@ -4,14 +4,14 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import RedirectView, TemplateView
-from .content.views import ContentListView, ContentDetailView, ContentCreateView
+from .content.views import ContentListView, content_detail
 from .feedback.views import feedback_form
 from .subscriptions.views import subscribe
 from .shop.views import ItemListView, CartDetailView, ItemDetailView, cart_add, cart_remove, payment_form, callback_3d
 from .tags.views import tag_detail
 from .issues.views import IssueListView, IssueDetailView, PageDetailView
 from .publications.views import content_editor, image_upload, content_save
-from .views import IndexView, set_language
+from .views import index, set_language
 
 
 urlpatterns = [
@@ -20,7 +20,7 @@ urlpatterns = [
 
     path('', include('solfasol.publications.urls')),
 
-    path('', IndexView.as_view(), name='index'),
+    path('', index, name='index'),
 
     path('kategori/<slug:category>/', ContentListView.as_view(), name='content_category_list'),
     path('etiket/<slug:tag>/', ContentListView.as_view(), name='content_tag_list'),
@@ -58,7 +58,7 @@ urlpatterns = [
 
     path('dil/', set_language, name='set_lang'),
 
-    path('<slug:slug>/', ContentDetailView.as_view(), name='content_detail'),
+    path('<slug:slug>/', content_detail, name='content_detail'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

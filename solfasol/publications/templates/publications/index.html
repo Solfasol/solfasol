@@ -1,0 +1,217 @@
+{% extends 'publications/base.html' %}
+{% load i18n static %}
+
+
+{% block content %}
+
+	<div class="container">
+		<div class="h-600x h-sm-auto">
+			<div class="h-2-3 h-sm-auto oflow-hidden">
+
+			{% with featured_content.0 as content %}
+			{% if content %}
+				<div class="pb-5 pr-5 pr-sm-0 float-left float-sm-none w-2-3 w-sm-100 h-100 h-sm-300x">
+					<a class="pos-relative h-100 dplay-block" href="{{ content.get_absolute_url }}">
+
+						<div class="img-bg bg-grad-layer-6"
+							 style="background: url({{ content.image.url }}) no-repeat center; background-size: cover;"
+						></div>
+
+						<div class="abs-blr color-white p-20 bg-sm-color-7">
+							<h3 class="mb-15 mb-sm-5 font-sm-13"><b>{{ content.title }}</b></h3>
+							<ul class="list-li-mr-10">
+								<li>
+									{% with content.owners.all as owners %}
+										{% if owners %}
+										<span class="color-primary">
+											{% for owner in owners %}
+												<strong>{{ owner }}</strong>
+												{% if not forloop.last %} & {% endif %}
+											{% endfor %}
+											 &middot;
+										</span>
+										{% endif %}
+									{% endwith %}
+									{{ content.added|date:"j F" }}
+									{% if content.video_url %}
+										<li><i class="color-primary font-12 ion-ios-videocam"></i></li>
+									{% endif %}
+								</li>
+							</ul>
+						</div><!--abs-blr -->
+					</a><!-- pos-relative -->
+				</div><!-- w-1-3 -->
+			{% endif %}
+			{% endwith %}
+
+				<div class="float-left float-sm-none w-1-3 w-sm-100 h-100 h-sm-600x">
+
+				{% for content in featured_content|slice:"1:3" %}
+					<div class="pl-5 pb-5 {% if not forloop.first %}pt-5 ptb-sm-5{% endif %} pl-sm-0 pos-relative h-50">
+						<a class="pos-relative h-100 dplay-block" href="{{ content.get_absolute_url }}">
+							<div class="img-bg bg-grad-layer-6"
+								 style="background: url({{ content.image.url }}) no-repeat center; background-size: cover;"
+							></div>
+							<div class="abs-blr color-white p-20 bg-sm-color-7">
+								<h4 class="mb-10 mb-sm-5"><b>{{ content.title }}</b></h4>
+								<ul class="list-li-mr-10">
+									{% with content.owners.all as owners %}
+										{% if owners %}
+										<span class="color-primary">
+											{% for owner in owners %}
+												<strong>{{ owner }}</strong>
+												{% if not forloop.last %} & {% endif %}
+											{% endfor %}
+											 &middot;
+										</span>
+										{% endif %}
+									{% endwith %}
+									<li>{{ content.added|date:"j F" }}</li>
+									{% if content.video_url %}
+										<li><i class="color-primary mr-5 font-12 ion-ios-videocam"></i></li>
+									{% endif %}
+								</ul>
+							</div><!--abs-blr -->
+						</a><!-- pos-relative -->
+					</div><!-- w-1-3 -->
+				{% endfor %}
+
+				</div><!-- float-left -->
+
+			</div><!-- h-2-3 -->
+
+			<div class="h-1-3 oflow-hidden">
+
+				{% for content in featured_content|slice:"3:" %}
+
+				<div class="{% if forloop.first %}pr-5 pr-sm-0{% elif forloop.last %}pl-5 pl-sm-0 pt-sm-10{% else %}plr-5 plr-sm-0 pt-sm-10{% endif %} pt-5 float-left float-sm-none pos-relative w-1-3 w-sm-100 h-100 h-sm-300x">
+					<a class="pos-relative h-100 dplay-block" href="{{ content.get_absolute_url }}">
+
+						<div class="img-bg bg-grad-layer-6"
+							 style="background: url({{ content.image.url }}) no-repeat center; background-size: cover;"
+						></div>
+
+						<div class="abs-blr color-white p-20 bg-sm-color-7">
+							<h4 class="mb-10 mb-sm-5"><b>{{ content.title }}</b></h4>
+							<ul class="list-li-mr-10">
+								<span class="color-primary">
+									{% with content.owners.all as owners %}
+										{% if owners %}
+										<span class="color-primary">
+											{% for owner in owners %}
+												<strong>{{ owner }}</strong>
+												{% if not forloop.last %} & {% endif %}
+											{% endfor %}
+											 &middot;
+										</span>
+										{% endif %}
+									{% endwith %}
+								</span>
+								<li>{{ content.added|date:"j F" }}</li>
+								{% if content.video_url %}
+									<li><i class="color-primary mr-5 font-12 ion-ios-videocam"></i></li>
+								{% endif %}
+							</ul>
+						</div><!--abs-blr -->
+					</a><!-- pos-relative -->
+				</div><!-- w-1-3 -->
+
+				{% endfor %}
+
+			</div><!-- h-2-3 -->
+		</div><!-- h-100vh -->
+	</div><!-- container -->
+
+	<section>
+		<div class="container">
+			<div class="row">
+
+				<div class="col-md-12 col-lg-8">
+
+					{% for category in categories %}
+					{% if category.content %}
+
+					<h4 class="p-title"><b>{{ category.name }}</b></h4>
+
+					<div class="row">
+
+						{% for content in category.content|slice:":2" %}
+
+						<div class="col-sm-6">
+                            <a href="{{ content.get_absolute_url }}">
+								
+								<img src="{{ content.image.url }}" class="h-200x" style="object-fit: cover;">
+
+                            </a>
+							<h4 class="pt-20"><a href="{{ content.get_absolute_url }}"><b>{{ content.title }}</b></a></h4>
+							<ul class="list-li-mr-10 pt-10 mb-30">
+								<li class="color-lite-black">
+									{% with content.owners.all as owners %}
+										{% if owners %}
+										<span class="color-black">
+											{% for owner in owners %}
+												<strong>{{ owner }}</strong>
+												{% if not forloop.last %} & {% endif %}
+											{% endfor %}
+											 &middot;
+										</span>
+										{% endif %}
+									{% endwith %}
+									{{ content.added|date:"j F" }}
+								</li>
+								{% if content.video_url %}
+									<li><i class="color-primary mr-5 font-12 ion-ios-videocam"></i></li>
+								{% endif %}
+							</ul>
+						</div><!-- col-sm-6 -->
+
+						{% endfor %}
+
+					</div><!-- row -->
+
+					{% endif %}
+					{% endfor %}
+
+				</div><!-- col-md-9 -->
+
+				<div class="d-none d-md-block d-lg-none col-md-3"></div>
+
+				<div class="col-md-6 col-lg-4">
+					<div class="pl-20 pl-md-0">
+
+						<h4 class="p-title"><b>{% trans "POPULAR POSTS" %}</b></h4>
+
+						{% for content in popular_content %}
+
+						<a class="oflow-hidden pos-relative mb-20 dplay-block" href="{{ content.get_absolute_url }}">
+							<div class="wh-100x abs-tlr"><img src="{{ content.image.url }}" alt=""></div>
+							<div class="ml-120 min-h-100x">
+								<h5><b>{{ content.title }}</b></h5>
+								<h6 class="color-lite-black pt-10">
+								{% with content.owners.all as owners %}
+									{% if owners %}
+									<span class="color-black">
+										{% for owner in owners %}
+											<strong>{{ owner }}</strong>
+											{% if not forloop.last %} & {% endif %}
+										{% endfor %}
+										 &middot;
+									</span>
+									{% endif %}
+								{% endwith %}
+								{{ content.added|date:"j F" }}
+								</h6>
+							</div>
+						</a><!-- oflow-hidden -->
+
+						{% endfor %}
+
+
+					</div><!--  pl-20 -->
+				</div><!-- col-md-3 -->
+
+			</div><!-- row -->
+		</div><!-- container -->
+	</section>
+
+{% endblock %}

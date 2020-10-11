@@ -12,9 +12,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
-    'farukbildirici.localhost',
+    '.localhost',
     'solfasol.tv',
-    'ec2-3-226-238-181.compute-1.amazonaws.com',
+    '.solfasol.tv',
 ]
 
 

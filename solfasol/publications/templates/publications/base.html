@@ -1,0 +1,241 @@
+{% load static i18n %}<!DOCTYPE HTML>
+<html lang="en">
+<head>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-177093303-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-177093303-1');
+	</script>
+
+	<title>{% block title %}{{ publication }}{% endblock %}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+
+	{% if publication.icon %}
+	<link rel="icon" type="image/png" href="{{ publication.icon.url }}" />
+	{% endif %}
+
+	<link href="https://fonts.googleapis.com/css?family=Encode+Sans+Expanded:400,600,700" rel="stylesheet">
+
+	<script src="{% static 'plugin-frameworks/jquery-3.2.1.min.js' %}"></script>
+
+	{% block bootstrap %}
+	<link href="{% static 'plugin-frameworks/bootstrap.css' %}" rel="stylesheet">
+	<script src="{% static 'plugin-frameworks/bootstrap.js' %}"></script>
+	{% endblock %}
+
+	<link href="{% static 'fonts/ionicons.css' %}" rel="stylesheet">
+	<link href="{% static 'common/styles.css' %}" rel="stylesheet">
+
+	<script src="{% static 'plugin-frameworks/tether.min.js' %}"></script>
+	<script src="{% static 'common/scripts.js' %}"></script>
+
+    {% block head %}{% endblock %}
+
+</head>
+
+
+<body>
+
+	{% block header %}
+
+	<header>
+		<div class="bg-191">
+			<div class="container">
+
+				<a class="mt-2" style="position: absolute; left:15px; z-index:100;" href="/">
+
+					{% if publication.logo %}
+						<div class="d-block d-md-none">
+							<img src="{{ publication.logo.url }}" class="img-fluidx" alt="{{ publication }}" style="height: 100px; width: auto;">
+						</div>
+
+						<div class="d-none d-md-block mt-3">
+							<img src="{{ publication.logo.url }}" class="img-fluidx" alt="{{ publication }}" style="height: 100px; width: auto;">
+						</div>
+					{% endif %}
+
+				</a>
+
+				<div class="oflow-hidden color-ash font-9 text-sm-center ptb-sm-5 offset-1">
+
+					<ul class="float-left float-sm-none list-a-plr-10 list-a-plr-sm-5 list-a-ptb-15 list-a-ptb-sm-10">
+					</ul>
+
+					<ul class="float-right float-sm-none list-a-plr-10 list-a-plr-sm-5 list-a-ptb-15 list-a-ptb-sm-5">
+
+					{% if user in publication.users.all %}
+						<li><a class="pl-0 pl-sm-10" href="{% url 'pub_content_create' %}"><i class="ion-ios-book"></i></a></li>
+					{% endif %}
+
+					{% if publication.facebook %}
+						<li><a target="_blank" class="pl-0 pl-sm-10" href="{{ publication.facebook }}"><i class="ion-social-facebook"></i></a></li>
+					{% endif %}
+
+					{% if publication.twitter %}
+						<li><a target="_blank" class="pl-0 pl-sm-10" href="{{ publication.twitter }}"><i class="ion-social-twitter"></i></a></li>
+					{% endif %}
+
+					{% if publication.instagram %}
+						<li><a target="_blank" class="pl-0 pl-sm-10" href="{{ publication.instagram }}"><i class="ion-social-instagram"></i></a></li>
+					{% endif %}
+
+					{% if publication.youtube %}
+						<li><a target="_blank" class="pl-0 pl-sm-10" href="{{ publication.youtube }}"><i class="ion-social-youtube"></i></a></li>
+					{% endif %}
+
+					{% if publication.email %}
+						<li><a target="_blank" class="pl-0 pl-sm-10" href="mailto://{{ publication.email }}"><i class="ion-email"></i></a></li>
+					{% endif %}
+
+					{% if publication.patreon %}
+						<li><a target="_blank" class="pl-0 pl-sm-10" href="{{ publication.patreon }}"><img src="{% static "patreon.svg" %}" style="width:1.1em" /></a></li>
+					{% endif %}
+
+					</ul>
+
+				</div><!-- top-menu -->
+			</div><!-- container -->
+		</div><!-- bg-191 -->
+
+		<div class="container">
+
+			{% comment %}
+			<a class="right-area src-btn" href="#" >
+				<i class="active src-icn ion-search"></i>
+				<i class="close-icn ion-close"></i>
+			</a>
+			<div class="src-form">
+				<form>
+					<input type="text" placeholder="Search here">
+					<button type="submit"><i class="ion-search"></i></a></button>
+				</form>
+			</div><!-- src-form -->
+			{% endcomment %}
+
+			<a class="menu-nav-icon" data-menu="#main-menu" href="#"><i class="ion-navicon"></i></a>
+
+			<ul class="main-menu" id="main-menu">
+
+				{% for category in categories %}
+					<li><a href="{% url 'content_category_list' category=category.slug %}">{{ category.name }}</a></li>
+				{% endfor %}
+
+
+				{% comment %}
+
+				{% get_current_language as LANGUAGE_CODE %}
+				{% get_available_languages as LANGUAGES %}
+				{% get_language_info_list for LANGUAGES as languages %}
+
+				<li class="drop-down"><a href="#">{{ LANGUAGE_CODE|upper }}<i class="ion-arrow-down-b"></i></a>
+					<ul class="drop-down-menu drop-down-inner">
+					{% for language in languages %}
+						{% if language.code != LANGUAGE_CODE %}
+							<li><a href="{% url 'set_lang' %}?lang={{ language.code }}">{{ language.name_local }}</a></li>
+						{% endif %}
+					{% endfor %}
+					</ul>
+				</li>
+
+				{% endcomment %}
+
+
+			</ul>
+
+			<div class="clearfix"></div>
+		</div><!-- container -->
+	</header>
+	{% endblock %}
+
+
+	{% for message in messages %}
+
+		<div class="alert alert-success" role="alert">
+			{{ message }}
+		</div>
+
+	{% endfor %}
+
+
+    {% block content %}
+    {% endblock %}
+
+
+	{% block footer %}
+
+	<div class="clearfix my-4">
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+	</div>
+
+	<footer class="bg-191 color-ccc">
+
+		<div class="container">
+
+			<div class="pt-50 pb-20 pos-relative">
+
+				<div class="row">
+
+					<div class="col-sm-4">
+						<div class="mb-30">
+							<a class="logo mb-4" href="/"><img src="{% static 'keci_beyaz.png' %}" alt="Logo"></a>
+						</div><!-- mb-30 -->
+					</div><!-- col-md-4 -->
+
+					<div class="col-sm-8">
+						<div class="mb-30">
+							<h5 class="color-primary mb-20"><b>Neden Solfasol?</b></h5>
+							<div class="mb-20">
+								Yeni bir Ankara sabahı için bir araya geldik. Derdimiz bir gazete çıkarmak.
+								Adımız “Solfasol”; hem Ankara’ya ait, hem de inadına sol olduğumuz için.
+								İddiamız “Ankara’nın gayriresmi gazetesi” olmak.
+								Taşra muhafazakarlığının korkak ve baskıcı dünyasına sıkışmayı reddediyoruz.
+								Ankara’nın sahip olduğu birikimi derleyip, çoğaltıp şehre yansıtacak bir ayna olmak istiyoruz.
+								Ankara’ya, Ankara’nın sorunlarına ve olanaklarına bu birikimin gözleri ile bakacağız.
+								Bu birikime dokunduğumuzda ortaya çıkacağını düşündüğümüz enerji bizi heyecanlandırıyor.
+								Bu heyecanla, Ankara’nın ta kendinden Ankara’yı değiştirecek, dönüştürecek bir hareket yaratmak istiyoruz.
+								Bu heyecanla, şehre dair sözlerimizi ve yapma isteklerimizi, eleştirel ama adil bir yaklaşımla
+								Ankara’nın sokaklarına, meydanlarına, üniversitelerine, kahvelerine, parklarına, kitapçılarına yaymak,
+								en uzak köşesine kadar ulaştırmak ve çoğalmak istiyoruz;
+								sonra sesimiz ve gücümüz nereye kadar yeter ise oraya kadar gitmek.
+								<br>
+								<br>
+								Eğer sizce de bu sözlerimizin bir anlamı varsa, Ankara’nın Gayriresmi Gazetesi Solfasol’e el vermek için yazınızla, çizinizle, sesinizle bu harekete katılmaya, bizimle yanyana durmaya davetlisiniz.
+
+								<ul class="lead mt-4">
+									<li class="btn btn-outline-warning"><a class="text-light" href="{% url 'subscription_form' %}">{% trans "Subscribe" %}</a></li>
+									<li class="btn btn-outline-warning ml-3"><a class="text-light" target="_blank" class="pl-0 pl-sm-10" href="mailto:bilgi@gazetesolfasol.com">{% trans "Contact us" %}</a></li>
+								</ul>
+
+							</div>
+						</div><!-- mb-30 -->
+					</div><!-- col-md-4 -->
+
+				</div><!-- row -->
+
+			</div><!-- ptb-50 -->
+
+		</div><!-- container -->
+	</footer>
+
+	{% endblock %}
+
+
+{% block js %}{% endblock %}
+
+
+</body>
+</html>
