@@ -106,8 +106,8 @@ class ContentContributorAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name']
-    search_fields = ['name']
+    list_display = ['name', 'publication']
+    search_fields = ['name', 'publication__site__name']
 
 
 class SeriesContentInline(NestedStackedInline):
