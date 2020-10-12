@@ -318,7 +318,7 @@ msgstr "Paylaş"
 
 #: solfasol/publications/templates/publications/content_detail.html:54
 msgid "Edit"
-msgstr ""
+msgstr "Düzenle"
 
 #: solfasol/publications/templates/publications/content_detail.html:59
 #: solfasol/templates/content/content_detail.html:209
@@ -334,7 +334,7 @@ msgstr "POPÜLER İÇERİK"
 
 #: solfasol/publications/templates/publications/editor.html:26
 msgid "Tags"
-msgstr ""
+msgstr "Etiketler"
 
 #: solfasol/publications/templates/publications/editor.html:27
 msgid "Category"
@@ -342,7 +342,7 @@ msgstr "Kategori"
 
 #: solfasol/publications/templates/publications/editor.html:47
 msgid "Save draft"
-msgstr ""
+msgstr "Kaydet"
 
 #: solfasol/publications/templates/publications/editor.html:104
 msgid "Title"

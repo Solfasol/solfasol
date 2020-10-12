@@ -17,20 +17,18 @@
 
             {{ content.rendered|safe }}
 
-        </div>
+            <div class="float-left-right text-center mt-40 mt-sm-20">
+                <ul class="mb-30 list-li-mt-10 list-li-mr-5 list-a-plr-15 list-a-ptb-7 list-a-bg-grey list-a-br-2 list-a-hvr-primary ">
+                    {% for tag in content.tags.all %}
+                    <li><a href="{% url 'content_tag_list' tag=tag.slug %}">{{ tag.name }}</a></li>
+                    {% endfor %}
+                </ul>
 
-        <div class="col-md-6 col-lg-4">
-
-            <ul class="mb-30 list-li-mt-10 list-li-mr-5 list-a-plr-15 list-a-ptb-7 list-a-bg-grey list-a-br-2 list-a-hvr-primary ">
-                {% for tag in content.tags.all %}
-                <li><a href="{% url 'content_tag_list' tag=tag.slug %}">{{ tag.name }}</a></li>
-                {% endfor %}
-            </ul>
-            <ul class="mb-30 list-a-bg-grey list-a-hw-radial-35 list-a-hvr-primary list-li-ml-5">
-                <li class="mr-10 ml-0">{% trans "Share" %}</li>
-                <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="text-info"><i class="ion-social-facebook"></i></a></li>
-                <li><a href="https://www.twitter.com/share?url={{ request.build_absolute_uri }}&text={{ content.title }} - Solfasol" target="_blank" class="text-info"><i class="ion-social-twitter"></i></a></li>
-            </ul>
+                <ul class="mb-30 list-a-bg-grey list-a-hw-radial-35 list-a-hvr-primary list-li-ml-5">
+                    <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" class="text-info"><i class="ion-social-facebook"></i></a></li>
+                    <li><a href="https://www.twitter.com/share?url={{ request.build_absolute_uri }}&text={{ content.title }} - Solfasol" target="_blank" class="text-info"><i class="ion-social-twitter"></i></a></li>
+                </ul>
+            </div>
 
             <table class="table my-4">
             {% for contribution_type, contributors in content.contributors_dict.items %}
@@ -46,14 +44,15 @@
             {% endfor %}
             </table>
 
+            {% if request.user in content.publication.users.all %}
+                <a class="btn btn-outline-success" href="{% url 'pub_content_edit' content_id=content.id %}">{% trans "Edit" %}</a>
+            {% endif %}
+
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+
             <div class="pl-20 pl-md-0">
-
-
-                {% if request.user in content.publication.users.all %}
-
-                    <a href="{% url 'pub_content_edit' content_id=content.id %}">{% trans "Edit" %}</a>
-
-                {% endif %}
 
                 {% if content.page %}
                 <h4 class="p-title mb-0"><b>{% trans "ON PAPER" %}</b></h4>
