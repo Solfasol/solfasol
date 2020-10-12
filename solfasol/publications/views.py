@@ -11,6 +11,7 @@ from django.views.decorators.cache import cache_page
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import DefaultStorage
 from django.utils import timezone
+from slugify import slugify
 from solfasol.content.models import Content, Tag, Category
 from .models import Publication
 
@@ -86,13 +87,21 @@ def content_save(request):
             if t.strip()
         ]
         for tag_name in tag_names:
-            tag, c = Tag.objects.get_or_create(name=tag_name)
+            tag, c = Tag.objects.get_or_create(
+                slug=slugify(tag_name),
+                defaults={
+                    'name': tag_name,
+                }
+            )
             content.tags.add(tag)
         category_name = request.POST.get('category').strip()
         if category_name:
             category, c = Category.objects.get_or_create(
-                name=category_name,
+                slug=slugify(category_name),
                 publication=publication,
+                defaults={
+                    'name': category_name,
+                }
             )
             content.category = category
             content.save()
