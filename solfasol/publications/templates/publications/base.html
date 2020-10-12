@@ -191,35 +191,23 @@
 
 					<div class="col-sm-4">
 						<div class="mb-30">
-							<a class="logo mb-4" href="/"><img src="{% static 'keci_beyaz.png' %}" alt="Logo"></a>
+							{% if publication.logo %}
+								<a class="logo mb-4" href="/">
+									{#<img src="{{ publication.logo.url }}" alt="Logo">#}
+								</a>
+							{% endif %}
 						</div><!-- mb-30 -->
 					</div><!-- col-md-4 -->
 
 					<div class="col-sm-8">
 						<div class="mb-30">
-							<h5 class="color-primary mb-20"><b>Neden Solfasol?</b></h5>
+							<h5 class="color-primary mb-20">
+								<b>{{ publication }}</b>
+							</h5>
 							<div class="mb-20">
-								Yeni bir Ankara sabahı için bir araya geldik. Derdimiz bir gazete çıkarmak.
-								Adımız “Solfasol”; hem Ankara’ya ait, hem de inadına sol olduğumuz için.
-								İddiamız “Ankara’nın gayriresmi gazetesi” olmak.
-								Taşra muhafazakarlığının korkak ve baskıcı dünyasına sıkışmayı reddediyoruz.
-								Ankara’nın sahip olduğu birikimi derleyip, çoğaltıp şehre yansıtacak bir ayna olmak istiyoruz.
-								Ankara’ya, Ankara’nın sorunlarına ve olanaklarına bu birikimin gözleri ile bakacağız.
-								Bu birikime dokunduğumuzda ortaya çıkacağını düşündüğümüz enerji bizi heyecanlandırıyor.
-								Bu heyecanla, Ankara’nın ta kendinden Ankara’yı değiştirecek, dönüştürecek bir hareket yaratmak istiyoruz.
-								Bu heyecanla, şehre dair sözlerimizi ve yapma isteklerimizi, eleştirel ama adil bir yaklaşımla
-								Ankara’nın sokaklarına, meydanlarına, üniversitelerine, kahvelerine, parklarına, kitapçılarına yaymak,
-								en uzak köşesine kadar ulaştırmak ve çoğalmak istiyoruz;
-								sonra sesimiz ve gücümüz nereye kadar yeter ise oraya kadar gitmek.
-								<br>
-								<br>
-								Eğer sizce de bu sözlerimizin bir anlamı varsa, Ankara’nın Gayriresmi Gazetesi Solfasol’e el vermek için yazınızla, çizinizle, sesinizle bu harekete katılmaya, bizimle yanyana durmaya davetlisiniz.
-
-								<ul class="lead mt-4">
-									<li class="btn btn-outline-warning"><a class="text-light" href="{% url 'subscription_form' %}">{% trans "Subscribe" %}</a></li>
-									<li class="btn btn-outline-warning ml-3"><a class="text-light" target="_blank" class="pl-0 pl-sm-10" href="mailto:bilgi@gazetesolfasol.com">{% trans "Contact us" %}</a></li>
-								</ul>
-
+								{% if publication.about %}
+									{{ publication.about }}
+								{% endif %}
 							</div>
 						</div><!-- mb-30 -->
 					</div><!-- col-md-4 -->

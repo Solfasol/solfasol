@@ -23,8 +23,8 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 
                 <form class="form-inline my-2 my-lg-0">
-                    <input id="tagInput" class="form-control mr-sm-2" type="text" placeholder="{% trans "Tags" %}" aria-label="{% trans "Tags" %}">
-                    <input id="categoryInput" list="categories" class="form-control mr-sm-2" type="text" placeholder="{% trans "Category" %}" aria-label="{% trans "Category" %}">
+                    <input id="tagInput" class="form-control mr-sm-2" type="text" value="{{ content.tags.all|join:', ' }}" placeholder="{% trans "Tags" %}" aria-label="{% trans "Tags" %}">
+                    <input id="categoryInput" list="categories" value="{% if content.category %}{{ content.category }}{% endif %}" class="form-control mr-sm-2" type="text" placeholder="{% trans "Category" %}" aria-label="{% trans "Category" %}">
 
                     <datalist id="categories">
                         {% for category in publication.category_set.all %}
@@ -36,9 +36,11 @@
 
             </div>
 
+            {% comment %}
             <span class="navbar-text">
                 Auto saved
             </span>
+            {% endcomment %}
 
             <form class="form-inline my-2 my-lg-0">
                 <button id="btnSave" class="btn btn-outline-success my-2 my-sm-0 ml-2" type="button">{% trans "Save draft" %}</button>
@@ -77,11 +79,7 @@
 
 {% block content %}
 
-	<div class="container my-4 d-flex h-100">
-
-        <div id="editorjs" class="w-100 my-4">
-        </div>
-
+    <div id="editorjs" class="w-100">
     </div>
 
 {% endblock %}
@@ -167,7 +165,9 @@ $(function() {
                 data: {
                     data: JSON.stringify(docContent),
                     id: docId,
-                    publish: publish
+                    publish: publish,
+                    tags: $('#tagInput').val(),
+                    category: $('#categoryInput').val()
                 },
                 headers: {'X-CSRFTOKEN': '{{ csrf_token }}'},
                 success: function(data) {

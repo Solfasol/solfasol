@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import RedirectView, TemplateView
-from .content.views import ContentListView, content_detail
+from .content.views import content_list, content_detail
 from .feedback.views import feedback_form
 from .subscriptions.views import subscribe
 from .shop.views import ItemListView, CartDetailView, ItemDetailView, cart_add, cart_remove, payment_form, callback_3d
@@ -22,11 +22,11 @@ urlpatterns = [
 
     path('', index, name='index'),
 
-    path('kategori/<slug:category>/', ContentListView.as_view(), name='content_category_list'),
-    path('etiket/<slug:tag>/', ContentListView.as_view(), name='content_tag_list'),
-    path('dosya/<slug:series>/', ContentListView.as_view(), name='content_series_list'),
-    path('kim/<slug:contributor>/', ContentListView.as_view(), name='content_contributor_list'),
-    path('populer/', ContentListView.as_view(), {'popular': True}, name='content_popular_list'),
+    path('kategori/<slug:category>/', content_list, name='content_category_list'),
+    path('etiket/<slug:tag>/', content_list, name='content_tag_list'),
+    path('dosya/<slug:series>/', content_list, name='content_series_list'),
+    path('kim/<slug:contributor>/', content_list, name='content_contributor_list'),
+    path('populer/', content_list, {'popular': True}, name='content_popular_list'),
 
     #path('dizin/', ContentListView.as_view(), name='tag_list'),
     path('dizin/<str:tag_name>/', tag_detail, name='tag_detail'),

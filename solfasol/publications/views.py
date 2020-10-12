@@ -11,7 +11,7 @@ from django.views.decorators.cache import cache_page
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import DefaultStorage
 from django.utils import timezone
-from solfasol.content.models import Content
+from solfasol.content.models import Content, Tag, Category
 from .models import Publication
 
 
@@ -73,11 +73,29 @@ def content_save(request):
                     publication=publication,
                     publish=publish,
                     published_by=request.user,
+                    featured=True,
                 )
             except IntegrityError:
                 return JsonResponse({
                     'error': _('A post with the same title already exists'),
                 })
+        content.tags.clear()
+        tag_names = [
+            t.strip()
+            for t in request.POST.get('tags', '').split(',')
+            if t.strip()
+        ]
+        for tag_name in tag_names:
+            tag, c = Tag.objects.get_or_create(name=tag_name)
+            content.tags.add(tag)
+        category_name = request.POST.get('category').strip()
+        if category_name:
+            category, c = Category.objects.get_or_create(
+                name=category_name,
+                publication=publication,
+            )
+            content.category = category
+            content.save()
         return JsonResponse({
             'id': content.id,
             'url': content.get_absolute_url(),
@@ -96,7 +114,7 @@ def image_upload(request):
         image = request.FILES['image']
         fs = DefaultStorage()
         now = timezone.now()
-        image_path = f'content_images/{publication.slug}/{now.year}/{now.month}/{now.day}/{image.name}'
+        image_path = f'publications/{publication.slug}/{now.year}/{now.month}/{now.day}/{image.name}'
         filename = fs.save(
             image_path,
             image
@@ -113,13 +131,6 @@ def image_upload(request):
     })
 
 
-def content_detail(request, publication, content_slug):
-    content = get_object_or_404(Content, publication=publication, slug=content_slug)
-    return render(request, 'publications/content.html', {
-        'content': content,
-    })
-
-
 def index(request, publication):
     content = Content.objects.filter(
         publication=publication,
@@ -131,3 +142,17 @@ def index(request, publication):
         'recent_content': content[:6],
         'featured_content': content.filter(featured=True)[:6],
     })
+
+
+def content_list(request, context):
+    return render(request, 'publications/content_list.html', context)
+
+
+def content_detail(request, publication, content_slug):
+    content = get_object_or_404(Content, publication=publication, slug=content_slug)
+    return render(request, 'publications/content_detail.html', {
+        'publication': publication,
+        'content': content,
+    })
+
+

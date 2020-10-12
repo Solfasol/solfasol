@@ -10,7 +10,7 @@ class Publication(models.Model):
     site = models.ForeignKey(Site, on_delete=models.CASCADE)
     logo = models.ImageField(upload_to='publications/logo/', blank=True, null=True)
     icon = models.ImageField(upload_to='publications/icon/', blank=True, null=True)
-    cover = models.ImageField(upload_to='publications/cover/', blank=True, null=True)
+    about = models.TextField(_('about'), blank=True, null=True)
     twitter = models.CharField(max_length=100, blank=True, null=True)
     facebook = models.CharField(max_length=100, blank=True, null=True)
     instagram = models.CharField(max_length=100, blank=True, null=True)

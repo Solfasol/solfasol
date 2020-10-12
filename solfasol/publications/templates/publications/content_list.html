@@ -1,0 +1,115 @@
+{% extends 'publications/base.html' %}
+{% load i18n static %}
+
+
+{% block content %}
+
+<br><br>
+
+		<div class="container">
+
+                <h4 class="p-title"><b>{{ title }}</b></h4>
+
+				{% if series %}
+
+                <div class="row my-4">
+
+					<div class="col">
+
+						<table class="table">
+						{% for contribution_type, contributors in series.contributors_dict.items %}
+							<tr>
+								<th>{{ contribution_type }}</th>
+								<td>
+									{% for contributor in contributors %}
+										<a href="{{ contributor.contributor.get_absolute_url }}" class="text-warning">{{ contributor.contributor.name }}</a>
+										{% if not forloop.last %} & {% endif %}
+									{% endfor %}
+								</td>
+							</tr>
+						{% endfor %}
+						</table>
+
+					</div>
+
+					{% for issue in series.issues.all %}
+
+					<div class="col">
+
+						<a href="{{ issue.get_absolute_url }}">
+							<img src="{{ issue.cover.url }}" class="h-200xx">
+							<span class="d-block text-center my-1">
+								<strong>{{ issue.year }}</strong>
+							</span>
+						</a>
+
+					</div>
+
+					{% endfor %}
+
+				</div>
+
+				{% endif %}
+
+                <div class="row">
+
+                    {% for content in content_list %}
+
+                        <div class="col-md-4 col-sm-6">
+
+                            <a href="{{ content.get_absolute_url }}">
+
+								<img src="{{ content.image }}" class="h-200x" style="object-fit: cover;">
+
+                            </a>
+							<h4 class="pt-20"><a href="{{ content.get_absolute_url }}"><b>{{ content.title }}</b></a></h4>
+							<ul class="list-li-mr-10 pt-10 mb-30">
+								<li class="color-lite-black">
+									{% with content.owners.all as owners %}
+										{% if owners %}
+										<span class="color-black">
+											{% for owner in owners %}
+												<strong>{{ owner }}</strong>
+												{% if not forloop.last %} & {% endif %}
+											{% endfor %}
+											 &middot;
+										</span>
+										{% endif %}
+									{% endwith %}
+									{{ content.added|date:"j F Y" }}
+								</li>
+								{% if content.video_url %}
+									<li><i class="color-primary mr-5 font-12 ion-ios-videocam"></i></li>
+								{% endif %}
+							</ul>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div><!-- row -->
+
+
+
+                <div class="row">
+
+                    {% for page in pages %}
+
+                        <div class="col-md-4 col-sm-6">
+
+                            <a href="{{ page.get_absolute_url }}">
+
+								<img src="{{ page.image.url }}">
+
+                            </a>
+							<h4 class="pt-20"><a href="{{ page.get_absolute_url }}"><b>{{ page }}</b></a></h4>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div><!-- row -->
+
+		</div><!-- container -->
+
+{% endblock %}

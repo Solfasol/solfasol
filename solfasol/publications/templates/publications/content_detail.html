@@ -7,6 +7,8 @@
 
 {% block content %}
 
+<br><br>
+
 <div class="container">
 
     <div class="row">
@@ -57,7 +59,7 @@
                 <h4 class="p-title mb-0"><b>{% trans "ON PAPER" %}</b></h4>
                 
                 <a href="{{ content.page.get_absolute_url }}">
-                    <img src="{{ content.page.image.url }}">
+                    <img src="{{ content.page.image }}">
                 </a>
                 {% endif %}
                 
@@ -67,7 +69,7 @@
                 {% for content in popular_content %}
 
                     <a class="oflow-hidden pos-relative mb-20 dplay-block" href="{{ content.get_absolute_url }}">
-                        <div class="wh-100x abs-tlr"><img src="{{ content.image.url }}" alt=""></div>
+                        <div class="wh-100x abs-tlr"><img src="{{ content.image }}" alt=""></div>
                         <div class="ml-120 min-h-100x">
                             <h5><b>{{ content.title }}</b></h5>
                             <h6 class="color-lite-black pt-10">

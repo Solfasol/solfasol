@@ -41,6 +41,7 @@ def index(request):
     content = Content.objects.filter(
         publish=True,
         publish_at__lt=timezone.now(),
+        publication=publication,
     )
     return render(request, 'index.html', {
         'recent_content': content[:6],

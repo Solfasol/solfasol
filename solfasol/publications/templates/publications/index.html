@@ -4,6 +4,8 @@
 
 {% block content %}
 
+<br>
+
 	<div class="container">
 		<div class="h-600x h-sm-auto">
 			<div class="h-2-3 h-sm-auto oflow-hidden">
@@ -14,7 +16,7 @@
 					<a class="pos-relative h-100 dplay-block" href="{{ content.get_absolute_url }}">
 
 						<div class="img-bg bg-grad-layer-6"
-							 style="background: url({{ content.image.url }}) no-repeat center; background-size: cover;"
+							 style="background: url({{ content.image }}) no-repeat center; background-size: cover;"
 						></div>
 
 						<div class="abs-blr color-white p-20 bg-sm-color-7">
@@ -50,7 +52,7 @@
 					<div class="pl-5 pb-5 {% if not forloop.first %}pt-5 ptb-sm-5{% endif %} pl-sm-0 pos-relative h-50">
 						<a class="pos-relative h-100 dplay-block" href="{{ content.get_absolute_url }}">
 							<div class="img-bg bg-grad-layer-6"
-								 style="background: url({{ content.image.url }}) no-repeat center; background-size: cover;"
+								 style="background: url({{ content.image }}) no-repeat center; background-size: cover;"
 							></div>
 							<div class="abs-blr color-white p-20 bg-sm-color-7">
 								<h4 class="mb-10 mb-sm-5"><b>{{ content.title }}</b></h4>
@@ -88,7 +90,7 @@
 					<a class="pos-relative h-100 dplay-block" href="{{ content.get_absolute_url }}">
 
 						<div class="img-bg bg-grad-layer-6"
-							 style="background: url({{ content.image.url }}) no-repeat center; background-size: cover;"
+							 style="background: url({{ content.image }}) no-repeat center; background-size: cover;"
 						></div>
 
 						<div class="abs-blr color-white p-20 bg-sm-color-7">
@@ -140,7 +142,7 @@
 						<div class="col-sm-6">
                             <a href="{{ content.get_absolute_url }}">
 								
-								<img src="{{ content.image.url }}" class="h-200x" style="object-fit: cover;">
+								<img src="{{ content.image }}" class="h-200x" style="object-fit: cover;">
 
                             </a>
 							<h4 class="pt-20"><a href="{{ content.get_absolute_url }}"><b>{{ content.title }}</b></a></h4>
@@ -184,7 +186,7 @@
 						{% for content in popular_content %}
 
 						<a class="oflow-hidden pos-relative mb-20 dplay-block" href="{{ content.get_absolute_url }}">
-							<div class="wh-100x abs-tlr"><img src="{{ content.image.url }}" alt=""></div>
+							<div class="wh-100x abs-tlr"><img src="{{ content.image }}" alt=""></div>
 							<div class="ml-120 min-h-100x">
 								<h5><b>{{ content.title }}</b></h5>
 								<h6 class="color-lite-black pt-10">
