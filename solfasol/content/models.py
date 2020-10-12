@@ -20,7 +20,7 @@ from solfasol.publications.models import Publication
 
 class Content(models.Model):
     title = models.CharField(_('title'), max_length=200, blank=True, null=True)
-    slug = models.SlugField()
+    slug = models.SlugField(max_length=100)
     subtitle = models.CharField(_('subtitle'), max_length=200, blank=True, null=True)
 
     data = models.JSONField(blank=True, null=True)
@@ -90,7 +90,7 @@ class Content(models.Model):
     def save(self, **kwargs):
         if not self.slug:
             if self.title:
-                self.slug = slugify(self.title)
+                self.slug = slugify(self.title)[:100]
             else:
                 self.slug = secrets.token_urlsafe()[:8]
         super().save(**kwargs)
