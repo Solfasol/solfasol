@@ -124,7 +124,9 @@
 			<ul class="main-menu" id="main-menu">
 
 				{% for category in categories %}
-					<li><a href="{% url 'content_category_list' category=category.slug %}">{{ category.name }}</a></li>
+					{% if category.content %}
+						<li><a href="{% url 'content_category_list' category=category.slug %}">{{ category.name }}</a></li>
+					{% endif %}
 				{% endfor %}
 
 
