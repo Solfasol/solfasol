@@ -1,1 +1,7 @@
-<h{{ level }}>{{ text }}</h{{ level }}>
+<h{{ level }}
+    {% if level == 2 %}
+        class="mb-4"
+    {% elif level == 4 %}
+        class="mb-2 mt-3"
+    {% endif %}
+>{{ text }}</h{{ level }}>
