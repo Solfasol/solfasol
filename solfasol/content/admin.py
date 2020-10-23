@@ -106,8 +106,11 @@ class ContentContributorAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'publication']
+    list_display = ['name', 'publication', 'content_count']
     search_fields = ['name', 'publication__site__name']
+
+    def content_count(self, obj):
+        return obj.content_set.count()
 
 
 class SeriesContentInline(NestedStackedInline):
