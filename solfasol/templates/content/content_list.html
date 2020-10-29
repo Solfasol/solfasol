@@ -57,7 +57,9 @@
 
                             <a href="{{ content.get_absolute_url }}">
 
+								{% if content.image.url %}
 								<img src="{{ content.image.url }}" class="h-200x" style="object-fit: cover;">
+								{% endif %}
 
                             </a>
 							<h4 class="pt-20"><a href="{{ content.get_absolute_url }}"><b>{{ content.title }}</b></a></h4>
@@ -97,7 +99,9 @@
 
                             <a href="{{ page.get_absolute_url }}">
 
+								{% if page.image.url %}
 								<img src="{{ page.image.url }}">
+								{% endif %}
 
                             </a>
 							<h4 class="pt-20"><a href="{{ page.get_absolute_url }}"><b>{{ page }}</b></a></h4>

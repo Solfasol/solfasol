@@ -108,6 +108,7 @@ class ContentContributorAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'publication', 'content_count']
     search_fields = ['name', 'publication__site__name']
+    prepopulated_fields = {"slug": ("name",)}
 
     def content_count(self, obj):
         return obj.content_set.count()
