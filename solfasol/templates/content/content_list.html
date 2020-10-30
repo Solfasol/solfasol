@@ -57,7 +57,7 @@
 
                             <a href="{{ content.get_absolute_url }}">
 
-								{% if content.image.url %}
+								{% if content.image %}
 								<img src="{{ content.image.url }}" class="h-200x" style="object-fit: cover;">
 								{% endif %}
 
@@ -99,7 +99,7 @@
 
                             <a href="{{ page.get_absolute_url }}">
 
-								{% if page.image.url %}
+								{% if page.image %}
 								<img src="{{ page.image.url }}">
 								{% endif %}
 
