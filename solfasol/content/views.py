@@ -48,8 +48,6 @@ def content_list(request, **kwargs):
             'list_type': _('popular'),
             'title': _('popular'),
         })
-    elif kwargs.get('series'):
-        qs = qs.filter(series__slug=kwargs.get('series'))
     elif kwargs.get('contributor'):
         qs = qs.filter(contributors__slug=kwargs.get('contributor'))
         contributor = get_object_or_404(Contributor, slug=kwargs['contributor'])

@@ -92,6 +92,13 @@ class ContentAdmin(NestedModelAdmin):
         return response
     get_qr.short_description = _('Get QR code')
 
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        is_publisher = request.user.groups.filter(name='publisher').first()
+        if is_publisher:
+            qs.filter(publication__users=request.user)
+        return qs
+
 
 @admin.register(ContributionType)
 class ContributionTypeAdmin(admin.ModelAdmin):

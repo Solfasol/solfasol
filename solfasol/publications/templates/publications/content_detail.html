@@ -44,7 +44,7 @@
             {% endfor %}
             </table>
 
-            {% if request.user in content.publication.users.all %}
+            {% if not request.user.is_anonymous and request.user in content.publication.users.all %}
                 <a class="btn btn-outline-success" href="{% url 'pub_content_edit' content_id=content.id %}">{% trans "Edit" %}</a>
             {% endif %}
 

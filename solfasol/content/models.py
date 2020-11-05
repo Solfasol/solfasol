@@ -23,7 +23,7 @@ class Content(models.Model):
     slug = models.SlugField(max_length=100)
     subtitle = models.CharField(_('subtitle'), max_length=200, blank=True, null=True)
 
-    data = models.JSONField(blank=True, null=True)
+    data = models.JSONField(blank=True, null=True, editable=False)
 
     contributors = models.ManyToManyField(
         Contributor,
