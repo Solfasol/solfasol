@@ -15,6 +15,7 @@ ALLOWED_HOSTS = [
     '.localhost',
     'solfasol.tv',
     '.solfasol.tv',
+    'farukbildirici.com',
 ]
 
 
