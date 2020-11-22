@@ -113,7 +113,8 @@ class ContentContributorAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name', 'publication', 'content_count']
+    list_display = ['name', 'publication', 'order', 'content_count']
+    list_editable = ['order']
     search_fields = ['name', 'publication__site__name']
     prepopulated_fields = {"slug": ("name",)}
 
