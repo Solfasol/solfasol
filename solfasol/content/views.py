@@ -3,6 +3,7 @@ from django.utils.translation import ugettext as _
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect
 from django.views.decorators.cache import cache_page
+from django.views.decorators.vary import vary_on_cookie
 from django.utils.decorators import method_decorator
 from django.utils.timezone import now
 from solfasol.issues.models import Page
@@ -75,6 +76,7 @@ def content_list(request, **kwargs):
     return render(request, 'content/content_list.html', context)
 
 
+@vary_on_cookie
 @cache_page(5*60)  # 5 mins
 def content_detail(request, slug):
     publication = Publication.objects.filter(
