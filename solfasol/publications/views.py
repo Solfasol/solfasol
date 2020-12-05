@@ -159,6 +159,8 @@ def content_list(request, context):
 
 def content_detail(request, publication, content_slug):
     content = get_object_or_404(Content, publication=publication, slug=content_slug)
+    content.view_count += 1
+    content.save()
     return render(request, 'publications/content_detail.html', {
         'publication': publication,
         'content': content,
