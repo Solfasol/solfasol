@@ -76,8 +76,8 @@ def content_list(request, **kwargs):
     return render(request, 'content/content_list.html', context)
 
 
-@cache_page(5*60)  # 5 mins
-@vary_on_cookie
+#@cache_page(5*60)  # 5 mins
+#@vary_on_cookie
 def content_detail(request, slug):
     publication = Publication.objects.filter(
         site__domain=request.get_host()
