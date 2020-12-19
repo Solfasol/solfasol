@@ -22,6 +22,8 @@ urlpatterns = [
 
     path('', index, name='index'),
 
+    path('canli/', TemplateView.as_view(template_name='youtube_live.html'), name='youtube_live'),
+
     path('kategori/<slug:category>/', content_list, name='content_category_list'),
     path('etiket/<slug:tag>/', content_list, name='content_tag_list'),
     path('dosya/<slug:series>/', content_list, name='content_series_list'),

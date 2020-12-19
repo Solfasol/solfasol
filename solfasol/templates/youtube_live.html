@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+
+{% block content %}
+
+		<div class="container">
+			<div class="row">
+
+				<div class="col-md-12 col-lg-8">
+
+					<h4 class="p-title"><b>CANLI</b></h4>
+
+                    <div style="position:relative; width:100%; height:0px; padding-bottom:56.25%;">
+                        <iframe style="position:absolute; left:0; top:0; width:100%; height:100%;" src="https://www.youtube.com/embed/live_stream?channel=UC2653F6S271R1sVNdqmkBFg" frameborder="0" allowfullscreen></iframe>
+                    </div>
+
+				</div>
+
+				<div class="col-md-6 col-lg-4">
+
+					<div class="pl-20 pl-md-0">
+
+						<h4 class="p-title"><b>{% trans "POPULAR POSTS" %}</b></h4>
+
+						{% for content in popular_content %}
+
+						<a class="oflow-hidden pos-relative mb-20 dplay-block" href="{{ content.get_absolute_url }}">
+							<div class="wh-100x abs-tlr"><img src="{{ content.image.url }}" alt=""></div>
+							<div class="ml-120 min-h-100x">
+								<h5><b>{{ content.title }}</b></h5>
+								<h6 class="color-lite-black pt-10">
+								{% with content.owners.all as owners %}
+									{% if owners %}
+									<span class="color-black">
+										{% for owner in owners %}
+											<strong>{{ owner }}</strong>
+											{% if not forloop.last %} & {% endif %}
+										{% endfor %}
+										 &middot;
+									</span>
+									{% endif %}
+								{% endwith %}
+								{{ content.added|date:"j F" }}
+								</h6>
+							</div>
+						</a><!-- oflow-hidden -->
+
+						{% endfor %}
+
+
+					</div><!--  pl-20 -->
+				</div><!-- col-md-3 -->
+
+			</div><!-- row -->
+		</div><!-- container -->
+
+{% endblock %}
