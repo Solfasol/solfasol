@@ -70,6 +70,10 @@
 
 					<ul class="float-right float-sm-none list-a-plr-10 list-a-plr-sm-5 list-a-ptb-15 list-a-ptb-sm-5">
 
+					{% if publication.about_link and publication.about_title %}
+						<li><a class="pl-0 pl-sm-10" href="{{ publication.about_link }}">{{ publication.about_title }}</a></li>
+					{% endif %}
+
 					{% if user in publication.users.all %}
 						<li><a class="pl-0 pl-sm-10" href="{% url 'pub_content_create' %}"><i class="ion-ios-book"></i></a></li>
 					{% endif %}
