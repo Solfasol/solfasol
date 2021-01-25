@@ -66,7 +66,7 @@ def content_list(request, **kwargs):
     else:
         qs = qs.filter(publication__isnull=True)
     context.update({
-        'content_list': qs.distinct(),
+        'content_list': qs.distinct().order_by('-date'),
     })
     if publication:
         context.update({
