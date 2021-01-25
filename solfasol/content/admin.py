@@ -36,7 +36,7 @@ class ContributorsInline(NestedTabularInline):
 @admin.register(Content)
 class ContentAdmin(NestedModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
-    list_display = ['title', 'added', 'publication', 'publish', 'featured', 'pinned', 'view_count']
+    list_display = ['title', 'added', 'date', 'publication', 'publish', 'featured', 'pinned', 'view_count']
     search_fields = ['title', 'summary', 'tags__name']
     exclude = [
         'published_by',

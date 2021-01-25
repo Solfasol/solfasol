@@ -47,7 +47,7 @@
                         </span>
                         {% endif %}
                     {% endwith %}
-                    {{ content.added|date:"j F Y" }}
+                    {{ content.date|date:"j F Y" }}
                 </li>
             </ul>
 
@@ -189,7 +189,7 @@
                                 </span>
                                 {% endif %}
                             {% endwith %}
-                            {{ content.added|date:"j F Y" }}
+                            {{ content.date|date:"j F Y" }}
                         </li>
                     </ul>
                 </div><!-- col-sm-6 -->
@@ -234,7 +234,7 @@
                                 </span>
                                 {% endif %}
                             {% endwith %}
-                            {{ content.added|date:"j F" }}
+                            {{ content.date|date:"j F" }}
                             </h6>
                         </div>
                     </a><!-- oflow-hidden -->

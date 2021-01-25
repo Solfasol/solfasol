@@ -64,6 +64,7 @@ def content_save(request):
             content.data = data
             content.image = image
             content.publish = publish
+            content.date = request.POST.get('date')
             content.save()
         else:
             try:
@@ -75,6 +76,7 @@ def content_save(request):
                     publish=publish,
                     published_by=request.user,
                     featured=True,
+                    date=request.POST.get('date'),
                 )
             except IntegrityError:
                 return JsonResponse({

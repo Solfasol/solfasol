@@ -34,7 +34,7 @@
 										</span>
 										{% endif %}
 									{% endwith %}
-									{{ content.added|date:"j F" }}
+									{{ content.date|date:"j F" }}
 									{% if content.video_url %}
 										<li><i class="color-primary font-12 ion-ios-videocam"></i></li>
 									{% endif %}
@@ -68,7 +68,7 @@
 										</span>
 										{% endif %}
 									{% endwith %}
-									<li>{{ content.added|date:"j F" }}</li>
+									<li>{{ content.date|date:"j F" }}</li>
 									{% if content.video_url %}
 										<li><i class="color-primary mr-5 font-12 ion-ios-videocam"></i></li>
 									{% endif %}
@@ -109,7 +109,7 @@
 										{% endif %}
 									{% endwith %}
 								</span>
-								<li>{{ content.added|date:"j F" }}</li>
+								<li>{{ content.date|date:"j F" }}</li>
 								{% if content.video_url %}
 									<li><i class="color-primary mr-5 font-12 ion-ios-videocam"></i></li>
 								{% endif %}
@@ -159,7 +159,7 @@
 										</span>
 										{% endif %}
 									{% endwith %}
-									{{ content.added|date:"j F" }}
+									{{ content.date|date:"j F" }}
 								</li>
 								{% if content.video_url %}
 									<li><i class="color-primary mr-5 font-12 ion-ios-videocam"></i></li>
@@ -201,7 +201,7 @@
 									</span>
 									{% endif %}
 								{% endwith %}
-								{{ content.added|date:"j F" }}
+								{{ content.date|date:"j F" }}
 								</h6>
 							</div>
 						</a><!-- oflow-hidden -->

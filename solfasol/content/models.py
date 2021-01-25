@@ -83,7 +83,9 @@ class Content(models.Model):
     featured = models.BooleanField(_('featured'), default=False)
     pinned = models.BooleanField(_('pinned'), default=False)
 
-    added = models.DateTimeField(_('date'), default=now)
+    date = models.DateTimeField(_('date'), default=now)
+
+    added = models.DateTimeField(_('added'), default=now)
     modified = models.DateTimeField(_('modified'), auto_now=True)
     view_count = models.PositiveIntegerField(default=0, editable=False)
 

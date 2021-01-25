@@ -32,6 +32,8 @@
                         {% endfor %}
                     </datalist>
 
+                    <input type="date" class="form-control mr-sm-2" id="dateInput" value="{% if content.added %}{{ content.added|date:'Y-m-d' }}{% else %}{% now 'Y-m-d' %}{% endif %}" max="{% now 'Y-m-d' %}">
+
                 </form>
 
             </div>
@@ -166,6 +168,7 @@ $(function() {
                     data: JSON.stringify(docContent),
                     id: docId,
                     publish: publish,
+                    date: $('#dateInput').val(),
                     tags: $('#tagInput').val(),
                     category: $('#categoryInput').val()
                 },

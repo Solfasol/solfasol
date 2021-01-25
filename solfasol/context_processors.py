@@ -16,7 +16,7 @@ def generic(request):
             publication=publication,
             publish=True,
             publish_at__lt=timezone.now(),
-    ).filter(
-            added__gt=timezone.now()-timedelta(days=30)
+        ).filter(
+            date__gt=timezone.now()-timedelta(days=30)
         ).order_by('-view_count')[:6],
     }

@@ -42,7 +42,7 @@ def index(request):
         publish=True,
         publish_at__lt=timezone.now(),
         publication=publication,
-    )
+    ).order_by('-date')
     return render(request, 'index.html', {
         'recent_content': content[:6],
         'featured_content': content.filter(featured=True)[:6],
