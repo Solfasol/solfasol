@@ -32,7 +32,7 @@
                         {% endfor %}
                     </datalist>
 
-                    <input type="date" class="form-control mr-sm-2" id="dateInput" value="{% if content.added %}{{ content.added|date:'Y-m-d' }}{% else %}{% now 'Y-m-d' %}{% endif %}" max="{% now 'Y-m-d' %}">
+                    <input type="date" class="form-control mr-sm-2" id="dateInput" value="{% if content.date %}{{ content.date|date:'Y-m-d' }}{% else %}{% now 'Y-m-d' %}{% endif %}" max="{% now 'Y-m-d' %}">
 
                 </form>
 
