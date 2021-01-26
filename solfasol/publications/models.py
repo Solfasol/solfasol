@@ -15,6 +15,7 @@ class Publication(models.Model):
     instagram = models.CharField(max_length=100, blank=True, null=True)
     youtube = models.CharField(max_length=100, blank=True, null=True)
     patreon = models.CharField(max_length=100, blank=True, null=True)
+    analytics_code = models.TextField(blank=True, null=True)
     email = models.CharField(max_length=100, blank=True, null=True)
     about = models.TextField(_('about'), blank=True, null=True)
     about_link = models.URLField(blank=True, null=True)
