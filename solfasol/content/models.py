@@ -310,3 +310,14 @@ class SeriesContributor(models.Model):
     class Meta:
         verbose_name = _('series contributor')
         verbose_name_plural = _('series contributors')
+
+
+class ExtraFile(models.Model):
+    file = models.FileField()
+
+    def __str__(self):
+        return self.file.url
+
+    class Meta:
+        verbose_name = _('extra file')
+        verbose_name_plural = _('extra files')
