@@ -313,7 +313,7 @@ class SeriesContributor(models.Model):
 
 
 class ExtraFile(models.Model):
-    file = models.FileField()
+    file = models.FileField(upload_to='extra/')
 
     def __str__(self):
         return self.file.url
