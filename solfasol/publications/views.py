@@ -147,7 +147,7 @@ def index(request, publication):
         publication=publication,
         publish=True,
         publish_at__lt=timezone.now(),
-    )
+    ).order_by('-date')
     return render(request, 'publications/index.html', {
         'publication': publication,
         'recent_content': content[:6],
