@@ -12,10 +12,10 @@ class Subscription(models.Model):
     )
     type = models.CharField("Abonelik türü", max_length=10, default='destekci', choices=(
         ('dijital', "Dijital abonelik - 100 TL"),
-        ('yillik', "Yıllık abonelik - 150 TL"),
+        ('yillik', "Normal abonelik - 150 TL"),
         ('destekci', "Destekçi abonelik - 300 TL"),
         ('yurtdisi', "Yurtdışı abonelik - 300 TL"),
-        ('duble', "Duble Destekçi abonelik - 600 TL"),
+        ('duble', "Çifte Destekçi abonelik - 600 TL"),
         ('yasasin', "Yaşasın SOLFASOL! aboneliği - 1000 TL"),
     ))
     renewal = models.BooleanField(_('subscription status'), default=False,
