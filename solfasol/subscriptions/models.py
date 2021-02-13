@@ -3,6 +3,18 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.exceptions import ValidationError
 
 
+class SubscriptionType(models.Model):
+    title = models.CharField(max_length=50)
+    amount = models.PositiveSmallIntegerField()
+    description = models.TextField(blank=True, null=True)
+    payment_link = models.URLField()
+    image = models.ImageField(upload_to='subscriptions/', blank=True, null=True)
+    postal_address_required = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.title
+
+
 class Subscription(models.Model):
     name = models.CharField("Adınız, soyadınız", max_length=50)
     email = models.EmailField("E-posta adresiniz")
@@ -10,6 +22,7 @@ class Subscription(models.Model):
         "Posta adresiniz", blank=True, null=True, max_length=200,
         help_text="Dijital dışı abonelikler için gerekli"
     )
+    sub_type = models.ForeignKey(SubscriptionType, blank=True, null=True, on_delete=models.SET_NULL)
     type = models.CharField("Abonelik türü", max_length=10, default='destekci', choices=(
         ('dijital', "Dijital abonelik - 100 TL"),
         ('yillik', "Normal abonelik - 150 TL"),
@@ -29,7 +42,7 @@ class Subscription(models.Model):
         return self.name
 
     def clean(self):
-        if self.type != 'dijital' and not self.address:
+        if self.sub_type.postal_address_required and not self.address:
             raise ValidationError("Lütfen posta adresinizi belirtin.")
 
     class Meta:
