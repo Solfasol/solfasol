@@ -4,15 +4,20 @@ from django.core.exceptions import ValidationError
 
 
 class SubscriptionType(models.Model):
+    order = models.PositiveSmallIntegerField(default=1)
     title = models.CharField(max_length=50)
     amount = models.PositiveSmallIntegerField()
-    description = models.TextField(blank=True, null=True)
+    description = models.CharField(max_length=300, blank=True, null=True)
     payment_link = models.URLField()
     image = models.ImageField(upload_to='subscriptions/', blank=True, null=True)
     postal_address_required = models.BooleanField(default=True)
+    active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        ordering = ('order',)
 
 
 class Subscription(models.Model):
