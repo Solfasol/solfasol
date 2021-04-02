@@ -4,17 +4,23 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
 from captcha.fields import ReCaptchaField
-from .models import Subscription
+from .models import Subscription, SubscriptionType
 
 
 class SubscriptionForm(forms.ModelForm):
     captcha = ReCaptchaField()
+    sub_type = forms.ModelChoiceField(
+        queryset=SubscriptionType.objects,
+        widget=forms.RadioSelect(),
+        empty_label=None,
+        label="Abonelik tipi",
+    )
 
     class Meta:
         model = Subscription
-        fields = ['name', 'email', 'address', 'type', 'renewal', 'phone', 'notes']
+        fields = ['name', 'email', 'address', 'sub_type', 'renewal', 'phone', 'notes']
         widgets = {
-            'type': forms.RadioSelect(),
+            'sub_type': forms.RadioSelect(),
             'renewal': forms.Select(),
         }
 

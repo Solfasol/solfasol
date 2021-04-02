@@ -27,7 +27,7 @@ class Subscription(models.Model):
         "Posta adresiniz", blank=True, null=True, max_length=200,
         help_text="Dijital dışı abonelikler için gerekli"
     )
-    sub_type = models.ForeignKey(SubscriptionType, blank=True, null=True, on_delete=models.SET_NULL)
+    sub_type = models.ForeignKey(SubscriptionType, verbose_name="Abonelik tipi", blank=True, null=True, on_delete=models.SET_NULL)
     type = models.CharField("Abonelik türü", max_length=10, default='destekci', choices=(
         ('dijital', "Dijital abonelik - 100 TL"),
         ('yillik', "Normal abonelik - 150 TL"),

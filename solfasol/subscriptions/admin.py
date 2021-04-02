@@ -8,8 +8,8 @@ from .models import Subscription, SubscriptionType
 
 @admin.register(SubscriptionType)
 class SubscriptionTypeAdmin(admin.ModelAdmin):
-    list_display = ['id', 'order', 'title', 'amount', 'description', 'payment_link', 'image']
-    list_editable = ['order', 'title', 'amount', 'description', 'payment_link', 'image']
+    list_display = ['id', 'order', 'title', 'active', 'amount', 'postal_address_required', 'description', 'payment_link', 'image']
+    list_editable = ['order', 'title', 'active', 'amount', 'postal_address_required', 'description', 'payment_link', 'image']
 
 
 @admin.register(Subscription)
