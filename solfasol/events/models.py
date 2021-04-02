@@ -16,6 +16,9 @@ class Event(models.Model):
         help_text="Detaylı bilgi için bağlantı",
     )
 
+    def __str__(self):
+        return self.title
+
     class Meta:
         verbose_name = "Etkinlik"
         verbose_name_plural = "Etkinlikler"

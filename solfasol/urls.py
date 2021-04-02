@@ -10,6 +10,7 @@ from .subscriptions.views import subscribe
 from .shop.views import ItemListView, CartDetailView, ItemDetailView, cart_add, cart_remove, payment_form, callback_3d
 from .tags.views import tag_detail
 from .issues.views import IssueListView, IssueDetailView, PageDetailView
+from .events.views import event_list
 from .publications.views import content_editor, image_upload, content_save
 from .views import index, set_language
 
@@ -23,6 +24,8 @@ urlpatterns = [
     path('', index, name='index'),
 
     path('canli/', TemplateView.as_view(template_name='youtube_live.html'), name='youtube_live'),
+
+    path('etkinlikler/', event_list, name='event_list'),
 
     path('kategori/<slug:category>/', content_list, name='content_category_list'),
     path('etiket/<slug:tag>/', content_list, name='content_tag_list'),

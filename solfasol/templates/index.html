@@ -205,6 +205,7 @@
 				<div class="d-none d-md-block d-lg-none col-md-3"></div>
 
 				<div class="col-md-6 col-lg-4">
+
 					<div class="pl-20 pl-md-0">
 
 						<h4 class="p-title"><b>{% trans "POPULAR POSTS" %}</b></h4>
@@ -234,8 +235,42 @@
 
 						{% endfor %}
 
+					</div><!--  pl-20 -->
+
+					{% if events %}
+
+					<div class="pl-20 pl-md-0">
+
+						<h4 class="p-title"><b>ETKİNLİKLER</b></h4>
+
+						{% for event in events %}
+
+						<a class="oflow-hidden pos-relative mb-10 dplay-block" href="{% url 'event_list' %}#{{ event.id }}">
+							<div class="">
+								<h5><b>{{ event.title }}</b></h5>
+								<h6 class="color-lite-black pt-5">
+									{% if event.description %}
+									<span class="color-black">
+										{{ event.description }}
+									</span>
+									{% endif %}
+									<span class="d-block">
+										{{ event.start|date:"j F" }}
+										{% if event.end %}
+											- {{ event.end|date:"j F" }}
+										{% endif %}
+									</span>
+								</h6>
+							</div>
+						</a><!-- oflow-hidden -->
+
+						{% endfor %}
 
 					</div><!--  pl-20 -->
+
+					{% endif %}
+
+
 				</div><!-- col-md-3 -->
 
 			</div><!-- row -->

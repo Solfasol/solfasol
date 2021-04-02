@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.urls import translate_url
+from django.db.models import Q
 from django.utils import timezone
 from django.utils.translation import LANGUAGE_SESSION_KEY
 from django.views.decorators.cache import cache_page
@@ -11,6 +12,7 @@ from solfasol.content.models import Content
 from solfasol.issues.models import Issue
 from solfasol.publications.models import Publication
 from solfasol.publications.views import index as publication_index
+from solfasol.events.models import Event
 
 
 ISSUES_THIS_MONTH_TITLES = {
@@ -43,13 +45,18 @@ def index(request):
         publish_at__lt=timezone.now(),
         publication=publication,
     ).order_by('-date')
+    now = timezone.now()
+    events = Event.objects.filter(
+        Q(end__isnull=True, start__gt=now) | Q(end__gt=now)
+    )
     return render(request, 'index.html', {
         'recent_content': content[:6],
         'featured_content': content.filter(featured=True)[:6],
         'past_issues': {
             'title': ISSUES_THIS_MONTH_TITLES[this_month],
             'issues': Issue.objects.filter(month=this_month).exclude(year=date.today().year),
-        }
+        },
+        'events': events,
     })
 
 

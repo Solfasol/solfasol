@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+
+{% block content %}
+
+		<div class="container">
+
+            <h4 class="p-title">
+                <strong>ETKİNLİKLER</strong>
+            </h4>
+
+                {% for event in events %}
+
+                <a name="{{ event.id }}" class="oflow-hidden pos-relative mb-10 dplay-block" href="#"></a>
+                <div class="">
+                    <h5>
+                        <b>{{ event.title }}</b>
+                        {% if event.online %}
+                        <small>
+                            <span class="badge badge-info">online</span>
+                        </small>
+                        {% endif %}
+                    </h5>
+                    <h6 class="color-lite-black pt-5">
+                        {% if event.description %}
+                        <span class="color-black">
+                            {{ event.description }}
+                        </span>
+                        {% endif %}
+                        <span class="d-block">
+                            {{ event.start|date:"j F" }}
+                            {% if event.end %}
+                                - {{ event.end|date:"j F" }}
+                            {% endif %}
+                        </span>
+                    </h6>
+                    {% if event.address %}
+                    <p class="small">
+                        Adres: {{ event.address }}
+                    </p>
+                    {% endif %}
+                    {% if event.link %}
+                    <p class="small">
+                        Detaylar: <a href="{{ event.link }}">{{ event.link }}</a>
+                    </p>
+                    {% endif %}
+                </div>
+
+                {% endfor %}
+
+		</div><!-- container -->
+
+{% endblock %}
