@@ -50,7 +50,7 @@
 
             {% for subscription_type in subscription_types %}
             <p class="my-2">
-                <a href="{{ subscription_type.payment_link }}" target="_blank" class="font-weight-bold d-block">{{ subscription_type.title }} - {{ subscription_type.amount }} TL</a>
+                <a href="{{ subscription_type.payment_link }}" target="_blank" class="font-weight-bold d-block">{{ subscription_type }}</a>
                 {% if subscription_type.description %}
                     {{ subscription_type.description }}
                 {% endif %}
