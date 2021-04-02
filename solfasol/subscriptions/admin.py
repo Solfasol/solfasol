@@ -14,8 +14,8 @@ class SubscriptionTypeAdmin(admin.ModelAdmin):
 
 @admin.register(Subscription)
 class SubscriptionAdmin(admin.ModelAdmin):
-    list_display = ['name', 'type_value', 'sub_type', 'email', 'phone',  'renewal', 'created']
-    list_editable = ['sub_type']
+    list_display = ['name', 'type_value', 'type', 'email', 'phone',  'renewal', 'created']
+    list_editable = ['type']
 
     def download(self, request, qs):
         f = StringIO()

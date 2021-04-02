@@ -27,15 +27,7 @@ class Subscription(models.Model):
         "Posta adresiniz", blank=True, null=True, max_length=200,
         help_text="Dijital dışı abonelikler için gerekli"
     )
-    sub_type = models.ForeignKey(SubscriptionType, verbose_name="Abonelik tipi", blank=True, null=True, on_delete=models.SET_NULL)
-    type = models.CharField("Abonelik türü", max_length=10, default='destekci', choices=(
-        ('dijital', "Dijital abonelik - 100 TL"),
-        ('yillik', "Normal abonelik - 150 TL"),
-        ('destekci', "Destekçi abonelik - 300 TL"),
-        ('yurtdisi', "Yurtdışı abonelik - 300 TL"),
-        ('duble', "Çifte Destekçi abonelik - 600 TL"),
-        ('yasasin', "Yaşasın SOLFASOL! aboneliği - 1000 TL"),
-    ))
+    type = models.ForeignKey(SubscriptionType, verbose_name="Abonelik tipi", blank=True, null=True, on_delete=models.SET_NULL)
     renewal = models.BooleanField(_('subscription status'), default=False,
         choices=((False, _('New subscription')),(True, _('Renewal')),)
     )
@@ -47,7 +39,7 @@ class Subscription(models.Model):
         return self.name
 
     def clean(self):
-        if self.sub_type.postal_address_required and not self.address:
+        if self.type.postal_address_required and not self.address:
             raise ValidationError("Lütfen posta adresinizi belirtin.")
 
     class Meta:

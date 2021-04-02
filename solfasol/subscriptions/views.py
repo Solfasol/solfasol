@@ -9,7 +9,7 @@ from .models import Subscription, SubscriptionType
 
 class SubscriptionForm(forms.ModelForm):
     captcha = ReCaptchaField()
-    sub_type = forms.ModelChoiceField(
+    type = forms.ModelChoiceField(
         queryset=SubscriptionType.objects,
         widget=forms.RadioSelect(),
         empty_label=None,
@@ -18,9 +18,9 @@ class SubscriptionForm(forms.ModelForm):
 
     class Meta:
         model = Subscription
-        fields = ['name', 'email', 'address', 'sub_type', 'renewal', 'phone', 'notes']
+        fields = ['name', 'email', 'address', 'type', 'renewal', 'phone', 'notes']
         widgets = {
-            'sub_type': forms.RadioSelect(),
+            'type': forms.RadioSelect(),
             'renewal': forms.Select(),
         }
 
@@ -44,5 +44,6 @@ def subscribe(request):
         form = SubscriptionForm()
     return render(request, 'subscriptions/subscription.html', {
         'form': form,
+        'subscription_types': SubscriptionType.objects.filter(active=True),
         'subscription': subscription,
     })

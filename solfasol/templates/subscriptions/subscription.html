@@ -48,6 +48,15 @@
 
             <h5 class="font-weight-bold mt-3">Kredi kartı ile abonelik için seçeneklere tıklayın</h5>
 
+            {% for subscription_type in subscription_types %}
+            <p class="my-2">
+                <a href="{{ subscription_type.payment_link }}" target="_blank" class="font-weight-bold d-block">{{ subscription_type.title }} - {{ subscription_type.amount }} TL</a>
+                {% if subscription_type.description %}
+                    {{ subscription_type.description }}
+                {% endif %}
+            </p>
+            {% endfor %}
+
             <p class="my-2">
                 <a href="https://iyzi.link/AFY2iA" target="_blank" class="font-weight-bold d-block">Dijital abonelik - 100 TL</a>
                 Solfasol'unuz her ay elektronik posta kutunuzda!
