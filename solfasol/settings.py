@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'solfasol.subscriptions.apps.SubscriptionsConfig',
     'solfasol.shop.apps.ShopConfig',
     'solfasol.publications.apps.PublicationsConfig',
+    'solfasol.events.apps.EventsConfig',
 ]
 
 

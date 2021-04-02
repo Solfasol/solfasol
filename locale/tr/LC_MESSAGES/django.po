@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-12 11:18+0300\n"
+"POT-Creation-Date: 2021-04-02 20:34+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,17 +19,17 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: solfasol/content/admin.py:66
-#: solfasol/publications/templates/publications/editor.html:48
+#: solfasol/publications/templates/publications/editor.html:50
 msgid "Publish"
 msgstr "Yayınla"
 
-#: solfasol/content/admin.py:93 solfasol/content/admin.py:166
+#: solfasol/content/admin.py:93 solfasol/content/admin.py:178
 msgid "Get QR code"
 msgstr "QR kodunu indir"
 
-#: solfasol/content/apps.py:7 solfasol/content/models.py:158
-#: solfasol/content/models.py:159 solfasol/content/models.py:170
-#: solfasol/content/models.py:217 solfasol/content/models.py:297
+#: solfasol/content/apps.py:7 solfasol/content/models.py:160
+#: solfasol/content/models.py:161 solfasol/content/models.py:172
+#: solfasol/content/models.py:219 solfasol/content/models.py:299
 msgid "content"
 msgstr "içerik"
 
@@ -41,9 +41,9 @@ msgstr "başlık"
 msgid "subtitle"
 msgstr "altbaşlık"
 
-#: solfasol/content/models.py:30 solfasol/content/models.py:218
-#: solfasol/content/models.py:269 solfasol/content/models.py:298
-#: solfasol/content/views.py:57 solfasol/contributors/models.py:20
+#: solfasol/content/models.py:30 solfasol/content/models.py:220
+#: solfasol/content/models.py:271 solfasol/content/models.py:300
+#: solfasol/content/views.py:56 solfasol/contributors/models.py:20
 #: solfasol/tags/models.py:48 solfasol/tags/models.py:68
 #: solfasol/tags/models.py:88
 msgid "contributor"
@@ -53,25 +53,25 @@ msgstr "katkıda bulunan"
 msgid "language"
 msgstr "dil"
 
-#: solfasol/content/models.py:37 solfasol/content/models.py:266
+#: solfasol/content/models.py:37 solfasol/content/models.py:268
 #: solfasol/issues/models.py:47 solfasol/shop/models.py:32
 #: solfasol/shop/models.py:83 solfasol/tags/apps.py:7
 #: solfasol/tags/models.py:29
 msgid "tags"
 msgstr "etiketler"
 
-#: solfasol/content/models.py:38 solfasol/content/models.py:254
-#: solfasol/content/views.py:24 solfasol/shop/models.py:23
+#: solfasol/content/models.py:38 solfasol/content/models.py:256
+#: solfasol/content/views.py:25 solfasol/shop/models.py:23
 #: solfasol/shop/models.py:34
 msgid "category"
 msgstr "kategori"
 
-#: solfasol/content/models.py:39 solfasol/content/models.py:292
-#: solfasol/content/models.py:293 solfasol/content/views.py:41
+#: solfasol/content/models.py:39 solfasol/content/models.py:294
+#: solfasol/content/models.py:295 solfasol/content/views.py:42
 msgid "series"
 msgstr "dosya / dizi"
 
-#: solfasol/content/models.py:42 solfasol/content/models.py:237
+#: solfasol/content/models.py:42 solfasol/content/models.py:239
 msgid "publication"
 msgstr "yayın"
 
@@ -83,8 +83,8 @@ msgstr "sayfa"
 msgid "Published on issue / page"
 msgstr "Yayınlandığı sayı / sayfa"
 
-#: solfasol/content/models.py:54 solfasol/content/models.py:168
-#: solfasol/content/models.py:191 solfasol/shop/models.py:39
+#: solfasol/content/models.py:54 solfasol/content/models.py:170
+#: solfasol/content/models.py:193 solfasol/shop/models.py:39
 #: solfasol/tags/models.py:63
 msgid "image"
 msgstr "görsel"
@@ -137,115 +137,133 @@ msgstr "sabitlenmiş"
 msgid "date"
 msgstr "tarih"
 
-#: solfasol/content/models.py:87
+#: solfasol/content/models.py:88
+#, fuzzy
+#| msgid "added by"
+msgid "added"
+msgstr "ekleyen"
+
+#: solfasol/content/models.py:89
 msgid "modified"
 msgstr "değiştirilme"
 
-#: solfasol/content/models.py:124
+#: solfasol/content/models.py:126
 msgid "Invalid Youtube video link!"
 msgstr "Geçersiz Youtube bağlantısı!"
 
-#: solfasol/content/models.py:126
+#: solfasol/content/models.py:128
 msgid "Please submit a Youtube video link!"
 msgstr "Geçerli bir Youtube bağlantısı girin!"
 
-#: solfasol/content/models.py:166
+#: solfasol/content/models.py:168
 msgid "text"
 msgstr "metin"
 
-#: solfasol/content/models.py:167
+#: solfasol/content/models.py:169
 msgid "spot"
 msgstr "spot"
 
-#: solfasol/content/models.py:171
+#: solfasol/content/models.py:173
 msgid "section title"
 msgstr "bölüm başlığı"
 
-#: solfasol/content/models.py:172
+#: solfasol/content/models.py:174
 msgid "section text"
 msgstr "bölüm metni"
 
-#: solfasol/content/models.py:185
+#: solfasol/content/models.py:187
 msgid "content section"
 msgstr "bölüm"
 
-#: solfasol/content/models.py:186
+#: solfasol/content/models.py:188
 msgid "content sections"
 msgstr "bölümler"
 
-#: solfasol/content/models.py:190 solfasol/content/models.py:199
+#: solfasol/content/models.py:192 solfasol/content/models.py:201
 msgid "section image"
 msgstr "bölüm görseli"
 
-#: solfasol/content/models.py:192 solfasol/content/models.py:204
+#: solfasol/content/models.py:194 solfasol/content/models.py:206
 #: solfasol/feedback/models.py:8 solfasol/shop/models.py:31
 #: solfasol/shop/models.py:63 solfasol/tags/models.py:64
 #: solfasol/tags/models.py:84
 msgid "description"
 msgstr "tanım"
 
-#: solfasol/content/models.py:200
+#: solfasol/content/models.py:202
 msgid "section images"
 msgstr "bölüm görselleri"
 
-#: solfasol/content/models.py:205
+#: solfasol/content/models.py:207
 msgid "primary"
 msgstr "birincil"
 
-#: solfasol/content/models.py:212 solfasol/content/models.py:221
-#: solfasol/content/models.py:301
+#: solfasol/content/models.py:214 solfasol/content/models.py:223
+#: solfasol/content/models.py:303
 msgid "contribution type"
 msgstr "katkı tipi"
 
-#: solfasol/content/models.py:213
+#: solfasol/content/models.py:215
 msgid "contribution types"
 msgstr "katkı tipleri"
 
-#: solfasol/content/models.py:229
+#: solfasol/content/models.py:231
 msgid "content - contributor"
 msgstr "içerik - katkıda bulunan"
 
-#: solfasol/content/models.py:230
+#: solfasol/content/models.py:232
 msgid "content - contributors"
 msgstr "içerik - katkıda bulunanlar"
 
-#: solfasol/content/models.py:234 solfasol/content/models.py:260
+#: solfasol/content/models.py:236 solfasol/content/models.py:262
 #: solfasol/contributors/models.py:7 solfasol/feedback/models.py:6
 #: solfasol/shop/models.py:10 solfasol/shop/models.py:29
 #: solfasol/shop/models.py:76 solfasol/tags/models.py:9
 msgid "name"
 msgstr "isim"
 
-#: solfasol/content/models.py:255 solfasol/shop/models.py:24
+#: solfasol/content/models.py:257 solfasol/shop/models.py:24
 msgid "categories"
 msgstr "kategoriler"
 
-#: solfasol/content/models.py:263 solfasol/issues/apps.py:7
+#: solfasol/content/models.py:265 solfasol/issues/apps.py:7
 #: solfasol/issues/models.py:55
 msgid "issues"
 msgstr "sayılar"
 
-#: solfasol/content/models.py:309
+#: solfasol/content/models.py:311
 msgid "series contributor"
 msgstr "dosyaya katkıda bulunan"
 
-#: solfasol/content/models.py:310
+#: solfasol/content/models.py:312
 msgid "series contributors"
 msgstr "dosyaya katkıda bulunanlar"
 
-#: solfasol/content/views.py:32 solfasol/shop/models.py:82
+#: solfasol/content/models.py:322
+msgid "extra file"
+msgstr ""
+
+#: solfasol/content/models.py:323
+msgid "extra files"
+msgstr ""
+
+#: solfasol/content/views.py:33 solfasol/shop/models.py:82
 #: solfasol/tags/models.py:28 solfasol/tags/models.py:43
 #: solfasol/tags/models.py:62 solfasol/tags/models.py:82
 msgid "tag"
 msgstr "etiket"
 
-#: solfasol/content/views.py:48 solfasol/content/views.py:49
+#: solfasol/content/views.py:49 solfasol/content/views.py:50
 msgid "popular"
 msgstr "popüler"
 
 #: solfasol/contributors/apps.py:7 solfasol/contributors/models.py:21
 msgid "contributors"
 msgstr "katkıda bulunanlar"
+
+#: solfasol/events/apps.py:7
+msgid "events"
+msgstr "etkinlikler"
 
 #: solfasol/feedback/apps.py:7
 msgid "feedback"
@@ -300,35 +318,27 @@ msgstr "sayfalar"
 msgid "publications"
 msgstr "yayınlar"
 
-#: solfasol/publications/models.py:13
+#: solfasol/publications/models.py:20
 msgid "about"
 msgstr "hakkında"
 
-#: solfasol/publications/models.py:21
+#: solfasol/publications/models.py:24
 msgid "users"
 msgstr "kullanıcılar"
 
-#: solfasol/publications/templates/publications/content_detail.html:30
-#: solfasol/templates/content/content_detail.html:157
-#: solfasol/templates/issues/issue_detail.html:70
-#: solfasol/templates/issues/page_detail.html:78
-#: solfasol/templates/shop/item_detail.html:40
-msgid "Share"
-msgstr "Paylaş"
-
-#: solfasol/publications/templates/publications/content_detail.html:54
+#: solfasol/publications/templates/publications/content_detail.html:48
 msgid "Edit"
 msgstr "Düzenle"
 
-#: solfasol/publications/templates/publications/content_detail.html:59
+#: solfasol/publications/templates/publications/content_detail.html:58
 #: solfasol/templates/content/content_detail.html:209
 msgid "ON PAPER"
 msgstr "YAZININ BASILI HALİ"
 
-#: solfasol/publications/templates/publications/content_detail.html:67
+#: solfasol/publications/templates/publications/content_detail.html:66
 #: solfasol/publications/templates/publications/index.html:184
 #: solfasol/templates/content/content_detail.html:217
-#: solfasol/templates/index.html:210
+#: solfasol/templates/index.html:210 solfasol/templates/youtube_live.html:24
 msgid "POPULAR POSTS"
 msgstr "POPÜLER İÇERİK"
 
@@ -340,31 +350,31 @@ msgstr "Etiketler"
 msgid "Category"
 msgstr "Kategori"
 
-#: solfasol/publications/templates/publications/editor.html:47
+#: solfasol/publications/templates/publications/editor.html:49
 msgid "Save draft"
 msgstr "Kaydet"
 
-#: solfasol/publications/templates/publications/editor.html:104
+#: solfasol/publications/templates/publications/editor.html:106
 msgid "Title"
 msgstr "Başlık"
 
-#: solfasol/publications/templates/publications/editor.html:180
+#: solfasol/publications/templates/publications/editor.html:183
 msgid "Document saved successfully"
 msgstr "Doküman kaydedildi"
 
-#: solfasol/publications/templates/publications/editor.html:183
+#: solfasol/publications/templates/publications/editor.html:186
 msgid "Draft saved successfully"
 msgstr "Taslak kaydedildi"
 
-#: solfasol/publications/views.py:53
+#: solfasol/publications/views.py:54
 msgid "No title provided"
 msgstr "Başlık girilmemiş"
 
-#: solfasol/publications/views.py:57
+#: solfasol/publications/views.py:58
 msgid "No image provided"
 msgstr "En az bir imaj yüklenmeli"
 
-#: solfasol/publications/views.py:80
+#: solfasol/publications/views.py:83
 msgid "A post with the same title already exists"
 msgstr "Aynı başlıklı bir doküman bulunuyor"
 
@@ -493,23 +503,29 @@ msgstr "CVC"
 msgid "3D Secure"
 msgstr "3D Secure"
 
-#: solfasol/subscriptions/apps.py:7 solfasol/subscriptions/models.py:36
+#: solfasol/subscriptions/admin.py:40
+#, fuzzy
+#| msgid "Download PDF"
+msgid "Download"
+msgstr "PDF olarak indir"
+
+#: solfasol/subscriptions/apps.py:7 solfasol/subscriptions/models.py:47
 msgid "subscriptions"
 msgstr "abonelikler"
 
-#: solfasol/subscriptions/models.py:20
+#: solfasol/subscriptions/models.py:31
 msgid "subscription status"
 msgstr "abonelik durumu"
 
-#: solfasol/subscriptions/models.py:21
+#: solfasol/subscriptions/models.py:32
 msgid "New subscription"
 msgstr "Yeni abonelik"
 
-#: solfasol/subscriptions/models.py:21
+#: solfasol/subscriptions/models.py:32
 msgid "Renewal"
 msgstr "Yenileme"
 
-#: solfasol/subscriptions/models.py:35
+#: solfasol/subscriptions/models.py:46
 msgid "subscription"
 msgstr "abonelik"
 
@@ -565,21 +581,28 @@ msgstr "video"
 msgid "tag videos"
 msgstr "videolar"
 
-#: solfasol/templates/base.html:63 solfasol/templates/issues/issue_list.html:10
+#: solfasol/templates/base.html:68 solfasol/templates/issues/issue_list.html:10
 msgid "Archive"
 msgstr "Arşiv"
 
-#: solfasol/templates/base.html:64 solfasol/templates/base.html:193
+#: solfasol/templates/base.html:69 solfasol/templates/base.html:198
 msgid "Subscribe"
 msgstr "Abonelik"
 
-#: solfasol/templates/base.html:194
+#: solfasol/templates/base.html:199
 msgid "Contact us"
 msgstr "Bize ulaş"
 
 #: solfasol/templates/content/content_detail.html:91
 msgid "Tweet"
 msgstr "Tweet'le"
+
+#: solfasol/templates/content/content_detail.html:157
+#: solfasol/templates/issues/issue_detail.html:70
+#: solfasol/templates/issues/page_detail.html:78
+#: solfasol/templates/shop/item_detail.html:40
+msgid "Share"
+msgstr "Paylaş"
 
 #: solfasol/templates/content/content_detail.html:168
 msgid "YOU MAY ALSO LIKE"
@@ -697,7 +720,7 @@ msgstr "Gönder"
 msgid "Total price"
 msgstr "Toplam ücret"
 
-#: solfasol/urls.py:67 solfasol/urls.py:68
+#: solfasol/urls.py:69 solfasol/urls.py:70
 msgid "Solfasol Administration"
 msgstr "Solfasol Yönetimi"
 
