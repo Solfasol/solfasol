@@ -15,6 +15,7 @@ class Event(models.Model):
         blank=True, null=True,
         help_text="Detaylı bilgi için bağlantı",
     )
+    active = models.BooleanField("Aktif", default=True)
 
     def __str__(self):
         return self.title
