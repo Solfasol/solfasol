@@ -12,7 +12,10 @@ Hesap Sahibi: Mehmet Onur Yılmaz SOLFASOL
 
 Abonelik bilgileriniz:
 Abonelik tipi: {{ subscription.type }}
-Adres
+{% if subscription.address %}Adres: {{ subscription.address }}{% endif %}
+
+
+Bir sorunla karşılaşırsanız lütfen abone@gazetesolfasol.com adresi ile iletişime geçin.
 
 
 Hoşçakalın,
