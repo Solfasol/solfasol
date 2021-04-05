@@ -7,8 +7,8 @@ from solfasol.events.models import Event
 def event_list(request):
     now = timezone.now()
     events = Event.objects.filter(
-        Q(end__isnull=True, start__gt=now) | Q(end__gt=now)
-    ).filter(active=True)
+        Q(start__gt=now) | Q(end__gt=now)
+    ).filter(active=True).distinct()
     return render(request, 'events/event_list.html', {
         'events': events,
     })
