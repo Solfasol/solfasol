@@ -47,7 +47,7 @@ def index(request):
     ).order_by('-date')
     now = timezone.now()
     events = Event.objects.filter(
-        Q(start__gt=now) | Q(end__gt=now)
+        Q(start__gt=now) | Q(end__gt=now) | Q(end__isnull=True)
     ).filter(active=True).distinct()[:10]
     return render(request, 'index.html', {
         'recent_content': content[:6],
