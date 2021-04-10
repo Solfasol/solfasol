@@ -1,8 +1,16 @@
 from django.db import models
 
 
+class EventType(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+
 class Event(models.Model):
     title = models.CharField("Başlık", max_length=200)
+    type = models.ForeignKey(EventType, blank=True, null=True, on_delete=models.SET_NULL)
     start = models.DateTimeField("Başlangıç")
     end = models.DateTimeField("Bitiş", blank=True, null=True)
     description = models.TextField("Tanım", blank=True, null=True)
@@ -21,5 +29,6 @@ class Event(models.Model):
         return self.title
 
     class Meta:
+        ordering = ('start',)
         verbose_name = "Etkinlik"
         verbose_name_plural = "Etkinlikler"

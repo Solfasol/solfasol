@@ -16,6 +16,11 @@
                 <div class="">
                     <h5>
                         <b>{{ event.title }}</b>
+                        {% if event.type %}
+                        <small>
+                            <span class="badge badge-warning">{{ event.type.name }}</span>
+                        </small>
+                        {% endif %}
                         {% if event.online %}
                         <small>
                             <span class="badge badge-info">online</span>

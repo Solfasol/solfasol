@@ -27,7 +27,7 @@ class Subscription(models.Model):
         "Posta adresiniz", blank=True, null=True, max_length=200,
         help_text="Dijital dışı abonelikler için gerekli"
     )
-    type = models.ForeignKey(SubscriptionType, verbose_name="Abonelik tipi", default=1, on_delete=models.SET_DEFAULT)
+    type = models.ForeignKey(SubscriptionType, verbose_name="Abonelik tipi", default=7, on_delete=models.SET_DEFAULT)
     renewal = models.BooleanField(_('subscription status'), default=False,
         choices=((False, _('New subscription')),(True, _('Renewal')),)
     )
