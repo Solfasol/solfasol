@@ -10,4 +10,4 @@ class EventTypeAdmin(admin.ModelAdmin):
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
     list_display = ['title', 'type', 'start', 'end', 'online', 'active']
-    list_editable = ['active']
+    list_editable = ['active', 'type']
