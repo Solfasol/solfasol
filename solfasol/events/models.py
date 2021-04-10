@@ -7,6 +7,10 @@ class EventType(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "Etkinlik tipi"
+        verbose_name_plural = "Etkinlik tipleri"
+
 
 class Event(models.Model):
     title = models.CharField("Başlık", max_length=200)
