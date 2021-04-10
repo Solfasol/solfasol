@@ -247,7 +247,14 @@
 
 						<a class="oflow-hidden pos-relative mb-10 dplay-block" href="{% url 'event_list' %}#{{ event.id }}">
 							<div class="">
-								<h5><b>{{ event.title }}</b></h5>
+								<h5>
+									<b>{{ event.title }}</b>
+									{% if event.type %}
+									<small>
+										<span class="badge badge-warning">{{ event.type.name }}</span>
+									</small>
+									{% endif %}
+								</h5>
 								<h6 class="color-lite-black pt-5">
 									{% if event.description %}
 									<span class="color-black">
