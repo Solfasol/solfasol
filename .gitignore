@@ -5,6 +5,7 @@
 *.pdf
 *.json
 /env*
+/venv*
 /media/
 /docs/
 /data/
