@@ -205,6 +205,12 @@ HAYSTACK_CONNECTIONS = {
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
 
+CORS_ALLOWED_ORIGINS = [
+    "https://solfasol.tv",
+    "https://farukbildirici.com",
+]
+
+
 try:
     from .settings_local import *
 except ImportError:
