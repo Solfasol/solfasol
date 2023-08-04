@@ -48,6 +48,9 @@
                 <a class="btn btn-outline-success" href="{% url 'pub_content_edit' content_id=content.id %}">{% trans "Edit" %}</a>
             {% endif %}
 
+            <!-- GIChat -->
+            <iframe src="https://gi.chat/e/?url={{ request.build_absolute_uri }}" width="100%" height="300" frameborder="0"></iframe>
+
         </div>
 
         <div class="col-md-6 col-lg-4">
