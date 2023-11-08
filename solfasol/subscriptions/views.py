@@ -1,6 +1,5 @@
 from django import forms
 from django.shortcuts import render, redirect
-from django.contrib import messages
 from captcha.fields import ReCaptchaField
 from .models import Subscription, SubscriptionType
 
@@ -29,7 +28,6 @@ def subscribe(request):
         form = SubscriptionForm(request.POST)
         if form.is_valid():
             subscription = form.save()
-            messages.success(request, 'Abonelik kaydınız başarıyla alındı. Teşekkürler!')
     else:
         form = SubscriptionForm()
     return render(request, 'subscriptions/subscription.html', {
